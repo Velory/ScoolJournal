@@ -1,3 +1,4 @@
+/*TODO do NOT create database here or use IF NOT EXIST (better use create flag in URL)*/
 CREATE DATABASE `scooldb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 CREATE TABLE `class` (
   `id` int(11) NOT NULL,

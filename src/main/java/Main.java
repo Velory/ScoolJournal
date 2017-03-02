@@ -1,3 +1,4 @@
+//TODO use some package
 import org.flywaydb.core.Flyway;
 
 import java.io.FileNotFoundException;
@@ -9,6 +10,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         Flyway flyway = new Flyway();
         Properties properties = new Properties();
+        //TODO do not use absolute path
         properties.load(new FileReader("D:\\Java\\ScoolJournal\\src\\main\\resources\\db.properties"));
 
         flyway.setDataSource(properties.getProperty("Flyway.url"),
