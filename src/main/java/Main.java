@@ -11,6 +11,7 @@ public class Main {
         Flyway flyway = new Flyway();
         Properties properties = new Properties();
         //TODO do not use absolute path
+        //TODO how will you close FileReader?
         properties.load(new FileReader("D:\\Java\\ScoolJournal\\src\\main\\resources\\db.properties"));
 
         flyway.setDataSource(properties.getProperty("Flyway.url"),
