@@ -1,16 +1,11 @@
 package domain;
 
-public class Teacher extends User{
+import java.io.Serializable;
+
+public class Teacher implements Serializable{
 
     private int classId;
     private int kursId;
-
-    public Teacher(String firstName, String midName, String lastName,
-                   String phone, String email, int classId, int kursId) {
-        super(firstName, midName, lastName, phone, email);
-        this.classId = classId;
-        this.kursId = kursId;
-    }
 
     public int getClassId() {
         return classId;
@@ -26,5 +21,31 @@ public class Teacher extends User{
 
     public void setKursId(int kursId) {
         this.kursId = kursId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Teacher teacher = (Teacher) o;
+
+        if (classId != teacher.classId) return false;
+        return kursId == teacher.kursId;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = classId;
+        result = 31 * result + kursId;
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "classId=" + classId +
+                ", kursId=" + kursId +
+                '}';
     }
 }

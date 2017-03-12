@@ -1,12 +1,12 @@
 package dao;
 
-import java.util.Map;
+public abstract class DAOFactory {
 
-public interface DAOFactory <T, K, V>{
+    public abstract ClassDAO getClassDAO();
+    public abstract KursDAO getKursDAO();
+    public abstract LessonDAO getLessonDAO();
+    public abstract MarksDAO getMarksDAO();
+    public abstract StudentsDAO getStudentsDAO();
+    public abstract TeachersDAO getTeachersDAO();
 
-    T create ();
-    T read ();
-    void update ();
-    void delete ();
-    Map <K,V> getAll();
 }

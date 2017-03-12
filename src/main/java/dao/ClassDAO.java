@@ -1,63 +1,89 @@
 package dao;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Map;
-import java.util.Properties;
+import entity.Class;
 
-public class ClassDAO implements ConnectionDAO,DAOFactory{
+import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
+
+public class ClassDAO implements CrudDAO{
 
     @Override
-    public Connection getConnection() {
-
-        Properties properties = new Properties();
-        try (FileReader fr = new FileReader("db.properties")){
-            Class.forName("com.mysql.jdbc.Driver");
-            properties.load(fr);
-            return DriverManager.getConnection(properties.getProperty("db.url"),
-                    properties.getProperty("db.user"), properties.getProperty("db.password"));
-        } catch (ClassNotFoundException | IOException | SQLException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    @Override
-    public Object create() {
-        return null;
-    }
-
-    @Override
-    public Object read() {
-        return null;
-    }
-
-    @Override
-    public void update() {
-
-    }
-
-    @Override
-    public void delete() {
-
-    }
-
-    @Override
-    public Map getAll() {
-        return null;
-    }
-
-    @Override
-    public void closeConnection(Connection connection) {
-        try {
-            getConnection().close();
+    public void create(Object o) {
+        Class cl = (Class) o;
+        String query = "INSERT INTO class VALUES(?, ?, ?)";
+        try (Connection connection = SqlDAOFactory.createConnection();
+             PreparedStatement ps = connection.prepareStatement(query)){
+            ps.setInt(1, cl.getId());
+            ps.setInt(2,cl.getNum());
+            ps.setString(3, cl.getLetter());
+            ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public Class read(int id) {
+        String query = "SELECT * FROM class WHERE id=?";
+        try (Connection connection = SqlDAOFactory.createConnection();
+            PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                return new Class(rs.getInt("id"),
+                        rs.getInt("num"), rs.getString("letter"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public void update(Object o, int id) {
+        Class cl = (Class) o;
+        String query = "UPDATE class SET id=?, num=?, letter=? WHERE id=?";
+        try (Connection connection = SqlDAOFactory.createConnection();
+             PreparedStatement ps = connection.prepareStatement(query)){
+            ps.setInt(1,cl.getId());
+            ps.setInt(2,cl.getNum());
+            ps.setString(3,cl.getLetter());
+            ps.setInt(4,id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void delete(int id) {
+        String query = "DELETE FROM class WHERE id=?";
+        try (Connection connection = SqlDAOFactory.createConnection();
+             PreparedStatement ps = connection.prepareStatement(query)){
+            ps.setInt(1, id);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<Class> getAll() {
+        String query = "SELECT * FROM class";
+        List<Class> classes = new LinkedList<>();
+
+        try (Connection connection = SqlDAOFactory.createConnection();
+             PreparedStatement ps = connection.prepareStatement(query)){
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                classes.add(new Class(rs.getInt("id"),
+                        rs.getInt("num"), rs.getString("letter")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return classes;
+    }
+
 }
