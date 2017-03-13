@@ -2,17 +2,15 @@ package dao;
 
 import entity.Students;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 public class StudentsDAO implements CrudDAO{
 
     @Override
-    public void create(Students student) {
+    public void create(Object o) {
+        Students student = (Students)o;
         String query = "INSERT INTO students VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = SqlDAOFactory.createConnection();
             PreparedStatement ps = connection.prepareStatement(query)){
@@ -54,7 +52,8 @@ public class StudentsDAO implements CrudDAO{
     }
 
     @Override
-    public void update(Students student, int id) {
+    public void update(Object o, int id) {
+        Students student = (Students) o;
         String query = "UPDATE students SET id=?, firstName=?, midName=?," +
                 "lastName=?, age=?, phone=?, email=?, classId=? WHERE id=?";
         try (Connection connection = SqlDAOFactory.createConnection();

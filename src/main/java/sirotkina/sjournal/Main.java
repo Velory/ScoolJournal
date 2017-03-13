@@ -22,7 +22,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        ClassLoader classLoader = properties.getClass().getClassLoader();
+        ClassLoader classLoader = Main.class.getClassLoader();
 
         try {
             properties.load(classLoader.getResourceAsStream("db.properties"));

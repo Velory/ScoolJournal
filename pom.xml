@@ -18,13 +18,14 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+
             <plugin>
-                <groupId>org.apache.maven.pins</groupId>
-                <artifactId>maven-jar-pin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.maventest.App</mainClass>
+                            <mainClass>sirotkina.sjournal.Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -49,12 +50,6 @@
             <version>4.4</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-
-        </plugins>
-    </build>
 
 
 </project>
