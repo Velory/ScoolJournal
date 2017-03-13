@@ -2,12 +2,12 @@ package dao;
 
 import java.util.List;
 
-public interface CrudDAO {
+public interface CrudDAO <T> {
 
-    void create (Object o);
-    Object read (int id);
-    void update (Object o, int id);
+    void create (T object);
+    T read (int id);
+    void update (T object, int id);
     void delete (int id);
-    List<Object> getAll();
+    List<T> getAll();
 
 }
