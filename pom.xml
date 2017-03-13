@@ -18,6 +18,17 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.pins</groupId>
+                <artifactId>maven-jar-pin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.maventest.App</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -38,6 +49,12 @@
             <version>4.4</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+
+        </plugins>
+    </build>
 
 
 </project>
