@@ -1,14 +1,9 @@
 package dao;
 
 import entity.Kurs;
-
-import java.io.BufferedInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
@@ -18,7 +13,7 @@ public class KursDAO {
         String query = "INSERT INTO kurs VALUES(?, ?)";
         Properties properties = new Properties();
         ClassLoader cl = KursDAO.class.getClassLoader();
-        try /*(BufferedInputStream in = new )*/{
+        try {
             properties.load(cl.getResourceAsStream("db.properties"));
             java.lang.Class.forName(properties.getProperty("db.driver"));
         } catch (ClassNotFoundException | IOException e) {
@@ -37,23 +32,101 @@ public class KursDAO {
     }
 
 
-    public Kurs read(int id) {
-
+    public Kurs readById(int id) {
+        String query = "SELECT * FROM kurs WHERE id=?";
+        Properties properties = new Properties();
+        ClassLoader cl = KursDAO.class.getClassLoader();
+        try {
+            properties.load(cl.getResourceAsStream("db.properties"));
+            java.lang.Class.forName(properties.getProperty("db.driver"));
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+        try (Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
+                properties.getProperty("db.user"), properties.getProperty("db.password"));
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                return new Kurs(rs.getInt("id"),
+                         rs.getString("title"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
 
-    public void update(Object object, int id) {
+    public void update(Kurs kurs, int id) {
+        String query = "UPDATE kurs SET id=?, title=? WHERE id=?";
+        Properties properties = new Properties();
+        ClassLoader cl = KursDAO.class.getClassLoader();
+        try {
+            properties.load(cl.getResourceAsStream("db.properties"));
+            java.lang.Class.forName(properties.getProperty("db.driver"));
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
 
+        try (Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
+                properties.getProperty("db.user"), properties.getProperty("db.password"));
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1,kurs.getId());
+            ps.setString(2,kurs.getTitle());
+            ps.setInt(4,id);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 
-    public void delete(int id) {
+    public void deleteById(int id) {
+        String query = "DELETE FROM class WHERE id=?";
+        Properties properties = new Properties();
+        ClassLoader cl = KursDAO.class.getClassLoader();
+        try {
+            properties.load(cl.getResourceAsStream("db.properties"));
+            java.lang.Class.forName(properties.getProperty("db.driver"));
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
 
+        try (Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
+                properties.getProperty("db.user"), properties.getProperty("db.password"));
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setInt(1, id);
+            ps.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
-    
-    public List getAll() {
-        return null;
+
+    public List<Kurs> getAll() {
+        String query = "SELECT * FROM kurs";
+        List<Kurs> kursList = new LinkedList<>();
+        Properties properties = new Properties();
+        ClassLoader cl = KursDAO.class.getClassLoader();
+        try {
+            properties.load(cl.getResourceAsStream("db.properties"));
+            java.lang.Class.forName(properties.getProperty("db.driver"));
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();
+        }
+
+        try (Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
+                properties.getProperty("db.user"), properties.getProperty("db.password"));
+             PreparedStatement ps = connection.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                kursList.add(new Kurs(rs.getInt("id"),
+                         rs.getString("title")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return kursList;
     }
 }
