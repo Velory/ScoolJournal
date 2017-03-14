@@ -1,4 +1,4 @@
-package domain;
+package sirotkina.sjournal.domain;
 
 import java.io.Serializable;
 import java.time.LocalDate;

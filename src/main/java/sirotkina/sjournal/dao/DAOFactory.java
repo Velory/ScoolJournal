@@ -1,4 +1,4 @@
-package dao;
+package sirotkina.sjournal.dao;
 
 public abstract class DAOFactory {
 

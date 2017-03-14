@@ -1,4 +1,4 @@
-package dao;
+package sirotkina.sjournal.dao;
 
 import java.util.List;
 

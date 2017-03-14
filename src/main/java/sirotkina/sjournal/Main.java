@@ -1,13 +1,9 @@
 package sirotkina.sjournal;
-import dao.ClassDAO;
-import dao.StudentsDAO;
-import entity.Class;
-import entity.Students;
+import sirotkina.sjournal.dao.ClassDAO;
+import sirotkina.sjournal.entity.Class;
 import org.flywaydb.core.Flyway;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 
 public class Main {

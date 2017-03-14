@@ -1,4 +1,4 @@
-package entity;
+package sirotkina.sjournal.entity;
 
 public class Marks {
     private int mark;

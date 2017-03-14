@@ -1,4 +1,4 @@
-package dao;
+package sirotkina.sjournal.dao;
 
 import java.io.FileReader;
 import java.io.IOException;

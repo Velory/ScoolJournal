@@ -1,4 +1,4 @@
-package domain;
+package sirotkina.sjournal.domain;
 
 public class User {
 

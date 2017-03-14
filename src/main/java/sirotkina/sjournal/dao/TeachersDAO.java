@@ -1,6 +1,6 @@
-package dao;
+package sirotkina.sjournal.dao;
 
-import entity.Teachers;
+import sirotkina.sjournal.entity.Teachers;
 
 import java.util.List;
 

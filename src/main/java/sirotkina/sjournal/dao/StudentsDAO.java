@@ -1,6 +1,6 @@
-package dao;
+package sirotkina.sjournal.dao;
 
-import entity.Students;
+import sirotkina.sjournal.entity.Students;
 
 import java.sql.*;
 import java.util.ArrayList;

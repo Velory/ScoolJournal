@@ -1,4 +1,4 @@
-package entity;
+package sirotkina.sjournal.entity;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

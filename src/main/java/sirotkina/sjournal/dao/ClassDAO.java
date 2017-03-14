@@ -1,6 +1,6 @@
-package dao;
+package sirotkina.sjournal.dao;
 
-import entity.Class;
+import sirotkina.sjournal.entity.Class;
 
 import java.sql.*;
 import java.util.LinkedList;
