@@ -33,7 +33,6 @@ public class Main {
         flyway.setDataSource(properties.getProperty("db.url"),
                 properties.getProperty("db.user"), properties.getProperty("db.password"));
 
-        flyway.baseline();
         flyway.migrate();
 
         Class cl = new Class(3, 1, "C");
