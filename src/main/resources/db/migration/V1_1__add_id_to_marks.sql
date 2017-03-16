@@ -1,0 +1,1 @@
+alter table marks add id int(11) not null primary key;

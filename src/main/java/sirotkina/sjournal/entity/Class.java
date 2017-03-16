@@ -36,6 +36,24 @@ public class Class {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Class aClass = (Class) o;
+
+        if (num != aClass.num) return false;
+        return letter != null ? letter.equals(aClass.letter) : aClass.letter == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = num;
+        result = 31 * result + (letter != null ? letter.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Class{" +
                 "id=" + id +

@@ -1,32 +1,30 @@
 package sirotkina.sjournal.dao;
 
+
 import sirotkina.sjournal.entity.Marks;
-import java.io.IOException;
+
+import javax.sql.DataSource;
+
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Properties;
 
-public class MarksDAO {
 
-    public void create(Marks mark) {
-        String query = "INSERT INTO marks VALUES(?, ?, ?, ?)";
-        Properties properties = new Properties();
-        ClassLoader cl = MarksDAO.class.getClassLoader();
-        try {
-            properties.load(cl.getResourceAsStream("db.properties"));
-            java.lang.Class.forName(properties.getProperty("db.driver"));
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
+public class MarksDAO extends AbstractDAO{
 
-        try (Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
-                properties.getProperty("db.user"), properties.getProperty("db.password"));
-             PreparedStatement ps = connection.prepareStatement(query)){
-            ps.setInt(1, mark.getMark());
-            ps.setString(2, mark.getComment());
-            ps.setInt(3, mark.getLessonId());
-            ps.setInt(4,mark.getStudentsId());
+    public MarksDAO(DataSource dataSource) {
+        super(dataSource);
+    }
+
+    public void save(Marks mark) {
+        String query = "INSERT INTO marks (id, mark, comment, lessonId, studentsId) VALUES(?, ?, ?, ?, ?)";
+
+        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+            ps.setInt(1,mark.getId());
+            ps.setInt(2, mark.getMark());
+            ps.setString(3, mark.getComment());
+            ps.setInt(4, mark.getLessonId());
+            ps.setInt(5,mark.getStudentsId());
             ps.execute();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -34,52 +32,38 @@ public class MarksDAO {
     }
 
 
-    public Marks readById(int id) {
-        String query = "SELECT * FROM marks WHERE studentsId=?";
-        Properties properties = new Properties();
-        ClassLoader cl = MarksDAO.class.getClassLoader();
-        try {
-            properties.load(cl.getResourceAsStream("db.properties"));
-            java.lang.Class.forName(properties.getProperty("db.driver"));
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
-        try (Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
-                properties.getProperty("db.user"), properties.getProperty("db.password"));
-             PreparedStatement ps = connection.prepareStatement(query)) {
+    public Marks getById(int id) {
+        String query = "SELECT * FROM marks WHERE id=?";
+        ResultSet rs = null;
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
+            rs = ps.executeQuery();
             while (rs.next()){
-                return new Marks(rs.getInt("mark"),
+                return new Marks(rs.getInt("id"), rs.getInt("mark"),
                         rs.getString("comment"),
                         rs.getInt("lessonId"),
                         rs.getInt("studentsId"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return null;
     }
 
-
-    public void update(Marks mark, int id) {
-        String query = "UPDATE marks SET mark=?, comment=?, lessonId=?, studentsId=? WHERE studentsId=?";
-        Properties properties = new Properties();
-        ClassLoader cl = MarksDAO.class.getClassLoader();
-        try {
-            properties.load(cl.getResourceAsStream("db.properties"));
-            java.lang.Class.forName(properties.getProperty("db.driver"));
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
-                properties.getProperty("db.user"), properties.getProperty("db.password"));
-             PreparedStatement ps = connection.prepareStatement(query)) {
+    public void update(Marks mark) {
+        String query = "UPDATE marks SET mark=?, comment=?, lessonId=?, studentsId=? WHERE id=?";
+        try(PreparedStatement ps = getConnection().prepareStatement(query)){
             ps.setInt(1, mark.getMark());
             ps.setString(2, mark.getComment());
             ps.setInt(3, mark.getLessonId());
-            ps.setInt(4, id);
+            ps.setInt(4, mark.getStudentsId());
+            ps.setInt(5, mark.getId());
             ps.executeUpdate();
 
         } catch (SQLException e) {
@@ -87,21 +71,10 @@ public class MarksDAO {
         }
     }
 
-
     public void deleteById(int id) {
-        String query = "DELETE FROM marks WHERE studentsId=?";
-        Properties properties = new Properties();
-        ClassLoader cl = MarksDAO.class.getClassLoader();
-        try {
-            properties.load(cl.getResourceAsStream("db.properties"));
-            java.lang.Class.forName(properties.getProperty("db.driver"));
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
+        String query = "DELETE FROM marks WHERE id=?";
 
-        try (Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
-                properties.getProperty("db.user"), properties.getProperty("db.password"));
-             PreparedStatement ps = connection.prepareStatement(query)) {
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
             ps.setInt(1, id);
             ps.execute();
         } catch (SQLException e) {
@@ -113,27 +86,23 @@ public class MarksDAO {
     public List<Marks> getAll() {
         String query = "SELECT * FROM marks";
         List<Marks> marksList = new LinkedList<>();
-        Properties properties = new Properties();
-        ClassLoader cl = MarksDAO.class.getClassLoader();
-        try {
-            properties.load(cl.getResourceAsStream("db.properties"));
-            java.lang.Class.forName(properties.getProperty("db.driver"));
-        } catch (ClassNotFoundException | IOException e) {
-            e.printStackTrace();
-        }
-
-        try (Connection connection = DriverManager.getConnection(properties.getProperty("db.url"),
-                properties.getProperty("db.user"), properties.getProperty("db.password"));
-             PreparedStatement ps = connection.prepareStatement(query)) {
-            ResultSet rs = ps.executeQuery();
+        ResultSet rs = null;
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
+            rs = ps.executeQuery();
             while (rs.next()){
-                marksList.add(new Marks(rs.getInt("mark"),
+                marksList.add(new Marks(rs.getInt("id"), rs.getInt("mark"),
                         rs.getString("comment"),
                         rs.getInt("lessonId"),
                         rs.getInt("studentsId")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return marksList;
     }

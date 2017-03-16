@@ -26,6 +26,21 @@ public class Kurs {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Kurs kurs = (Kurs) o;
+
+        return title != null ? title.equals(kurs.title) : kurs.title == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return title != null ? title.hashCode() : 0;
+    }
+
+    @Override
     public String toString() {
         return "Kurs{" +
                 "id=" + id +

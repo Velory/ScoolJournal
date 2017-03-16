@@ -87,6 +87,34 @@ public class Students {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Students students = (Students) o;
+
+        if (age != students.age) return false;
+        if (classId != students.classId) return false;
+        if (firstName != null ? !firstName.equals(students.firstName) : students.firstName != null) return false;
+        if (midName != null ? !midName.equals(students.midName) : students.midName != null) return false;
+        if (lastName != null ? !lastName.equals(students.lastName) : students.lastName != null) return false;
+        if (phone != null ? !phone.equals(students.phone) : students.phone != null) return false;
+        return email != null ? email.equals(students.email) : students.email == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = firstName != null ? firstName.hashCode() : 0;
+        result = 31 * result + (midName != null ? midName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + age;
+        result = 31 * result + (phone != null ? phone.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        result = 31 * result + classId;
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Students{" +
                 "id=" + id +

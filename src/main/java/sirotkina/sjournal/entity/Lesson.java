@@ -1,18 +1,18 @@
 package sirotkina.sjournal.entity;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.sql.Date;
+import java.sql.Time;
 
 public class Lesson {
     private int id;
-    private LocalDate date;
-    private LocalTime time;
+    private Date date;
+    private Time time;
     private String homeTask;
     private int classId;
     private int teachersId;
     private int kursId;
 
-    public Lesson(int id, LocalDate date, LocalTime time, String homeTask, int classId, int teachersId, int kursId) {
+    public Lesson(int id, Date date, Time time, String homeTask, int classId, int teachersId, int kursId) {
         this.id = id;
         this.date = date;
         this.time = time;
@@ -30,19 +30,19 @@ public class Lesson {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public LocalTime getTime() {
+    public Time getTime() {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(Time time) {
         this.time = time;
     }
 
@@ -76,6 +76,32 @@ public class Lesson {
 
     public void setKursId(int kursId) {
         this.kursId = kursId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lesson lesson = (Lesson) o;
+
+        if (classId != lesson.classId) return false;
+        if (teachersId != lesson.teachersId) return false;
+        if (kursId != lesson.kursId) return false;
+        if (date != null ? !date.equals(lesson.date) : lesson.date != null) return false;
+        if (time != null ? !time.equals(lesson.time) : lesson.time != null) return false;
+        return homeTask != null ? homeTask.equals(lesson.homeTask) : lesson.homeTask == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = date != null ? date.hashCode() : 0;
+        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + (homeTask != null ? homeTask.hashCode() : 0);
+        result = 31 * result + classId;
+        result = 31 * result + teachersId;
+        result = 31 * result + kursId;
+        return result;
     }
 
     @Override
