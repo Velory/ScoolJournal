@@ -8,7 +8,7 @@ import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Kurs;
 import sirotkina.sjournal.entity.Lesson;
 import sirotkina.sjournal.entity.Teachers;
-import sirotkina.sjournal.utils.MigrationsUtils;
+import sirotkina.sjournal.utils.DatabaseUtils;
 
 import javax.sql.DataSource;
 
@@ -27,15 +27,26 @@ public class LessonDAOTest {
 
     @Before
     public void setUp() throws Exception {
-        MigrationsUtils.migrate();
+        //DatabaseUtils.migrate();
         connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scooldb1?createDatabaseIfNotExist=true",
                 "root","marishach");
         dataSource = Mockito.mock(DataSource.class);
         Mockito.when(dataSource.getConnection()).thenReturn(connection);
+
         lessonDAO = new LessonDAO(dataSource);
-        classDAO = new ClassDAO(dataSource);
+        classDAO = new ClassDAO();
         teachersDAO = new TeachersDAO(dataSource);
         kursDAO = new KursDAO(dataSource);
+
+        classDAO.save(new Class(1,1,"A"));
+        classDAO.save(new Class(2,1,"B"));
+        kursDAO.save(new Kurs(1, "math"));
+        teachersDAO.save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
+                "13141", "tatyana@mail.me", 1, 1));
+        lessonDAO.save(new Lesson(1, Date.valueOf("2017-03-16"), Time.valueOf("11:00:00"),
+                "hometask", 1,1,1));
+        lessonDAO.save(new Lesson(2, Date.valueOf("2017-03-10"), Time.valueOf("15:30:00"),
+                "hometask1", 2,1,1));
     }
 
     @After
@@ -48,12 +59,6 @@ public class LessonDAOTest {
 
     @Test
     public void save() throws Exception {
-        classDAO.save(new Class(1,1,"A"));
-        kursDAO.save(new Kurs(1, "math"));
-        teachersDAO.save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
-                "13141", "tatyana@mail.me", 1, 1));
-        lessonDAO.save(new Lesson(1, Date.valueOf("2017-03-16"), Time.valueOf("11:00:00"),
-            "hometask", 1, 1, 1));
         Lesson lesson = lessonDAO.getById(1);
         assertNotNull(lesson);
         assertEquals(Date.valueOf("2017-03-16"), lesson.getDate());
@@ -61,12 +66,6 @@ public class LessonDAOTest {
 
     @Test
     public void getById() throws Exception {
-        classDAO.save(new Class(1,1,"A"));
-        kursDAO.save(new Kurs(1, "math"));
-        teachersDAO.save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
-                "13141", "tatyana@mail.me", 1, 1));
-        lessonDAO.save(new Lesson(1, Date.valueOf("2017-03-16"), Time.valueOf("11:00:00"),
-                "hometask", 1,1,1));
         Lesson lesson = lessonDAO.getById(1);
         assertNotNull(lesson);
         assertEquals(Date.valueOf("2017-03-16"), lesson.getDate());
@@ -75,13 +74,6 @@ public class LessonDAOTest {
 
     @Test
     public void update() throws Exception {
-        classDAO.save(new Class(1,1,"A"));
-        classDAO.save(new Class(2,1,"B"));
-        kursDAO.save(new Kurs(1, "math"));
-        teachersDAO.save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
-                "13141", "tatyana@mail.me", 1, 1));
-        lessonDAO.save(new Lesson(1, Date.valueOf("2017-03-16"), Time.valueOf("11:00:00"),
-                "hometask", 1,1,1));
         lessonDAO.update(new Lesson(1, Date.valueOf("2017-03-10"), Time.valueOf("15:30:00"),
                 "hometask1", 2,1,1));
         Lesson lesson = lessonDAO.getById(1);
@@ -94,15 +86,6 @@ public class LessonDAOTest {
 
     @Test
     public void deleteById() throws Exception {
-        classDAO.save(new Class(1,1,"A"));
-        classDAO.save(new Class(2,1,"B"));
-        kursDAO.save(new Kurs(1, "math"));
-        teachersDAO.save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
-                "13141", "tatyana@mail.me", 1, 1));
-        lessonDAO.save(new Lesson(1, Date.valueOf("2017-03-16"), Time.valueOf("11:00:00"),
-                "hometask", 1,1,1));
-        lessonDAO.save(new Lesson(2, Date.valueOf("2017-03-10"), Time.valueOf("15:30:00"),
-                "hometask1", 2,1,1));
         lessonDAO.deleteById(1);
         Lesson lesson = lessonDAO.getById(1);
         Lesson lesson1 = lessonDAO.getById(2);
@@ -112,15 +95,6 @@ public class LessonDAOTest {
 
     @Test
     public void getAll() throws Exception {
-        classDAO.save(new Class(1,1,"A"));
-        classDAO.save(new Class(2,1,"B"));
-        kursDAO.save(new Kurs(1, "math"));
-        teachersDAO.save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
-                "13141", "tatyana@mail.me", 1, 1));
-        lessonDAO.save(new Lesson(1, Date.valueOf("2017-03-16"), Time.valueOf("11:00:00"),
-                "hometask", 1,1,1));
-        lessonDAO.save(new Lesson(2, Date.valueOf("2017-03-10"), Time.valueOf("15:30:00"),
-                "hometask1", 2,1,1));
         List<Lesson> lessonList = lessonDAO.getAll();
         assertEquals("hometask", lessonList.get(0).getHomeTask());
         assertEquals(Date.valueOf("2017-03-10"), lessonList.get(1).getDate());
