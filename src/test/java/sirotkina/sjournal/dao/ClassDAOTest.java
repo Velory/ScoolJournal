@@ -1,14 +1,11 @@
 package sirotkina.sjournal.dao;
 
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.utils.DatabaseUtils;
-
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,12 +19,11 @@ public class ClassDAOTest {
 
     @Before
     public void setUp() throws Exception {
-        //DatabaseUtils databaseUtils = new DatabaseUtils();
         DatabaseUtils.migrate();
-        Mockito.mock(DatabaseUtils.class);
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scooldb1?createDatabaseIfNotExist=true",
+        /*connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scooldb1?createDatabaseIfNotExist=true",
                 "root", "marishach");
-        Mockito.when(DatabaseUtils.getConnection()).thenReturn(connection);
+        Mockito.mock(DatabaseUtils.class);
+        Mockito.when(DatabaseUtils.getConnection()).thenReturn(connection);*/
         classDAO = new ClassDAO();
         classDAO.save(new Class(1,1,"A"));
         classDAO.save(new Class(2,1,"B"));
@@ -38,7 +34,6 @@ public class ClassDAOTest {
         PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement("DROP DATABASE `scooldb1`");
         ps.executeUpdate();
         ps.close();
-        DatabaseUtils.closeConnection();
     }
     @Test
     public void save() throws Exception {

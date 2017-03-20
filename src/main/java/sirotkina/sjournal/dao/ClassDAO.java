@@ -3,17 +3,11 @@ package sirotkina.sjournal.dao;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.utils.DatabaseUtils;
 
-import javax.sql.DataSource;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class ClassDAO {
-    private DatabaseUtils databaseUtils;
-
-   /* public ClassDAO() {
-        databaseUtils = new DatabaseUtils();
-    }*/
 
     public void save(Class cl) {
         String query = "INSERT INTO class VALUES(?, ?, ?)";
