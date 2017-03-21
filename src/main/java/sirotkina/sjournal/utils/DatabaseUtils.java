@@ -23,12 +23,10 @@ public class DatabaseUtils {
                  return connection = DriverManager.getConnection(properties.getProperty("db.url"),
                             properties.getProperty("db.user"), properties.getProperty("db.password"));
             }
-            return connection = DriverManager.getConnection(properties.getProperty("db.url"),
-                    properties.getProperty("db.user"), properties.getProperty("db.password"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return connection;
     }
 
     public static void closeConnection(){

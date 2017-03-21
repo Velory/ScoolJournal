@@ -30,13 +30,13 @@ public class KursDAOTest {
         PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement("DROP DATABASE `scooldb1`");
         ps.executeUpdate();
         ps.close();
+        DatabaseUtils.closeConnection();
     }
 
 
     @Test
     public void save() throws Exception {
         Kurs kurs = kursDAO.getById(1);
-        //Mockito.verify(dataSource, Mockito.times(4)).getConnection();
         assertNotNull(kurs);
         assertEquals("ukr lang", kurs.getTitle());
     }

@@ -43,7 +43,7 @@ public class LessonDAOTest {
         PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement("DROP DATABASE `scooldb1`");
         ps.executeUpdate();
         ps.close();
-
+        DatabaseUtils.closeConnection();
     }
 
     @Test
