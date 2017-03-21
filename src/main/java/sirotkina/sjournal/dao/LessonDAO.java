@@ -1,21 +1,17 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Lesson;
+import sirotkina.sjournal.utils.DatabaseUtils;
 
-import javax.sql.DataSource;
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
 public class LessonDAO extends AbstractDAO {
 
-    public LessonDAO (DataSource dataSource){
-        super(dataSource);
-    }
-
-    public void save(Lesson lesson) {
+        public void save(Lesson lesson) {
         String query = "INSERT INTO lesson VALUES(?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setInt(1, lesson.getId());
             ps.setDate(2, lesson.getDate());
             ps.setTime(3, lesson.getTime());
@@ -32,7 +28,7 @@ public class LessonDAO extends AbstractDAO {
     public Lesson getById(int id) {
         String query = "SELECT * FROM lesson WHERE id=?";
         ResultSet rs = null;
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()){
@@ -56,7 +52,7 @@ public class LessonDAO extends AbstractDAO {
     public void update(Lesson lesson) {
         String query = "UPDATE lesson SET date=?, time=?," +
                 "homeTask=?, classId=?, teachersId=?, kursId=? WHERE id=?";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setDate(1, lesson.getDate());
             ps.setTime(2, lesson.getTime());
             ps.setString(3, lesson.getHomeTask());
@@ -72,7 +68,7 @@ public class LessonDAO extends AbstractDAO {
 
     public void deleteById(int id) {
         String query = "DELETE FROM lesson WHERE id=?";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -84,7 +80,7 @@ public class LessonDAO extends AbstractDAO {
         String query = "SELECT * FROM lesson";
         List<Lesson> lessonList = new LinkedList<>();
         ResultSet rs = null;
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             rs = ps.executeQuery();
             while (rs.next()){
                 lessonList.add(new Lesson(rs.getInt("id"), rs.getDate("date"),

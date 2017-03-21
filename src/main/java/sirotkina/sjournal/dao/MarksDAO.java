@@ -1,25 +1,18 @@
 package sirotkina.sjournal.dao;
 
-
 import sirotkina.sjournal.entity.Marks;
-
-import javax.sql.DataSource;
+import sirotkina.sjournal.utils.DatabaseUtils;
 
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class MarksDAO extends AbstractDAO{
-
-    public MarksDAO(DataSource dataSource) {
-        super(dataSource);
-    }
 
     public void save(Marks mark) {
         String query = "INSERT INTO marks (id, mark, comment, lessonId, studentsId) VALUES(?, ?, ?, ?, ?)";
 
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setInt(1,mark.getId());
             ps.setInt(2, mark.getMark());
             ps.setString(3, mark.getComment());
@@ -35,7 +28,7 @@ public class MarksDAO extends AbstractDAO{
     public Marks getById(int id) {
         String query = "SELECT * FROM marks WHERE id=?";
         ResultSet rs = null;
-        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)) {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()){
@@ -58,7 +51,7 @@ public class MarksDAO extends AbstractDAO{
 
     public void update(Marks mark) {
         String query = "UPDATE marks SET mark=?, comment=?, lessonId=?, studentsId=? WHERE id=?";
-        try(PreparedStatement ps = getConnection().prepareStatement(query)){
+        try(PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setInt(1, mark.getMark());
             ps.setString(2, mark.getComment());
             ps.setInt(3, mark.getLessonId());
@@ -74,7 +67,7 @@ public class MarksDAO extends AbstractDAO{
     public void deleteById(int id) {
         String query = "DELETE FROM marks WHERE id=?";
 
-        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)) {
             ps.setInt(1, id);
             ps.execute();
         } catch (SQLException e) {
@@ -87,7 +80,7 @@ public class MarksDAO extends AbstractDAO{
         String query = "SELECT * FROM marks";
         List<Marks> marksList = new LinkedList<>();
         ResultSet rs = null;
-        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)) {
             rs = ps.executeQuery();
             while (rs.next()){
                 marksList.add(new Marks(rs.getInt("id"), rs.getInt("mark"),

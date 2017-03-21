@@ -3,11 +3,9 @@ package sirotkina.sjournal.dao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.utils.DatabaseUtils;
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.PreparedStatement;
 import java.util.List;
 
@@ -15,15 +13,10 @@ import static org.junit.Assert.*;
 
 public class ClassDAOTest {
     private ClassDAO classDAO;
-    private Connection connection;
 
     @Before
     public void setUp() throws Exception {
         DatabaseUtils.migrate();
-        /*connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scooldb1?createDatabaseIfNotExist=true",
-                "root", "marishach");
-        Mockito.mock(DatabaseUtils.class);
-        Mockito.when(DatabaseUtils.getConnection()).thenReturn(connection);*/
         classDAO = new ClassDAO();
         classDAO.save(new Class(1,1,"A"));
         classDAO.save(new Class(2,1,"B"));

@@ -3,14 +3,11 @@ package sirotkina.sjournal.dao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Kurs;
 import sirotkina.sjournal.entity.Lesson;
 import sirotkina.sjournal.entity.Teachers;
 import sirotkina.sjournal.utils.DatabaseUtils;
-
-import javax.sql.DataSource;
 
 import java.sql.*;
 import java.util.List;
@@ -19,25 +16,17 @@ import static org.junit.Assert.*;
 
 public class LessonDAOTest {
     private LessonDAO lessonDAO;
-    private DataSource dataSource;
-    private Connection connection;
     private ClassDAO classDAO;
     private TeachersDAO teachersDAO;
     private KursDAO kursDAO;
 
     @Before
     public void setUp() throws Exception {
-        //DatabaseUtils.migrate();
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scooldb1?createDatabaseIfNotExist=true",
-                "root","marishach");
-        dataSource = Mockito.mock(DataSource.class);
-        Mockito.when(dataSource.getConnection()).thenReturn(connection);
-
-        lessonDAO = new LessonDAO(dataSource);
+        DatabaseUtils.migrate();
+        lessonDAO = new LessonDAO();
         classDAO = new ClassDAO();
-        teachersDAO = new TeachersDAO(dataSource);
-        kursDAO = new KursDAO(dataSource);
-
+        teachersDAO = new TeachersDAO();
+        kursDAO = new KursDAO();
         classDAO.save(new Class(1,1,"A"));
         classDAO.save(new Class(2,1,"B"));
         kursDAO.save(new Kurs(1, "math"));
@@ -51,10 +40,10 @@ public class LessonDAOTest {
 
     @After
     public void tearDown() throws Exception {
-        PreparedStatement ps = connection.prepareStatement("DROP DATABASE `scooldb1`");
+        PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement("DROP DATABASE `scooldb1`");
         ps.executeUpdate();
         ps.close();
-        connection.close();
+
     }
 
     @Test

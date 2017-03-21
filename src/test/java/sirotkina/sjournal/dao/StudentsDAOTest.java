@@ -3,15 +3,9 @@ package sirotkina.sjournal.dao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Students;
 import sirotkina.sjournal.utils.DatabaseUtils;
-
-import javax.sql.DataSource;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.List;
 
@@ -19,18 +13,12 @@ import static org.junit.Assert.*;
 
 public class StudentsDAOTest {
     private StudentsDAO studentsDAO;
-    private DataSource dataSource;
-    private Connection connection;
     private ClassDAO classDAO;
 
     @Before
     public void setUp() throws Exception {
-        //DatabaseUtils.migrate();
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scooldb1?createDatabaseIfNotExist=true",
-                "root","marishach");
-        dataSource = Mockito.mock(DataSource.class);
-        Mockito.when(dataSource.getConnection()).thenReturn(connection);
-        studentsDAO = new StudentsDAO(dataSource);
+        DatabaseUtils.migrate();
+        studentsDAO = new StudentsDAO();
         classDAO = new ClassDAO();
         classDAO.save(new Class(1, 1, "A"));
         studentsDAO.save(new Students(1,"Ivan", "Ivanovich", "Ivanov",
@@ -41,10 +29,9 @@ public class StudentsDAOTest {
 
     @After
     public void tearDown() throws Exception {
-        PreparedStatement ps = connection.prepareStatement("DROP DATABASE `scooldb1`");
+        PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement("DROP DATABASE `scooldb1`");
         ps.executeUpdate();
         ps.close();
-        connection.close();
     }
 
     @Test

@@ -1,8 +1,8 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Teachers;
+import sirotkina.sjournal.utils.DatabaseUtils;
 
-import javax.sql.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,13 +11,9 @@ import java.util.List;
 
 public class TeachersDAO extends AbstractDAO {
 
-    public TeachersDAO(DataSource dataSource) {
-        super(dataSource);
-    }
-
     public void save(Teachers teacher) {
         String query = "INSERT INTO teachers VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setInt(1, teacher.getId());
             ps.setString(2, teacher.getFirstName());
             ps.setString(3, teacher.getMidName());
@@ -35,7 +31,7 @@ public class TeachersDAO extends AbstractDAO {
     public Teachers getById(int id) {
         String query = "SELECT * FROM teachers WHERE id=?";
         ResultSet rs = null;
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()){
@@ -59,7 +55,7 @@ public class TeachersDAO extends AbstractDAO {
     public void update(Teachers teacher) {
         String query = "UPDATE teachers SET firstName=?, midName=?," +
                 "lastName=?, phone=?, email=?, kursId=?, classId=? WHERE id=?";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setString(1, teacher.getFirstName());
             ps.setString(2, teacher.getMidName());
             ps.setString(3, teacher.getLastName());
@@ -76,7 +72,7 @@ public class TeachersDAO extends AbstractDAO {
 
     public void deleteById(int id) {
         String query = "DELETE FROM teachers WHERE id=?";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -88,7 +84,7 @@ public class TeachersDAO extends AbstractDAO {
         String query = "SELECT * FROM teachers";
         List<Teachers> teachersList = new LinkedList<>();
         ResultSet rs = null;
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             rs = ps.executeQuery();
             while (rs.next()){
                 teachersList.add(new Teachers(rs.getInt("id"), rs.getString("firstName"),

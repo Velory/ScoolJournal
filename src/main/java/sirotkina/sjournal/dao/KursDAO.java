@@ -1,7 +1,8 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Kurs;
-import javax.sql.DataSource;
+import sirotkina.sjournal.utils.DatabaseUtils;
+
 import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,13 +10,9 @@ import java.util.List;
 
 public class KursDAO extends AbstractDAO{
 
-    public KursDAO(DataSource dataSource) {
-        super(dataSource);
-    }
-
     public void save(Kurs kurs) {
         String query = "INSERT INTO kurs VALUES(?, ?)";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)){
             ps.setInt(1, kurs.getId());
             ps.setString(2, kurs.getTitle());
             ps.execute();
@@ -27,7 +24,7 @@ public class KursDAO extends AbstractDAO{
     public Kurs getById(int id) {
         String query = "SELECT * FROM kurs WHERE id=?";
         ResultSet rs = null;
-        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)) {
             ps.setInt(1, id);
             rs = ps.executeQuery();
             while (rs.next()){
@@ -48,7 +45,7 @@ public class KursDAO extends AbstractDAO{
 
     public void update(Kurs kurs) {
         String query = "UPDATE kurs SET title=? WHERE id=?";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)) {
             ps.setString(1, kurs.getTitle());
             ps.setInt(2, kurs.getId());
             ps.executeUpdate();
@@ -59,7 +56,7 @@ public class KursDAO extends AbstractDAO{
 
     public void deleteById(int id) {
         String query = "DELETE FROM kurs WHERE id=?";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -72,7 +69,7 @@ public class KursDAO extends AbstractDAO{
         String query = "SELECT * FROM kurs";
         List<Kurs> kursList = new LinkedList<>();
         ResultSet rs = null;
-        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
+        try (PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement(query)) {
             rs = ps.executeQuery();
             while (rs.next()){
                 kursList.add(new Kurs(rs.getInt("id"),

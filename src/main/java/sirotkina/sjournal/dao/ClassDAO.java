@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ClassDAO {
+public class ClassDAO extends AbstractDAO{
 
     public void save(Class cl) {
         String query = "INSERT INTO class VALUES(?, ?, ?)";

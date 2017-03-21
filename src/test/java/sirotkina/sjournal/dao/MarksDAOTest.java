@@ -3,12 +3,9 @@ package sirotkina.sjournal.dao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.utils.DatabaseUtils;
-
-import javax.sql.DataSource;
 
 import java.sql.*;
 import java.util.List;
@@ -18,8 +15,6 @@ import static org.junit.Assert.*;
 public class MarksDAOTest {
 
     private MarksDAO marksDAO;
-    private DataSource dataSource;
-    private Connection connection;
     private ClassDAO classDAO;
     private TeachersDAO teachersDAO;
     private KursDAO kursDAO;
@@ -28,18 +23,13 @@ public class MarksDAOTest {
 
     @Before
     public void setUp() throws Exception {
-        //DatabaseUtils.migrate();
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/scooldb1?createDatabaseIfNotExist=true",
-                "root","marishach");
-        dataSource = Mockito.mock(DataSource.class);
-        Mockito.when(dataSource.getConnection()).thenReturn(connection);
-
-        marksDAO = new MarksDAO(dataSource);
+        DatabaseUtils.migrate();
+        marksDAO = new MarksDAO();
         classDAO = new ClassDAO();
-        teachersDAO = new TeachersDAO(dataSource);
-        kursDAO = new KursDAO(dataSource);
-        lessonDAO = new LessonDAO(dataSource);
-        studentsDAO = new StudentsDAO(dataSource);
+        teachersDAO = new TeachersDAO();
+        kursDAO = new KursDAO();
+        lessonDAO = new LessonDAO();
+        studentsDAO = new StudentsDAO();
 
         classDAO.save(new Class(1,1,"A"));
         kursDAO.save(new Kurs(1, "math"));
@@ -57,10 +47,9 @@ public class MarksDAOTest {
 
     @After
     public void tearDown() throws Exception {
-        PreparedStatement ps = connection.prepareStatement("DROP DATABASE `scooldb1`");
+        PreparedStatement ps = DatabaseUtils.getConnection().prepareStatement("DROP DATABASE `scooldb1`");
         ps.executeUpdate();
         ps.close();
-        connection.close();
     }
 
     @Test
