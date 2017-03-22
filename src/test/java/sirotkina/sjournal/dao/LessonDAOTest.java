@@ -28,13 +28,13 @@ public class LessonDAOTest {
         teachersDAO = new TeachersDAO();
         kursDAO = new KursDAO();
         classDAO.save(new Class(1,1,"A"));
-        classDAO.save(new Class(2,1,"B"));
-        kursDAO.save(new Kurs(1, "math"));
+        classDAO.save(new Class(null,1,"B"));
+        kursDAO.save(new Kurs(null, "math"));
         teachersDAO.save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
                 "13141", "tatyana@mail.me", 1, 1));
         lessonDAO.save(new Lesson(1, Date.valueOf("2017-03-16"), Time.valueOf("11:00:00"),
                 "hometask", 1,1,1));
-        lessonDAO.save(new Lesson(2, Date.valueOf("2017-03-10"), Time.valueOf("15:30:00"),
+        lessonDAO.save(new Lesson(null, Date.valueOf("2017-03-10"), Time.valueOf("15:30:00"),
                 "hometask1", 2,1,1));
     }
 

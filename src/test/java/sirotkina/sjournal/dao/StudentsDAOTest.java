@@ -23,7 +23,7 @@ public class StudentsDAOTest {
         classDAO.save(new Class(1, 1, "A"));
         studentsDAO.save(new Students(1,"Ivan", "Ivanovich", "Ivanov",
                 9, "293847", "ivan@mail.me", 1));
-        studentsDAO.save(new Students(2, "Vasya", "Vasilyevich", "Petrov",
+        studentsDAO.save(new Students(null, "Vasya", "Vasilyevich", "Petrov",
                 10, "293847", "vasya@mail.me", 1));
     }
 

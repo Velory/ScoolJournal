@@ -22,7 +22,7 @@ public class KursDAOTest {
         kursDAO = new KursDAO();
         kursDAO.save(new Kurs(1,"ukr lang"));
         kursDAO.save(new Kurs(2,"math"));
-        kursDAO.save(new Kurs(3,"lang"));
+        kursDAO.save(new Kurs(null,"lang"));
     }
 
     @After

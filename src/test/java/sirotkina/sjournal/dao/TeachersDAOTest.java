@@ -25,11 +25,11 @@ public class TeachersDAOTest {
         teachersDAO = new TeachersDAO();
         classDAO = new ClassDAO();
         kursDAO = new KursDAO();
-        classDAO.save(new Class(1,1,"A"));
-        kursDAO.save(new Kurs(1, "math"));
-        teachersDAO.save(new Teachers(1, "Olga", "Igorevna", "Petrova",
+        classDAO.save(new Class(null,1,"A"));
+        kursDAO.save(new Kurs(null, "math"));
+        teachersDAO.save(new Teachers(null, "Olga", "Igorevna", "Petrova",
                 "2938475", "olga@mail.me", 1,1));
-        teachersDAO.save(new Teachers(2, "Svetlana", "Ivanovna", "Ivanova",
+        teachersDAO.save(new Teachers(null, "Svetlana", "Ivanovna", "Ivanova",
                 "4937262", "svetlana@mail.me", 1, 1));
     }
 

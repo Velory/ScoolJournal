@@ -42,7 +42,7 @@ public class MarksDAOTest {
         studentsDAO.save(new Students(2,"Vasya", "Vasilyevich", "Petrov",
                 10, "41247", "vasya@mail.me", 1));
         marksDAO.save(new Marks(1,10, "for reading", 1, 1));
-        marksDAO.save(new Marks(2,12, "for reading", 1, 2));
+        marksDAO.save(new Marks(null,12, "for reading", 1, 2));
     }
 
     @After

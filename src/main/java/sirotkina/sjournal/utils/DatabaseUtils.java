@@ -52,7 +52,7 @@ public class DatabaseUtils {
         Properties properties = new Properties();
         try (InputStream is = DatabaseUtils.class.getClassLoader().getResourceAsStream("db.properties")){
             properties.load(is);
-    } catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     return properties;
