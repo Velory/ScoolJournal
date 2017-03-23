@@ -104,7 +104,7 @@ public abstract class AbstractDAO <T extends Entity>{
             try (PreparedStatement ps = getConnection().prepareStatement(query)){
                 rs = ps.executeQuery();
                 while (rs.next()){
-                    o.setId(rs.getInt("max(id)")+1);
+                    o.setId(rs.getInt("max(id)") + 1);
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
