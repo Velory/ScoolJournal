@@ -1,20 +1,12 @@
 package sirotkina.sjournal.entity;
 
-public class Kurs {
-    private int id;
+public class Kurs extends Entity{
+
     private String title;
 
-    public Kurs(int id, String title) {
-        this.id = id;
+    public Kurs(Integer id, String title) {
+        setId(id);
         this.title = title;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -26,24 +18,9 @@ public class Kurs {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Kurs kurs = (Kurs) o;
-
-        return title != null ? title.equals(kurs.title) : kurs.title == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return title != null ? title.hashCode() : 0;
-    }
-
-    @Override
     public String toString() {
         return "Kurs{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", title='" + title + '\'' +
                 '}';
     }
