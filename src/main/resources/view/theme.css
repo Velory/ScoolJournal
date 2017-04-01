@@ -1,0 +1,18 @@
+.background {
+    -fx-background-color: #ffffff;
+}
+
+.button {
+    -fx-background-color: #586667;
+}
+
+.button:default {
+    -fx-background-color: #215001;
+}
+
+.button:cancel {
+    -fx-background-color: #f49ca2;
+}
+
+.label {
+}
