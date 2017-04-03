@@ -1,5 +1,6 @@
-package sirotkina.sjournal.controller;
+package sirotkina.sjournal.controller.shedule.tableView;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -7,14 +8,12 @@ import sirotkina.sjournal.dao.ScheduleDAO;
 import sirotkina.sjournal.entity.Schedule;
 
 import java.sql.Time;
-import java.util.List;
 
-public class CurrentSchedule {
+public class ScheduleTableViewUtil {
 
     public ObservableList<Schedule> getSheduleList (){
         ScheduleDAO scheduleDAO = new ScheduleDAO();
-        List<Schedule> scheduleList = scheduleDAO.getAll();
-        return (ObservableList<Schedule>) scheduleList;
+        return FXCollections.observableList(scheduleDAO.getAll());
     }
 
     public TableColumn<Schedule, String> getWeekDayColumn(){
