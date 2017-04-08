@@ -1,8 +1,12 @@
-package sirotkina.sjournal.entity;
+package sirotkina.sjournal.domain;
+
+import sirotkina.sjournal.dao.ClassDAO;
+import sirotkina.sjournal.dao.LessonDAO;
+import sirotkina.sjournal.entity.*;
 
 import java.sql.Time;
 
-public class Schedule extends Entity{
+public class Schedule {
 
     private String weekDay;
     private String scoolClass;
@@ -15,7 +19,7 @@ public class Schedule extends Entity{
                     String nameOfKurs, String teacherOfLesson) {
         this.weekDay = weekDay;
         this.scoolClass = scoolClass;
-        setId(id);
+        this.id = id;
         this.lessonTime = lessonTime;
         this.nameOfKurs = nameOfKurs;
         this.teacherOfLesson = teacherOfLesson;
@@ -30,11 +34,20 @@ public class Schedule extends Entity{
     }
 
     public String getScoolClass() {
+
         return scoolClass;
     }
 
     public void setScoolClass(String scoolClass) {
         this.scoolClass = scoolClass;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Time getLessonTime() {
