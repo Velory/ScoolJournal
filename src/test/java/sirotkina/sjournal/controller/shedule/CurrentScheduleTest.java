@@ -1,11 +1,7 @@
 package sirotkina.sjournal.controller.shedule;
 
-import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.junit.After;
 import org.junit.Before;
@@ -16,6 +12,7 @@ import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Kurs;
 import sirotkina.sjournal.entity.Lesson;
 import sirotkina.sjournal.entity.Teachers;
+import sirotkina.sjournal.ui.CreateShedule;
 import sirotkina.sjournal.utils.DatabaseUtils;
 
 import java.sql.Date;
@@ -29,7 +26,7 @@ public class CurrentScheduleTest {
     private TeachersDAO teachersDAO;
     private KursDAO kursDAO;
 
-    @BeforeClass
+    /*@BeforeClass
     public static void init() throws Exception{
         Thread thread = new Thread(() -> {
             new JFXPanel();
@@ -42,7 +39,7 @@ public class CurrentScheduleTest {
             });
         });
         thread.start();
-        Thread.sleep(5000);
+        Thread.sleep(10000);
     }
 
 
@@ -76,8 +73,11 @@ public class CurrentScheduleTest {
 
     @Test
     public void start() throws Exception {
-        /*Stage stage = new Stage();
-        CreateShedule createShedule = new CreateShedule();
-        createShedule.start(stage);*/
-    }
+        //Stage stage = new Stage();
+       //Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/createSchedule"));
+
+       *//* Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();*//*
+    }*/
 }

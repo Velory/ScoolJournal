@@ -7,19 +7,55 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="940.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.shedule.tableView.ScheduleTableView">
+<AnchorPane maxHeight="-Infinity"
+            maxWidth="-Infinity"
+            minHeight="-Infinity"
+            minWidth="-Infinity"
+            prefHeight="800.0"
+            prefWidth="940.0"
+            style="-fx-background-color: #ffffff;"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sirotkina.sjournal.controller.shedule.ScheduleTableView">
    <children>
-      <TableView fx:id="curentSchedule" layoutX="12.0" layoutY="64.0" prefHeight="673.0" prefWidth="920.0">
+      <TableView fx:id="curentSchedule"
+                 layoutX="12.0"
+                 layoutY="64.0"
+                 prefHeight="673.0"
+                 prefWidth="920.0">
         <columns>
-          <TableColumn fx:id="day" editable="false" prefWidth="50.0" text="День" />
-            <TableColumn fx:id="scoolClass" editable="false" prefWidth="69.0" text="Класс" />
-          <TableColumn fx:id="id" editable="false" prefWidth="43.0" text="№" />
-            <TableColumn fx:id="lessonTime" editable="false" prefWidth="170.0" text="Время" />
-            <TableColumn fx:id="nameOfKurs" editable="false" prefWidth="398.0" text="Предмет" />
-            <TableColumn fx:id="teacherOfLesson" editable="false" prefWidth="189.0" text="Преподаватель" />
+          <TableColumn fx:id="day"
+                       editable="false"
+                       prefWidth="50.0"
+                       text="День" />
+            <TableColumn fx:id="scoolClass"
+                         editable="false"
+                         prefWidth="69.0"
+                         text="Класс" />
+          <TableColumn fx:id="id"
+                       editable="false"
+                       prefWidth="43.0"
+                       text="№" />
+            <TableColumn fx:id="lessonTime"
+                         editable="false"
+                         prefWidth="170.0"
+                         text="Время" />
+            <TableColumn fx:id="nameOfKurs"
+                         editable="false"
+                         prefWidth="398.0"
+                         text="Предмет" />
+            <TableColumn fx:id="teacherOfLesson"
+                         editable="false"
+                         prefWidth="189.0"
+                         text="Преподаватель" />
         </columns>
       </TableView>
-      <Label alignment="CENTER" layoutX="39.0" layoutY="4.0" prefHeight="21.0" prefWidth="865.0" text="Расписание уроков">
+      <Label alignment="CENTER"
+             layoutX="39.0"
+             layoutY="4.0"
+             prefHeight="21.0"
+             prefWidth="865.0"
+             text="Расписание уроков">
          <font>
             <Font size="22.0" />
          </font>

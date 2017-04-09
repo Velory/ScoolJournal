@@ -1,4 +1,4 @@
-package sirotkina.sjournal.controller.shedule.tableView;
+package sirotkina.sjournal.controller.shedule;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

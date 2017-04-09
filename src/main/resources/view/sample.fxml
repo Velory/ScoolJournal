@@ -6,7 +6,8 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+<AnchorPane maxHeight="-Infinity"
+            maxWidth="-Infinity"
             minHeight="-Infinity"
             minWidth="-Infinity"
             prefHeight="480.0"
@@ -17,13 +18,15 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="sirotkina.sjournal.controller.LoginController">
    <children>
-      <Label layoutX="183.0"
+      <Label fx:id="lblEmail"
+             layoutX="183.0"
              layoutY="129.0"
              prefHeight="21.0"
              prefWidth="80.0"
              text="Email"
              textFill="#215001" />
-      <TextField layoutX="183.0"
+      <TextField fx:id="userEmail"
+                 layoutX="183.0"
                  layoutY="150.0"
                  prefHeight="31.0"
                  prefWidth="274.0">
@@ -31,24 +34,25 @@
             <Insets />
          </opaqueInsets>
       </TextField>
-      <Label layoutX="183.0"
+      <Label fx:id="lblPassword"
+             layoutX="183.0"
              layoutY="198.0"
              prefHeight="21.0"
              prefWidth="80.0"
              text="Password"
              textFill="#224f02" />
-      <Button defaultButton="true"
+      <Button fx:id="login"
+              defaultButton="true"
               layoutX="253.0"
               layoutY="287.0"
               mnemonicParsing="false"
+              onAction="#onLogin"
               prefHeight="31.0"
               prefWidth="135.0"
               styleClass="background"
               stylesheets="@theme.css"
               text="Login"
-              textFill="WHITE"
-              onAction="#onLogin"
-      />
+              textFill="WHITE" />
       <Label layoutX="183.0"
              layoutY="250.0"
              prefHeight="21.0"
@@ -61,18 +65,17 @@
          </font>
       </Label>
       <Label alignment="CENTER_RIGHT"
-             layoutX="355.0"
-             layoutY="250.0"
-             prefHeight="21.0"
-             prefWidth="102.0"
+             layoutX="355.0" layoutY="250.0"
+             prefHeight="21.0" prefWidth="102.0"
              style="-fx-background-color: #ffffff;"
-             text="Autorization"
+             text="Authorization"
              textFill="#fa3242">
          <font>
             <Font size="12.0" />
          </font>
       </Label>
-      <PasswordField layoutX="183.0"
+      <PasswordField fx:id="userPassword"
+                     layoutX="183.0"
                      layoutY="219.0"
                      prefHeight="31.0"
                      prefWidth="274.0" />

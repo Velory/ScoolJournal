@@ -1,5 +1,6 @@
-package sirotkina.sjournal.controller.shedule.tableView;
+package sirotkina.sjournal.controller.shedule;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -9,7 +10,7 @@ import sirotkina.sjournal.domain.Schedule;
 
 import java.sql.Time;
 
-public class ScheduleTableEdit extends ScheduleTableView{
+public class ScheduleTableEdit extends ScheduleTableView {
 
     @Override
     @FXML
@@ -78,7 +79,7 @@ public class ScheduleTableEdit extends ScheduleTableView{
 
 
     @FXML
-    private void onClick (){
+    private void onClick (ActionEvent event){
 
         getSheduleList().add(new Schedule(newDay.getText(), newScoolClass.getText(), null,
                 Time.valueOf(newLessonTime.getText()), newNameOfKurs.getText(), newTeacherOfLesson.getText()));

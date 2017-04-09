@@ -7,28 +7,91 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.shedule.tableView.ScheduleTableEdit">
+<AnchorPane prefHeight="800.0"
+            prefWidth="940.0"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="sirotkina.sjournal.controller.shedule.ScheduleTableEdit">
    <children>
-      <Label alignment="CENTER" layoutX="192.0" layoutY="14.0" prefHeight="21.0" prefWidth="557.0" text="Расписание уроков">
+      <Label alignment="CENTER"
+             layoutX="192.0"
+             layoutY="14.0"
+             prefHeight="21.0"
+             prefWidth="557.0"
+             text="Расписание уроков">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <TextField fx:id="newDay" layoutX="10.0" layoutY="74.0" prefHeight="31.0" prefWidth="50.0" promptText="День" />
-      <TextField fx:id="newScoolClass" layoutX="60.0" layoutY="74.0" prefHeight="31.0" prefWidth="69.0" promptText="Класс" />
-      <TextField fx:id="newLessonTime" layoutX="129.0" layoutY="74.0" prefHeight="31.0" prefWidth="213.0" promptText="Время" />
-      <TextField fx:id="newNameOfKurs" layoutX="342.0" layoutY="74.0" prefHeight="31.0" prefWidth="398.0" promptText="Предмет" />
-      <TextField fx:id="newTeacherOfLesson" layoutX="740.0" layoutY="74.0" prefHeight="31.0" prefWidth="192.0" promptText="Преподаватель" />
-      <Button fx:id="add" layoutX="548.0" layoutY="105.0" mnemonicParsing="false" onAction="#onClick" prefHeight="31.0" prefWidth="192.0" text="Добавить" />
-      <Button fx:id="save" layoutX="740.0" layoutY="105.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="192.0" text="Сохранить" />
-      <TableView fx:id="curentSchedule" layoutX="11.0" layoutY="138.0" prefHeight="640.0" prefWidth="920.0">
+      <TextField fx:id="newDay"
+                 layoutX="10.0"
+                 layoutY="74.0"
+                 prefHeight="31.0"
+                 prefWidth="50.0"
+                 promptText="День" />
+      <TextField fx:id="newScoolClass"
+                 layoutX="60.0"
+                 layoutY="74.0"
+                 prefHeight="31.0"
+                 prefWidth="69.0"
+                 promptText="Класс" />
+      <TextField fx:id="newLessonTime"
+                 layoutX="129.0"
+                 layoutY="74.0"
+                 prefHeight="31.0"
+                 prefWidth="213.0"
+                 promptText="Время" />
+      <TextField fx:id="newNameOfKurs"
+                 layoutX="342.0"
+                 layoutY="74.0"
+                 prefHeight="31.0"
+                 prefWidth="398.0"
+                 promptText="Предмет" />
+      <TextField fx:id="newTeacherOfLesson"
+                 layoutX="740.0"
+                 layoutY="74.0"
+                 prefHeight="31.0"
+                 prefWidth="192.0"
+                 promptText="Преподаватель" />
+      <Button fx:id="add"
+              layoutX="548.0"
+              layoutY="105.0"
+              mnemonicParsing="false"
+              onAction="#onClick"
+              prefHeight="31.0"
+              prefWidth="192.0"
+              text="Добавить" />
+      <Button fx:id="save"
+              layoutX="740.0"
+              layoutY="105.0"
+              mnemonicParsing="false"
+              prefHeight="31.0"
+              prefWidth="192.0"
+              text="Сохранить" />
+      <TableView fx:id="curentSchedule"
+                 layoutX="11.0"
+                 layoutY="138.0"
+                 prefHeight="640.0"
+                 prefWidth="920.0">
          <columns>
-            <TableColumn fx:id="day" prefWidth="50.0" text="День" />
-            <TableColumn fx:id="scoolClass" prefWidth="69.0" text="Класс" />
-            <TableColumn fx:id="id" prefWidth="43.0" text="№" />
-            <TableColumn fx:id="lessonTime" prefWidth="170.0" text="Время" />
-            <TableColumn fx:id="nameOfKurs" prefWidth="398.0" text="Предмет" />
-            <TableColumn fx:id="teacherOfLesson" prefWidth="189.0" text="Преподаватель" />
+            <TableColumn fx:id="day"
+                         prefWidth="50.0"
+                         text="День" />
+            <TableColumn fx:id="scoolClass"
+                         prefWidth="69.0"
+                         text="Класс" />
+            <TableColumn fx:id="id"
+                         prefWidth="43.0"
+                         text="№" />
+            <TableColumn fx:id="lessonTime"
+                         prefWidth="170.0"
+                         text="Время" />
+            <TableColumn fx:id="nameOfKurs"
+                         prefWidth="398.0"
+                         text="Предмет" />
+            <TableColumn fx:id="teacherOfLesson"
+                         prefWidth="189.0"
+                         text="Преподаватель" />
          </columns>
       </TableView>
    </children>
