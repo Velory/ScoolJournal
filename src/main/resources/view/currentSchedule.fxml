@@ -12,7 +12,7 @@
             minHeight="-Infinity"
             minWidth="-Infinity"
             prefHeight="800.0"
-            prefWidth="940.0"
+            prefWidth="1020.0"
             style="-fx-background-color: #ffffff;"
             xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -20,33 +20,37 @@
    <children>
       <TableView fx:id="curentSchedule"
                  layoutX="12.0"
-                 layoutY="64.0"
-                 prefHeight="673.0"
-                 prefWidth="920.0">
+                 layoutY="57.0"
+                 prefHeight="729.0"
+                 prefWidth="997.0"
+                 AnchorPane.bottomAnchor="14.0"
+                 AnchorPane.leftAnchor="12.0"
+                 AnchorPane.rightAnchor="12.0"
+                 AnchorPane.topAnchor="57.0">
         <columns>
           <TableColumn fx:id="day"
                        editable="false"
-                       prefWidth="50.0"
+                       prefWidth="72.0"
                        text="День" />
             <TableColumn fx:id="scoolClass"
                          editable="false"
-                         prefWidth="69.0"
+                         prefWidth="66.0"
                          text="Класс" />
           <TableColumn fx:id="id"
                        editable="false"
-                       prefWidth="43.0"
+                       prefWidth="38.0"
                        text="№" />
             <TableColumn fx:id="lessonTime"
                          editable="false"
-                         prefWidth="170.0"
+                         prefWidth="185.0"
                          text="Время" />
             <TableColumn fx:id="nameOfKurs"
                          editable="false"
-                         prefWidth="398.0"
+                         prefWidth="420.0"
                          text="Предмет" />
             <TableColumn fx:id="teacherOfLesson"
                          editable="false"
-                         prefWidth="189.0"
+                         prefWidth="214.0"
                          text="Преподаватель" />
         </columns>
       </TableView>

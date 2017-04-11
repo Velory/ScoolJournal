@@ -7,10 +7,10 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class CreateShedule {
+public class SelectLesson {
 
-    public CreateShedule() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/createSchedule.fxml"));
+    public SelectLesson() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/selectLesson.fxml"));
         Stage stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);

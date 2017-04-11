@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import sirotkina.sjournal.ui.Login;
 import sirotkina.sjournal.ui.MainMenu;
 
 import java.io.IOException;
@@ -24,13 +25,15 @@ public class LoginController {
     @FXML
     private PasswordField userPassword;
 
-    @FXML
-    private Button login;
+    /*@FXML
+    private Button login;*/
 
     public void onLogin(ActionEvent event) throws IOException {
         //check authorization
         new MainMenu();
         // close login?
+        Login.getStage().close();
+
     }
 
 }

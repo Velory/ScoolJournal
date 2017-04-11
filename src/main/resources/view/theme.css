@@ -16,3 +16,7 @@
 
 .label {
 }
+
+.titled-pane > .title > {
+        -fx-background-color: #f4f5f8;
+        }

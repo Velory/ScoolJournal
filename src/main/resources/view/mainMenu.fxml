@@ -6,14 +6,20 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.MainMenuController">
    <children>
-      <Pane prefHeight="800.0" prefWidth="260.0" style="-fx-background-color: #253145;" />
+      <Pane prefHeight="800.0" prefWidth="260.0" style="-fx-background-color: #253145;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <MenuButton layoutX="14.0" layoutY="14.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="40.0" prefWidth="245.0" style="-fx-background-color: #253145;" text="Расписание" textFill="WHITE">
          <items>
-            <MenuItem mnemonicParsing="false" text="Создать новое расписание" />
-            <MenuItem mnemonicParsing="false" text="Открыть расписание" />
+            <MenuItem fx:id="newSchedule" mnemonicParsing="false" onAction="#onNewSchedule" text="Создать новое расписание" />
+            <MenuItem fx:id="openSchedule" mnemonicParsing="false" onAction="#onOpenSchedule" text="Открыть расписание" />
          </items></MenuButton>
-      <MenuButton layoutX="14.0" layoutY="54.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="40.0" prefWidth="245.0" style="-fx-background-color: #253145;" text="Дневник" textFill="WHITE" />
-      <MenuButton layoutX="14.0" layoutY="94.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="40.0" prefWidth="245.0" style="-fx-background-color: #253145;" text="Журнал" textFill="WHITE" />
+      <MenuButton layoutX="14.0" layoutY="54.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="40.0" prefWidth="245.0" style="-fx-background-color: #253145;" text="Дневник" textFill="WHITE">
+         <items>
+            <MenuItem fx:id="scoolDiary" mnemonicParsing="false" onAction="#onDiary" text="Открыть дневник" />
+         </items></MenuButton>
+      <MenuButton layoutX="14.0" layoutY="94.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="40.0" prefWidth="245.0" style="-fx-background-color: #253145;" text="Журнал" textFill="WHITE">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#onJournal" text="Открыть журнал" />
+         </items></MenuButton>
       <MenuButton layoutX="14.0" layoutY="134.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="40.0" prefWidth="245.0" style="-fx-background-color: #253145;" text="Домашнее задание" textFill="WHITE" />
       <MenuButton layoutX="14.0" layoutY="174.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="40.0" prefWidth="245.0" style="-fx-background-color: #253145;" text="Профиль ученика" textFill="WHITE" />
       <MenuButton layoutX="14.0" layoutY="214.0" mnemonicParsing="false" popupSide="RIGHT" prefHeight="40.0" prefWidth="245.0" style="-fx-background-color: #253145;" text="Отчеты" textFill="WHITE" />

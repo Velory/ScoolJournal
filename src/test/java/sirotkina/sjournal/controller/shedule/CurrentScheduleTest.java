@@ -1,23 +1,6 @@
 package sirotkina.sjournal.controller.shedule;
 
-import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.stage.Stage;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import sirotkina.sjournal.dao.*;
-import sirotkina.sjournal.entity.Class;
-import sirotkina.sjournal.entity.Kurs;
-import sirotkina.sjournal.entity.Lesson;
-import sirotkina.sjournal.entity.Teachers;
-import sirotkina.sjournal.ui.CreateShedule;
-import sirotkina.sjournal.utils.DatabaseUtils;
-
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.Time;
 
 
 public class CurrentScheduleTest {
@@ -32,7 +15,7 @@ public class CurrentScheduleTest {
             new JFXPanel();
             Platform.runLater(() -> {
                 try {
-                    new CreateShedule().start(new Stage());
+                    new CreateSchedule().start(new Stage());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
