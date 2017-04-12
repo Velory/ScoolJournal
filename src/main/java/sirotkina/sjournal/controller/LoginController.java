@@ -28,7 +28,7 @@ public class LoginController {
     /*@FXML
     private Button login;*/
 
-    public void onLogin(ActionEvent event) throws IOException {
+    public void onLogin() throws IOException {
         //check authorization
         new MainMenu();
         // close login?

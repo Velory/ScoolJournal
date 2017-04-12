@@ -12,19 +12,19 @@ import java.io.IOException;
 
 public class MainMenuController {
 
-    public void onNewSchedule (ActionEvent event) throws IOException {
+    public void onNewSchedule () throws IOException {
         new CreateSchedule();
     }
 
-    public void onOpenSchedule (ActionEvent event) throws IOException {
+    public void onOpenSchedule () throws IOException {
         new CurrentSchedule();
     }
 
-    public void onDiary (ActionEvent event) throws IOException {
+    public void onDiary () throws IOException {
         new Diary();
     }
 
-    public void onJournal (ActionEvent event) throws IOException {
+    public void onJournal () throws IOException {
         new SelectLesson();
     }
 }

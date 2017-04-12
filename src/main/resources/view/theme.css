@@ -3,11 +3,11 @@
 }
 
 .button {
-    -fx-background-color: #586667;
+    -fx-background-color: #797a7d;
 }
 
 .button:default {
-    -fx-background-color: #215001;
+    -fx-background-color: #797a7d;
 }
 
 .button:cancel {
@@ -19,4 +19,17 @@
 
 .titled-pane > .title > {
         -fx-background-color: #f4f5f8;
-        }
+}
+
+.menu-button {
+    -fx-background-color: #797a7d;
+
+}
+
+.border-pane {
+    -fx-background-color: #ffffff;
+}
+
+.grid-pane {
+    -fx-background-color: #ffffff;
+}
