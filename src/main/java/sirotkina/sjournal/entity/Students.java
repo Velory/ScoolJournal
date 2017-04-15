@@ -8,10 +8,10 @@ public class Students extends Entity{
     private int age;
     private String phone;
     private String email;
-    private int classId;
+    private Class classFKId;
 
     public Students(Integer id, String firstName, String midName, String lastName,
-                    int age, String phone, String email, int classId) {
+                    int age, String phone, String email, Class classFKId) {
         setId(id);
         this.firstName = firstName;
         this.midName = midName;
@@ -19,7 +19,7 @@ public class Students extends Entity{
         this.age = age;
         this.phone = phone;
         this.email = email;
-        this.classId = classId;
+        this.classFKId = classFKId;
     }
 
     public String getFirstName() {
@@ -70,12 +70,12 @@ public class Students extends Entity{
         this.email = email;
     }
 
-    public int getClassId() {
-        return classId;
+    public Class getClassFKId() {
+        return classFKId;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setClassFKId(Class classFKId) {
+        this.classFKId = classFKId;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class Students extends Entity{
                 ", age=" + age +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", classId=" + classId +
+                ", classId=" + classFKId +
                 '}';
     }
 }

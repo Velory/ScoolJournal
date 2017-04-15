@@ -15,6 +15,7 @@ import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Kurs;
 import sirotkina.sjournal.entity.Lesson;
 import sirotkina.sjournal.entity.Teachers;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -22,21 +23,18 @@ import java.util.List;
 
 public class ScheduleTableView {
 
+    private ObservableList<Schedule> tableElements;
 
     protected ObservableList<Schedule> getSheduleList (){
         List<Schedule> scheduleList = new ArrayList<>();
-        LessonDAO lessonDAO = new LessonDAO();
-        ClassDAO classDAO = new ClassDAO();
-        KursDAO kursDAO = new KursDAO();
-        TeachersDAO teachersDAO = new TeachersDAO();
 
-        List<Lesson> lessons = lessonDAO.getAll();
+        List<Lesson> lessons = lessonDAO().getAll();
         for (Lesson l: lessons){
-            Class cl = classDAO.getById(l.getClassId());
-            Kurs kurs = kursDAO.getById(l.getKursId());
-            Teachers teacher = teachersDAO.getById(l.getTeachersId());
+            Class cl = classDAO().getById(l.getClassFKId().getId());
+            Kurs kurs = kursDAO().getById(l.getKursFKId().getId());
+            Teachers teacher = teachersDAO().getById(l.getTeachersFKId().getId());
             scheduleList.add(new Schedule(l.getDate().toString(), cl.getNum()+ "-" + cl.getLetter(),
-                    l.getId(), l.getTime(), kurs.getTitle(),
+                    l.getId(), l.getTime().toString(), kurs.getTitle(),
                     teacher.getFirstName() + " " + teacher.getLastName()));
         }
         return FXCollections.observableList(scheduleList);
@@ -65,12 +63,17 @@ public class ScheduleTableView {
 
     @FXML
     protected void initialize(){
+        tableElements = getSheduleList();
         day.setCellValueFactory(new PropertyValueFactory<>("weekDay"));
         scoolClass.setCellValueFactory(new PropertyValueFactory<>("scoolClass"));
         id.setCellValueFactory(new PropertyValueFactory<>("id"));
         lessonTime.setCellValueFactory(new PropertyValueFactory<>("lessonTime"));
         nameOfKurs.setCellValueFactory(new PropertyValueFactory<>("nameOfKurs"));
         teacherOfLesson.setCellValueFactory(new PropertyValueFactory<>("teacherOfLesson"));
-        curentSchedule.setItems(getSheduleList());
+        curentSchedule.setItems(tableElements);
+    }
+
+    public ObservableList<Schedule> getTableElements() {
+        return tableElements;
     }
 }

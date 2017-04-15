@@ -11,7 +11,7 @@
             maxWidth="-Infinity"
             minHeight="-Infinity"
             minWidth="-Infinity"
-            prefHeight="800.0"
+            prefHeight="755.0"
             prefWidth="1020.0"
             style="-fx-background-color: #ffffff;"
             xmlns="http://javafx.com/javafx/8"

@@ -1,6 +1,7 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Lesson;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 import java.sql.*;
 
@@ -15,8 +16,9 @@ public class LessonDAO extends AbstractDAO <Lesson>{
     protected Lesson createEntityFromRS(ResultSet rs) throws SQLException {
         return new Lesson(rs.getInt("id"), rs.getDate("date"),
                 rs.getTime("time"), rs.getString("homeTask"),
-                rs.getInt("classId"), rs.getInt("teachersId"),
-                rs.getInt("kursId"));
+                classDAO().getById(rs.getInt("classId")),
+                teachersDAO().getById(rs.getInt("teachersId")),
+                kursDAO().getById(rs.getInt("kursId")));
     }
 
     @Override
@@ -36,9 +38,9 @@ public class LessonDAO extends AbstractDAO <Lesson>{
         ps.setDate(2, lesson.getDate());
         ps.setTime(3, lesson.getTime());
         ps.setString(4, lesson.getHomeTask());
-        ps.setInt(5, lesson.getClassId());
-        ps.setInt(6, lesson.getTeachersId());
-        ps.setInt(7, lesson.getKursId());
+        ps.setInt(5, lesson.getClassFKId().getId());
+        ps.setInt(6, lesson.getTeachersFKId().getId());
+        ps.setInt(7, lesson.getKursFKId().getId());
     }
 
     @Override
@@ -46,9 +48,9 @@ public class LessonDAO extends AbstractDAO <Lesson>{
         ps.setDate(1, lesson.getDate());
         ps.setTime(2, lesson.getTime());
         ps.setString(3, lesson.getHomeTask());
-        ps.setInt(4, lesson.getClassId());
-        ps.setInt(5, lesson.getTeachersId());
-        ps.setInt(6, lesson.getKursId());
+        ps.setInt(4, lesson.getClassFKId().getId());
+        ps.setInt(5, lesson.getTeachersFKId().getId());
+        ps.setInt(6, lesson.getKursFKId().getId());
         ps.setInt(7, lesson.getId());
     }
 }

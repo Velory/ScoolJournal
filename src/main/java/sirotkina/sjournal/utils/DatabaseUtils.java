@@ -1,6 +1,7 @@
 package sirotkina.sjournal.utils;
 
 import org.flywaydb.core.Flyway;
+import sirotkina.sjournal.dao.*;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,6 +11,21 @@ import java.util.Properties;
 public class DatabaseUtils {
     private static Connection connection;
     private static Properties dbProps = PropertiesUtils.readProperties();
+    private static ClassDAO classDAO;
+    private static KursDAO kursDAO;
+    private static LessonDAO lessonDAO;
+    private static MarksDAO marksDAO;
+    private static StudentsDAO studentsDAO;
+    private static TeachersDAO teachersDAO;
+
+    static {
+        classDAO = new ClassDAO();
+        kursDAO = new KursDAO();
+        lessonDAO = new LessonDAO();
+        marksDAO = new MarksDAO();
+        studentsDAO = new StudentsDAO();
+        teachersDAO = new TeachersDAO();
+    }
 
     static {
         Runtime.getRuntime().addShutdownHook(new Thread(DatabaseUtils::closeConnection));
@@ -44,5 +60,28 @@ public class DatabaseUtils {
             flyway.migrate();
     }
 
+    public static ClassDAO classDAO() {
+        return classDAO;
+    }
+
+    public static KursDAO kursDAO() {
+        return kursDAO;
+    }
+
+    public static LessonDAO lessonDAO() {
+        return lessonDAO;
+    }
+
+    public static MarksDAO marksDAO() {
+        return marksDAO;
+    }
+
+    public static StudentsDAO studentsDAO() {
+        return studentsDAO;
+    }
+
+    public static TeachersDAO teachersDAO() {
+        return teachersDAO;
+    }
 }
 

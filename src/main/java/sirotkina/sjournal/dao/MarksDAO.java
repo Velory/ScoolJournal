@@ -1,6 +1,7 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Marks;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 import java.sql.*;
 
@@ -15,8 +16,8 @@ public class MarksDAO extends AbstractDAO <Marks>{
     protected Marks createEntityFromRS(ResultSet rs) throws SQLException {
         return new Marks(rs.getInt("id"), rs.getInt("mark"),
                 rs.getString("comment"),
-                rs.getInt("lessonId"),
-                rs.getInt("studentsId"));
+                lessonDAO().getById(rs.getInt("lessonId")),
+                studentsDAO().getById(rs.getInt("studentsId")));
     }
 
     @Override
@@ -34,16 +35,16 @@ public class MarksDAO extends AbstractDAO <Marks>{
         ps.setInt(1,mark.getId());
         ps.setInt(2, mark.getMark());
         ps.setString(3, mark.getComment());
-        ps.setInt(4, mark.getLessonId());
-        ps.setInt(5,mark.getStudentsId());
+        ps.setInt(4, mark.getLessonFKId().getId());
+        ps.setInt(5,mark.getStudentsFKId().getId());
     }
 
     @Override
     protected void prepareUpdateInsertQuery(PreparedStatement ps, Marks mark) throws SQLException {
         ps.setInt(1, mark.getMark());
         ps.setString(2, mark.getComment());
-        ps.setInt(3, mark.getLessonId());
-        ps.setInt(4, mark.getStudentsId());
+        ps.setInt(3, mark.getLessonFKId().getId());
+        ps.setInt(4, mark.getStudentsFKId().getId());
         ps.setInt(5, mark.getId());
     }
 }

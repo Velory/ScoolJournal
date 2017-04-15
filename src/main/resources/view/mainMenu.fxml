@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.MainMenuController">
    <children>
-      <BorderPane prefHeight="800.0" prefWidth="1280.0" styleClass="border-pane" stylesheets="@theme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <BorderPane fx:id="mainMenuContainer" prefHeight="800.0" prefWidth="1280.0" styleClass="border-pane" stylesheets="@theme.css">
          <left>
             <GridPane prefHeight="800.0" prefWidth="260.0" styleClass="grid-pane" stylesheets="@theme.css" BorderPane.alignment="CENTER">
               <columnConstraints>
@@ -54,7 +54,7 @@
             </GridPane>
          </left>
          <top>
-            <GridPane prefHeight="46.0" prefWidth="1280.0" styleClass="grid-pane" stylesheets="@theme.css" BorderPane.alignment="CENTER">
+            <GridPane prefHeight="45.0" prefWidth="1280.0" styleClass="grid-pane" stylesheets="@theme.css" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="0.0" prefWidth="267.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="0.0" prefWidth="246.0" />

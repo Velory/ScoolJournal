@@ -1,7 +1,10 @@
-package sirotkina.sjournal.controller.shedule.comboBox;
+package sirotkina.sjournal.utils;
 
 import javafx.util.StringConverter;
 import sirotkina.sjournal.entity.Class;
+
+import java.util.List;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class ClassStringConverter extends StringConverter <Class>{
     @Override
@@ -24,5 +27,15 @@ public class ClassStringConverter extends StringConverter <Class>{
             cl = new Class(null, num, letter);
         }
         return cl;
+    }
+
+    public Class checkClassInDB(Class cl){
+        List<Class> classes = classDAO().getAll();
+        for (Class clFromDB: classes) {
+            if(cl.equals(clFromDB)){
+                return cl;
+            }
+        }
+        return null;
     }
 }

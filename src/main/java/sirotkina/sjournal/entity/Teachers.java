@@ -7,19 +7,19 @@ public class Teachers extends Entity{
     private String lastName;
     private String phone;
     private String email;
-    private int kursId;
-    private int classId;
+    private Kurs kursFKId;
+    private Class classFKId;
 
     public Teachers(Integer id, String firstName, String midName,
-                    String lastName, String phone, String email, int kursId, int classId) {
+                    String lastName, String phone, String email, Kurs kursFKId, Class classFKId) {
         setId(id);
         this.firstName = firstName;
         this.midName = midName;
         this.lastName = lastName;
         this.phone = phone;
         this.email = email;
-        this.kursId = kursId;
-        this.classId = classId;
+        this.kursFKId = kursFKId;
+        this.classFKId = classFKId;
     }
 
     public String getFirstName() {
@@ -62,22 +62,21 @@ public class Teachers extends Entity{
         this.email = email;
     }
 
-    public int getKursId() {
-        return kursId;
+    public Kurs getKursFKId() {
+        return kursFKId;
     }
 
-    public void setKursId(int kursId) {
-        this.kursId = kursId;
+    public void setKursFKId(Kurs kursFKId) {
+        this.kursFKId = kursFKId;
     }
 
-    public int getClassId() {
-        return classId;
+    public Class getClassFKId() {
+        return classFKId;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setClassFKId(Class classFKId) {
+        this.classFKId = classFKId;
     }
-
 
     @Override
     public String toString() {
@@ -88,8 +87,8 @@ public class Teachers extends Entity{
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", kursId=" + kursId +
-                ", classId=" + classId +
+                ", kursId=" + kursFKId +
+                ", classId=" + classFKId +
                 '}';
     }
 }

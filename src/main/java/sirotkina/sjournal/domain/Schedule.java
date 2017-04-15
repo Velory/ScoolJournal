@@ -11,11 +11,11 @@ public class Schedule {
     private String weekDay;
     private String scoolClass;
     private Integer id;
-    private Time lessonTime;
+    private String lessonTime;
     private String nameOfKurs;
     private String teacherOfLesson;
 
-    public Schedule(String weekDay, String scoolClass, Integer id, Time lessonTime,
+    public Schedule(String weekDay, String scoolClass, Integer id, String lessonTime,
                     String nameOfKurs, String teacherOfLesson) {
         this.weekDay = weekDay;
         this.scoolClass = scoolClass;
@@ -50,11 +50,11 @@ public class Schedule {
         this.id = id;
     }
 
-    public Time getLessonTime() {
+    public String getLessonTime() {
         return lessonTime;
     }
 
-    public void setLessonTime(Time lessonTime) {
+    public void setLessonTime(String lessonTime) {
         this.lessonTime = lessonTime;
     }
 

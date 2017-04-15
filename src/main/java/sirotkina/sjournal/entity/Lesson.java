@@ -8,18 +8,19 @@ public class Lesson extends Entity{
     private Date date;
     private Time time;
     private String homeTask;
-    private int classId;
-    private int teachersId;
-    private int kursId;
+    private Class classFKId;
+    private Teachers teachersFKId;
+    private Kurs kursFKId;
 
-    public Lesson(Integer id, Date date, Time time, String homeTask, int classId, int teachersId, int kursId) {
+    public Lesson(Integer id, Date date, Time time, String homeTask, Class classFKId,
+                  Teachers teachersFKId, Kurs kursFKId) {
         setId(id);
         this.date = date;
         this.time = time;
         this.homeTask = homeTask;
-        this.classId = classId;
-        this.teachersId = teachersId;
-        this.kursId = kursId;
+        this.classFKId = classFKId;
+        this.teachersFKId = teachersFKId;
+        this.kursFKId = kursFKId;
     }
 
     public Date getDate() {
@@ -46,28 +47,28 @@ public class Lesson extends Entity{
         this.homeTask = homeTask;
     }
 
-    public int getClassId() {
-        return classId;
+    public Class getClassFKId() {
+        return classFKId;
     }
 
-    public void setClassId(int classId) {
-        this.classId = classId;
+    public void setClassFKId(Class classFKId) {
+        this.classFKId = classFKId;
     }
 
-    public int getTeachersId() {
-        return teachersId;
+    public Teachers getTeachersFKId() {
+        return teachersFKId;
     }
 
-    public void setTeachersId(int teachersId) {
-        this.teachersId = teachersId;
+    public void setTeachersFKId(Teachers teachersFKId) {
+        this.teachersFKId = teachersFKId;
     }
 
-    public int getKursId() {
-        return kursId;
+    public Kurs getKursFKId() {
+        return kursFKId;
     }
 
-    public void setKursId(int kursId) {
-        this.kursId = kursId;
+    public void setKursFKId(Kurs kursFKId) {
+        this.kursFKId = kursFKId;
     }
 
     @Override
@@ -77,9 +78,9 @@ public class Lesson extends Entity{
                 ", date=" + date +
                 ", time=" + time +
                 ", homeTask='" + homeTask + '\'' +
-                ", classId=" + classId +
-                ", teachersId=" + teachersId +
-                ", kursId=" + kursId +
+                ", classId=" + classFKId +
+                ", teachersId=" + teachersFKId +
+                ", kursId=" + kursFKId +
                 '}';
     }
 }

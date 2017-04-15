@@ -1,6 +1,7 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Teachers;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,7 +19,8 @@ public class TeachersDAO extends AbstractDAO <Teachers>{
         return new Teachers(rs.getInt("id"), rs.getString("firstName"),
                 rs.getString("midName"), rs.getString("lastName"),
                 rs.getString("phone"), rs.getString("email"),
-                rs.getInt("kursId"), rs.getInt("classId"));
+                kursDAO().getById(rs.getInt("kursId")),
+                classDAO().getById(rs.getInt("classId")));
     }
 
     @Override
@@ -40,8 +42,8 @@ public class TeachersDAO extends AbstractDAO <Teachers>{
         ps.setString(4, teacher.getLastName());
         ps.setString(5, teacher.getPhone());
         ps.setString(6, teacher.getEmail());
-        ps.setInt(7, teacher.getKursId());
-        ps.setInt(8, teacher.getClassId());
+        ps.setInt(7, teacher.getKursFKId().getId());
+        ps.setInt(8, teacher.getClassFKId().getId());
     }
 
     @Override
@@ -51,8 +53,8 @@ public class TeachersDAO extends AbstractDAO <Teachers>{
         ps.setString(3, teacher.getLastName());
         ps.setString(4, teacher.getPhone());
         ps.setString(5, teacher.getEmail());
-        ps.setInt(6, teacher.getKursId());
-        ps.setInt(7, teacher.getClassId());
+        ps.setInt(6, teacher.getKursFKId().getId());
+        ps.setInt(7, teacher.getClassFKId().getId());
         ps.setInt(8, teacher.getId());
     }
 }

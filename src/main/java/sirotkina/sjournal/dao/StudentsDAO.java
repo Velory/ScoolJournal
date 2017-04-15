@@ -1,6 +1,7 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Students;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 import java.sql.*;
 
@@ -16,7 +17,7 @@ public class StudentsDAO extends AbstractDAO <Students>{
         return new Students(rs.getInt("id"), rs.getString("firstName"),
                 rs.getString("midName"), rs.getString("lastName"),
                 rs.getInt("age"), rs.getString("phone"),
-                rs.getString("email"), rs.getInt("classId"));
+                rs.getString("email"), classDAO().getById(rs.getInt("classId")));
     }
 
     @Override
@@ -39,7 +40,7 @@ public class StudentsDAO extends AbstractDAO <Students>{
         ps.setInt(5, student.getAge());
         ps.setString(6, student.getPhone());
         ps.setString(7, student.getEmail());
-        ps.setInt(8, student.getClassId());
+        ps.setInt(8, student.getClassFKId().getId());
     }
 
     @Override
@@ -50,7 +51,7 @@ public class StudentsDAO extends AbstractDAO <Students>{
         ps.setInt(4, student.getAge());
         ps.setString(5, student.getPhone());
         ps.setString(6, student.getEmail());
-        ps.setInt(7, student.getClassId());
+        ps.setInt(7, student.getClassFKId().getId());
         ps.setInt(8, student.getId());
     }
 }
