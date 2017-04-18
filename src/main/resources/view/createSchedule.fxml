@@ -31,5 +31,6 @@
             <TableColumn fx:id="teacherOfLesson" prefWidth="246.0" text="Преподаватель" />
          </columns>
       </TableView>
+      <ComboBox layoutX="116.0" layoutY="43.0" prefHeight="31.0" prefWidth="80.0" promptText="Класс" />
    </children>
 </AnchorPane>

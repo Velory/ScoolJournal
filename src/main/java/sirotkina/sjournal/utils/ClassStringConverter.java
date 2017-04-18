@@ -22,7 +22,7 @@ public class ClassStringConverter extends StringConverter <Class>{
         if (index == -1){
             cl = new Class(null, 0, null);
         } else {
-            int num = Integer.parseInt(str.substring(index + 2));
+            int num = Integer.parseInt(str.substring(index + 1));
             String letter = str.substring(0, index);
             cl = new Class(null, num, letter);
         }

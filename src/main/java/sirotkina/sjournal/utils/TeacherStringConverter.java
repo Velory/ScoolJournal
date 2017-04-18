@@ -22,8 +22,8 @@ public class TeacherStringConverter extends StringConverter<Teachers> {
         } else {
             String firstName = str.substring(0, index);
             String lastName  = str.substring(index + 2);
-            teacher =  new Teachers(null, null, null,
-                    null, null, null, null, null);;
+            teacher =  new Teachers(null, firstName, null,
+                    lastName, null, null, null, null);
         }
         return teacher;
     }

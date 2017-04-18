@@ -1,8 +1,11 @@
 package sirotkina.sjournal.controller.shedule;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.TextFieldTableCell;
 import sirotkina.sjournal.domain.Schedule;
@@ -88,15 +91,25 @@ public class ScheduleTableEdit extends ScheduleTableView {
         newTeacherOfLesson.clear();
     }
 
+    public ObservableList<Class> getClassList (){
+        return FXCollections.observableList(classDAO().getAll());
+    }
+
+    public void valueChanged (ComboBox<Class> list){
+        Class cl = list.getValue();
+        String name = cl.getNum() + "-" + cl.getLetter();
+        //add code to change the table
+    }
+
     private void onSaveClick(){
-        ClassStringConverter convertClass = new ClassStringConverter();
+        /*ClassStringConverter convertClass = new ClassStringConverter();
         for (Schedule el: getTableElements()) {
             Lesson lesson = new Lesson(null, Date.valueOf(el.getWeekDay()),
                     Time.valueOf(el.getLessonTime()),null,
                     convertClass.checkClassInDB(convertClass.fromString(el.getScoolClass())),
                     el.getTeacherOfLesson(), el.getNameOfKurs())
-            lessonDAO().save(lesson);
+            lessonDAO().save(lesson);*/
 
         }
-    }
 }
+
