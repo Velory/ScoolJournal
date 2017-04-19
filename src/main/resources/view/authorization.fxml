@@ -6,11 +6,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.AuthorizationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="740.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.AuthorizationController">
    <children>
-      <BorderPane prefHeight="480.0" prefWidth="640.0">
+      <BorderPane prefHeight="580.0" prefWidth="740.0">
          <top>
             <Pane prefHeight="50.0" prefWidth="640.0" BorderPane.alignment="CENTER" />
          </top>
@@ -18,12 +16,15 @@
             <GridPane prefHeight="380.0" prefWidth="455.0" BorderPane.alignment="CENTER">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="130.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="208.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="301.0" minWidth="10.0" prefWidth="237.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="237.0" minWidth="10.0" prefWidth="174.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -41,12 +42,16 @@
                   <TextField fx:id="midNameField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                   <Label prefHeight="21.0" prefWidth="170.0" text="Телефон" GridPane.rowIndex="5" />
                   <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label prefHeight="21.0" prefWidth="170.0" text="Возраст" GridPane.rowIndex="6" />
-                  <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label fx:id="ageLbl" prefHeight="21.0" prefWidth="170.0" text="Возраст" GridPane.rowIndex="7" />
+                  <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                   <Label prefHeight="21.0" prefWidth="106.0" text="Email" GridPane.rowIndex="4" />
                   <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Button fx:id="registration" mnemonicParsing="false" prefHeight="31.0" prefWidth="208.0"
-                          text="Зарегистрировать" GridPane.columnIndex="1" GridPane.rowIndex="7" onAction="#onRegistration"/>
+                  <Button fx:id="registration" mnemonicParsing="false" onAction="#onRegistration" prefHeight="31.0" prefWidth="208.0" text="Зарегистрировать" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+                  <Label prefHeight="21.0" prefWidth="170.0" text="Выберите класс" GridPane.rowIndex="6" />
+                  <ComboBox fx:id="classAuth" prefWidth="237.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Label prefHeight="21.0" prefWidth="170.0" text="Введите пароль" GridPane.rowIndex="8" />
+                  <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <Label fx:id="registrationMsg" prefHeight="21.0" prefWidth="171.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
                </children>
             </GridPane>
          </center>

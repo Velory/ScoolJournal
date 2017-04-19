@@ -33,7 +33,7 @@ public class ClassStringConverter extends StringConverter <Class>{
         List<Class> classes = classDAO().getAll();
         for (Class clFromDB: classes) {
             if(cl.equals(clFromDB)){
-                return cl;
+                return clFromDB;
             }
         }
         return null;

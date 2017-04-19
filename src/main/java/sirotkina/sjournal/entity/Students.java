@@ -91,4 +91,28 @@ public class Students extends Entity{
                 ", classId=" + classFKId +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        Students students = (Students) o;
+
+        if (age != students.age) return false;
+        if (firstName != null ? !firstName.equals(students.firstName) : students.firstName != null) return false;
+        if (midName != null ? !midName.equals(students.midName) : students.midName != null) return false;
+        return lastName != null ? lastName.equals(students.lastName) : students.lastName == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        result = 31 * result + (midName != null ? midName.hashCode() : 0);
+        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + age;
+        return result;
+    }
 }
