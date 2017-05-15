@@ -1,29 +1,55 @@
 package sirotkina.sjournal.controller.shedule;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
-import sirotkina.sjournal.domain.Schedule;
+import sirotkina.sjournal.domain.*;
+import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.entity.Class;
-import sirotkina.sjournal.entity.Lesson;
-import sirotkina.sjournal.utils.ClassStringConverter;
+import sirotkina.sjournal.entity.Kurs;
 
-import java.sql.Date;
-import java.sql.Time;
+import java.util.Arrays;
+import java.util.List;
 
+import static sirotkina.sjournal.utils.ControllersUtils.*;
+import static sirotkina.sjournal.utils.ConvertersUtils.*;
 import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class ScheduleTableEdit extends ScheduleTableView {
 
+    private TableView.TableViewSelectionModel <ScheduleBean> selectionModel;
+
+    @FXML private ComboBox<String> newDay;
+    @FXML private ComboBox<Class> newScoolClass;
+    @FXML private ComboBox<String> newLessonTime;
+    @FXML private ComboBox<Kurs> newNameOfKurs;
+    @FXML private ComboBox<Teachers> newTeacherOfLesson;
+    /*@FXML private Button add;
+    @FXML private Button save;
+    @FXML private Button delete;
+    @FXML private Button restore;*/
+
     @Override
-    @FXML
     protected void initialize() {
         super.initialize();
+
+        selectionModel = curentSchedule.getSelectionModel();
+        selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
+
+        newDay.getItems().addAll(getDaysOfWeek());
+        newLessonTime.getItems().addAll(getTimeOfLessons());
+
+        newScoolClass.getItems().addAll(getClassList());
+        newScoolClass.setConverter(classConverter());
+
+        newNameOfKurs.getItems().addAll(getKursList());
+        newNameOfKurs.setConverter(kursConverter());
+
+        newTeacherOfLesson.getItems().addAll(getTeachersList());
+        newTeacherOfLesson.setConverter(teacherConverter());
 
         day.setCellFactory(TextFieldTableCell.forTableColumn());
         day.setOnEditCommit(event -> event.getTableView()
@@ -36,7 +62,6 @@ public class ScheduleTableEdit extends ScheduleTableView {
                 .getItems()
                 .get(event.getTablePosition().getRow())
                 .setScoolClass(event.getNewValue()));
-
 
         lessonTime.setCellFactory(TextFieldTableCell.forTableColumn());
         lessonTime.setOnEditCommit(event -> event.getTableView()
@@ -59,57 +84,52 @@ public class ScheduleTableEdit extends ScheduleTableView {
 
 
     @FXML
-    private TextField newDay;
-
-    @FXML
-    private TextField newScoolClass;
-
-    @FXML
-    private TextField newLessonTime;
-
-    @FXML
-    private TextField newNameOfKurs;
-
-    @FXML
-    private TextField newTeacherOfLesson;
-
-    @FXML
-    private Button add;
-
-    @FXML
-    private Button save;
-
-
-    @FXML
     private void onAddClick(){
-        getTableElements().add(new Schedule(newDay.getText(), newScoolClass.getText(), null,
-                newLessonTime.getText(), newNameOfKurs.getText(), newTeacherOfLesson.getText()));
-        newDay.clear();
-        newScoolClass.clear();
-        newLessonTime.clear();
-        newNameOfKurs.clear();
-        newTeacherOfLesson.clear();
+        getTableElements().add(new ScheduleBean(newDay.getValue(), classConverter().toString(newScoolClass.getValue()),
+                null, newLessonTime.getValue(), kursConverter().toString(newNameOfKurs.getValue()),
+                teacherConverter().toString(newTeacherOfLesson.getValue())));
     }
 
-    public ObservableList<Class> getClassList (){
-        return FXCollections.observableList(classDAO().getAll());
-    }
-
-    public void valueChanged (ComboBox<Class> list){
-        Class cl = list.getValue();
-        String name = cl.getNum() + "-" + cl.getLetter();
-        //add code to change the table
-    }
-
-    private void onSaveClick(){
-        /*ClassStringConverter convertClass = new ClassStringConverter();
-        for (Schedule el: getTableElements()) {
-            Lesson lesson = new Lesson(null, Date.valueOf(el.getWeekDay()),
-                    Time.valueOf(el.getLessonTime()),null,
-                    convertClass.checkClassInDB(convertClass.fromString(el.getScoolClass())),
-                    el.getTeacherOfLesson(), el.getNameOfKurs())
-            lessonDAO().save(lesson);*/
-
+    @FXML
+    private void onSaveClick() {
+        for (ScheduleBean el : getTableElements()) {
+            Schedule schedule = new Schedule(el.getWeekDay(),
+                    classConverter().checkClassInDB(classConverter().fromString(el.getScoolClass())),
+                    el.getId(), el.getLessonTime(),
+                    kursConverter().checkKursInDB(kursConverter().fromString(el.getNameOfKurs())),
+                    teacherConverter().checkTeacherInDB(teacherConverter().fromString(el.getTeacherOfLesson())));
+            List<Schedule> scheduleList = scheduleDAO().getAll();
+            for (Schedule sc: scheduleList){
+                if (sc.getId().equals(schedule.getId())){
+                    scheduleDAO().update(schedule);
+                }
+                if (schedule.getId() == null){
+                    scheduleDAO().save(schedule);
+                }
+            }
         }
+    }
+
+    @FXML
+    private void onDeleteClick(){
+        selectionModel = curentSchedule.getSelectionModel();
+        if (selectionModel.isEmpty())return;
+
+        ObservableList<Integer> list = selectionModel.getSelectedIndices();
+        Integer[] selectedIndices = new Integer[list.size()];
+        selectedIndices = list.toArray(selectedIndices);
+        Arrays.sort(selectedIndices);
+
+        for (int i = selectedIndices.length - 1; i >= 0; i--){
+            selectionModel.clearSelection(selectedIndices[i]);
+            curentSchedule.getItems().remove(selectedIndices[i].intValue());
+        }
+    }
+
+    @FXML
+    private void onRestoreClick(){
+        curentSchedule.getItems().clear();
+        super.initialize();
+    }
 }
 

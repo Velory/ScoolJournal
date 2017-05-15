@@ -5,9 +5,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.MainMenuController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.MainMenuController">
    <children>
-      <BorderPane fx:id="mainMenuContainer" prefHeight="800.0" prefWidth="1280.0" styleClass="border-pane" stylesheets="@theme.css">
+      <BorderPane fx:id="mainMenuContainer" prefHeight="800.0" prefWidth="1280.0" styleClass="border-pane" stylesheets="@theme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
             <GridPane prefHeight="800.0" prefWidth="260.0" styleClass="grid-pane" stylesheets="@theme.css" BorderPane.alignment="CENTER">
               <columnConstraints>
@@ -39,14 +39,14 @@
                         <MenuItem fx:id="scoolDiary" mnemonicParsing="false" onAction="#onDiary" text="Открыть дневник" />
                      </items>
                   </MenuButton>
-                  <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Журнал" textFill="WHITE" GridPane.rowIndex="2">
+                  <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Уроки" textFill="WHITE" GridPane.rowIndex="2">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onJournal" text="Открыть журнал" />
+                        <MenuItem mnemonicParsing="false" onAction="#onJournal" text="Новый урок" />
                      </items>
                   </MenuButton>
                   <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Домашнее задание" textFill="WHITE" GridPane.rowIndex="3" />
                   <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Профиль ученика" textFill="WHITE" GridPane.rowIndex="4" />
-                  <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Отчеты" textFill="WHITE" GridPane.rowIndex="5" />
+                  <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Успеваемость" textFill="WHITE" GridPane.rowIndex="5" />
                   <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Посещаемость" textFill="WHITE" GridPane.rowIndex="6" />
                   <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Новости" textFill="WHITE" GridPane.rowIndex="7" />
                   <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Рассылка" textFill="WHITE" GridPane.rowIndex="8" />
@@ -71,7 +71,6 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="230.0" style="-fx-background-color: #ffffff;" text="Button" GridPane.columnIndex="2" />
                </children>
             </GridPane>
          </top>

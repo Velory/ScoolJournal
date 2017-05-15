@@ -18,9 +18,9 @@ public class StudentsDAOTest {
         migrate();
         classDAO().save(new Class(1, 1, "A"));
         studentsDAO().save(new Students(1,"Ivan", "Ivanovich", "Ivanov",
-                9, "293847", "ivan@mail.me", classDAO().getById(1)));
+                9, "293847", "ivan@mail.me", classDAO().getById(1), "12345"));
         studentsDAO().save(new Students(null, "Vasya", "Vasilyevich", "Petrov",
-                10, "293847", "vasya@mail.me", classDAO().getById(1)));
+                10, "293847", "vasya@mail.me", classDAO().getById(1), "482762"));
     }
 
     @After
@@ -50,7 +50,7 @@ public class StudentsDAOTest {
     @Test
     public void update() throws Exception {
         studentsDAO().update(new Students(1, "Ivan", "Ivanovich", "Ivanov",
-                10, "293847", "ivan@mail.me", classDAO().getById(1)));
+                10, "293847", "ivan@mail.me", classDAO().getById(1), "284364"));
         Students students1 = studentsDAO().getById(1);
         assertEquals(10, students1.getAge());
         assertEquals("293847", students1.getPhone());

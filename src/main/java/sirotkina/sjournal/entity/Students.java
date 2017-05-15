@@ -9,9 +9,10 @@ public class Students extends Entity{
     private String phone;
     private String email;
     private Class classFKId;
+    private String password;
 
     public Students(Integer id, String firstName, String midName, String lastName,
-                    int age, String phone, String email, Class classFKId) {
+                    int age, String phone, String email, Class classFKId, String password) {
         setId(id);
         this.firstName = firstName;
         this.midName = midName;
@@ -20,6 +21,7 @@ public class Students extends Entity{
         this.phone = phone;
         this.email = email;
         this.classFKId = classFKId;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -78,6 +80,14 @@ public class Students extends Entity{
         this.classFKId = classFKId;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
         return "Students{" +
@@ -92,27 +102,4 @@ public class Students extends Entity{
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-
-        Students students = (Students) o;
-
-        if (age != students.age) return false;
-        if (firstName != null ? !firstName.equals(students.firstName) : students.firstName != null) return false;
-        if (midName != null ? !midName.equals(students.midName) : students.midName != null) return false;
-        return lastName != null ? lastName.equals(students.lastName) : students.lastName == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (midName != null ? midName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + age;
-        return result;
-    }
 }

@@ -1,4 +1,4 @@
-package sirotkina.sjournal.utils;
+package sirotkina.sjournal.utils.converters;
 
 import javafx.util.StringConverter;
 import sirotkina.sjournal.entity.Class;
@@ -22,8 +22,8 @@ public class ClassStringConverter extends StringConverter <Class>{
         if (index == -1){
             cl = new Class(null, 0, null);
         } else {
-            int num = Integer.parseInt(str.substring(index + 1));
-            String letter = str.substring(0, index);
+            int num = Integer.parseInt(str.substring(0, index));
+            String letter = str.substring(index + 1);
             cl = new Class(null, num, letter);
         }
         return cl;
@@ -32,7 +32,7 @@ public class ClassStringConverter extends StringConverter <Class>{
     public Class checkClassInDB(Class cl){
         List<Class> classes = classDAO().getAll();
         for (Class clFromDB: classes) {
-            if(cl.equals(clFromDB)){
+            if(cl.getNum() == clFromDB.getNum() && cl.getLetter().equals(clFromDB.getLetter())){
                 return clFromDB;
             }
         }

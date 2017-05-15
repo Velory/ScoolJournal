@@ -22,9 +22,9 @@ public class TeachersDAOTest {
         classDAO().save(new Class(null,1,"A"));
         kursDAO().save(new Kurs(null, "math"));
         teachersDAO().save(new Teachers(null, "Olga", "Igorevna", "Petrova",
-                "2938475", "olga@mail.me", kursDAO().getById(1), classDAO().getById(1)));
+                "2938475", "olga@mail.me", kursDAO().getById(1), classDAO().getById(1), "2149871"));
         teachersDAO().save(new Teachers(null, "Svetlana", "Ivanovna", "Ivanova",
-                "4937262", "svetlana@mail.me", kursDAO().getById(1), classDAO().getById(1)));
+                "4937262", "svetlana@mail.me", kursDAO().getById(1), classDAO().getById(1), "dai"));
     }
 
     @After
@@ -54,7 +54,7 @@ public class TeachersDAOTest {
     @Test
     public void update() throws Exception {
         teachersDAO().update(new Teachers(1, "Svetlana", "Ivanovna", "Ivanova",
-                "4937262", "svetlana@mail.me", kursDAO().getById(1), classDAO().getById(1)));
+                "4937262", "svetlana@mail.me", kursDAO().getById(1), classDAO().getById(1), "2138"));
         Teachers teachers = teachersDAO().getById(1);
         assertNotNull(teachers);
         assertEquals("Svetlana", teachers.getFirstName());

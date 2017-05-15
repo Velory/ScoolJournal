@@ -17,6 +17,7 @@ public class DatabaseUtils {
     private static MarksDAO marksDAO;
     private static StudentsDAO studentsDAO;
     private static TeachersDAO teachersDAO;
+    private static ScheduleDAO scheduleDAO;
 
     static {
         classDAO = new ClassDAO();
@@ -25,6 +26,7 @@ public class DatabaseUtils {
         marksDAO = new MarksDAO();
         studentsDAO = new StudentsDAO();
         teachersDAO = new TeachersDAO();
+        scheduleDAO = new ScheduleDAO();
     }
 
     static {
@@ -82,6 +84,10 @@ public class DatabaseUtils {
 
     public static TeachersDAO teachersDAO() {
         return teachersDAO;
+    }
+
+    public static ScheduleDAO scheduleDAO(){
+        return scheduleDAO;
     }
 }
 

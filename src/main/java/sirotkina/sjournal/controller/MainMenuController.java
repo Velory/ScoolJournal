@@ -1,30 +1,26 @@
 package sirotkina.sjournal.controller;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import sirotkina.sjournal.ui.CreateSchedule;
-import sirotkina.sjournal.ui.CurrentSchedule;
-import sirotkina.sjournal.ui.Diary;
-import sirotkina.sjournal.ui.SelectLesson;
-
 import java.io.IOException;
 
 public class MainMenuController {
 
-    @FXML
-    private BorderPane mainMenuContainer;
+    @FXML private BorderPane mainMenuContainer;
     private AnchorPane createSchedule;
     private AnchorPane currentSchedule;
+    private AnchorPane diary;
+    private AnchorPane selectLesson;
+    //private AnchorPane createLesson;
 
     public void initialize() throws IOException {
         createSchedule = FXMLLoader.load(getClass().getClassLoader().getResource("view/createSchedule.fxml"));
         currentSchedule = FXMLLoader.load(getClass().getClassLoader().getResource("view/currentSchedule.fxml"));
-
+        diary = FXMLLoader.load(getClass().getClassLoader().getResource("view/diary.fxml"));
+        selectLesson = FXMLLoader.load(getClass().getClassLoader().getResource("view/lessons/selectLesson.fxml"));
+        //createLesson = FXMLLoader.load(getClass().getClassLoader().getResource("view/lessons/createLesson.fxml"));
     }
 
     public void onNewSchedule () throws IOException {
@@ -36,10 +32,18 @@ public class MainMenuController {
     }
 
     public void onDiary () throws IOException {
-        new Diary();
+        mainMenuContainer.setCenter(diary);
     }
 
     public void onJournal () throws IOException {
-        new SelectLesson();
+        mainMenuContainer.setCenter(selectLesson);
+    }
+
+    /*public void setCreateLesson() {
+        mainMenuContainer.setCenter(createLesson);
+    }*/
+
+    public BorderPane getMainMenuContainer() {
+        return mainMenuContainer;
     }
 }

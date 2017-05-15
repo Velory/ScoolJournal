@@ -7,13 +7,13 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.DiaryController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.DiaryController">
    <children>
       <Label alignment="CENTER" layoutX="103.0" layoutY="14.0" prefHeight="21.0" prefWidth="814.0" text="Дневник">
          <font>
             <Font size="24.0" />
          </font></Label>
-      <TabPane layoutX="14.0" layoutY="87.0" prefHeight="698.0" prefWidth="994.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="14.0" layoutY="87.0" prefHeight="653.0" prefWidth="994.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Понедельник">
                <content>

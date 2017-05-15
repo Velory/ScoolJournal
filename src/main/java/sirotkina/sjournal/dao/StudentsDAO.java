@@ -14,21 +14,26 @@ public class StudentsDAO extends AbstractDAO <Students>{
 
     @Override
     protected Students createEntityFromRS(ResultSet rs) throws SQLException {
-        return new Students(rs.getInt("id"), rs.getString("firstName"),
-                rs.getString("midName"), rs.getString("lastName"),
-                rs.getInt("age"), rs.getString("phone"),
-                rs.getString("email"), classDAO().getById(rs.getInt("classId")));
+        return new Students(rs.getInt("id"),
+                rs.getString("firstName"),
+                rs.getString("midName"),
+                rs.getString("lastName"),
+                rs.getInt("age"),
+                rs.getString("phone"),
+                rs.getString("email"),
+                classDAO().getById(rs.getInt("classId")),
+                rs.getString("password"));
     }
 
     @Override
     protected String getSaveQuery() {
-        return "INSERT INTO students VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        return "INSERT INTO students VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
 
     @Override
     protected String getUpdateQuery() {
         return "UPDATE students SET firstName=?, midName=?," +
-                "lastName=?, age=?, phone=?, email=?, classId=? WHERE id=?";
+                "lastName=?, age=?, phone=?, email=?, classId=?, password=? WHERE id=?";
     }
 
     @Override
@@ -41,6 +46,7 @@ public class StudentsDAO extends AbstractDAO <Students>{
         ps.setString(6, student.getPhone());
         ps.setString(7, student.getEmail());
         ps.setInt(8, student.getClassFKId().getId());
+        ps.setString(9, student.getPassword());
     }
 
     @Override
@@ -52,6 +58,7 @@ public class StudentsDAO extends AbstractDAO <Students>{
         ps.setString(5, student.getPhone());
         ps.setString(6, student.getEmail());
         ps.setInt(7, student.getClassFKId().getId());
-        ps.setInt(8, student.getId());
+        ps.setString(8, student.getPassword());
+        ps.setInt(9, student.getId());
     }
 }

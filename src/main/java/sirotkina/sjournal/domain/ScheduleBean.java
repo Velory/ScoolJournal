@@ -1,12 +1,6 @@
 package sirotkina.sjournal.domain;
 
-import sirotkina.sjournal.dao.ClassDAO;
-import sirotkina.sjournal.dao.LessonDAO;
-import sirotkina.sjournal.entity.*;
-
-import java.sql.Time;
-
-public class Schedule {
+public class ScheduleBean {
 
     private String weekDay;
     private String scoolClass;
@@ -15,8 +9,8 @@ public class Schedule {
     private String nameOfKurs;
     private String teacherOfLesson;
 
-    public Schedule(String weekDay, String scoolClass, Integer id, String lessonTime,
-                    String nameOfKurs, String teacherOfLesson) {
+    public ScheduleBean(String weekDay, String scoolClass, Integer id, String lessonTime,
+                        String nameOfKurs, String teacherOfLesson) {
         this.weekDay = weekDay;
         this.scoolClass = scoolClass;
         this.id = id;
@@ -76,7 +70,7 @@ public class Schedule {
 
     @Override
     public String toString() {
-        return "Schedule{" +
+        return "ScheduleBean{" +
                 "weekDay='" + weekDay + '\'' +
                 ", scoolClass=" + scoolClass +
                 ", id=" + id +

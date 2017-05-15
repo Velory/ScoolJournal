@@ -9,9 +9,11 @@ public class Teachers extends Entity{
     private String email;
     private Kurs kursFKId;
     private Class classFKId;
+    private String password;
 
     public Teachers(Integer id, String firstName, String midName,
-                    String lastName, String phone, String email, Kurs kursFKId, Class classFKId) {
+                    String lastName, String phone, String email,
+                    Kurs kursFKId, Class classFKId, String password) {
         setId(id);
         this.firstName = firstName;
         this.midName = midName;
@@ -20,6 +22,7 @@ public class Teachers extends Entity{
         this.email = email;
         this.kursFKId = kursFKId;
         this.classFKId = classFKId;
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -76,6 +79,14 @@ public class Teachers extends Entity{
 
     public void setClassFKId(Class classFKId) {
         this.classFKId = classFKId;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

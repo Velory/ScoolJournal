@@ -1,26 +1,32 @@
 package sirotkina.sjournal.controller;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import sirotkina.sjournal.domain.StudentBean;
+import sirotkina.sjournal.domain.TeacherBean;
 import sirotkina.sjournal.entity.Class;
+import sirotkina.sjournal.entity.Kurs;
 import sirotkina.sjournal.entity.Students;
 import sirotkina.sjournal.entity.Teachers;
-import sirotkina.sjournal.utils.ClassStringConverter;
-
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
+import java.util.Set;
+
+import sirotkina.sjournal.ui.Authorization;
+import sirotkina.sjournal.ui.Login;
+import sirotkina.sjournal.utils.myValidator.Validator;
 
 import static sirotkina.sjournal.utils.DatabaseUtils.*;
+import static sirotkina.sjournal.utils.ControllersUtils.*;
+import static sirotkina.sjournal.utils.ConvertersUtils.*;
 
 public class AuthorizationController {
 
-    private ObservableList<String> roleList;
-    private ObservableList<Class> classList;
-    //private ClassStringConverter classConverter;
+    private Validator validator;
+
     @FXML private ComboBox<String> role;
     @FXML private ComboBox<Class> classAuth;
+    @FXML private ComboBox<Kurs> kursAuth;
     @FXML private TextField lastNameField;
     @FXML private TextField firstNameField;
     @FXML private TextField midNameField;
@@ -28,57 +34,97 @@ public class AuthorizationController {
     @FXML private TextField ageField;
     @FXML private TextField emailField;
     @FXML private PasswordField password;
-    @FXML private Button registration;
-    @FXML private Label registrationMsg;
-    @FXML private Label ageLbl;
 
-    public void initialize(){
-        roleList = FXCollections.observableArrayList("Ученик", "Учитель");
-        role.getItems().addAll(roleList);
+    @FXML private Label registrationMsg;
+    @FXML private Label ageKursLbl;
+
+    public void initialize() throws IOException {
+
+        role.getItems().addAll(getRoleList());
         role.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> onRoleAction());
 
-        ageField.setDisable(true);
-        ageField.setVisible(false);
-        ageLbl.setVisible(false);
-
         classAuth.getItems().addAll(getClassList());
-        classAuth.setConverter(getClassConverter());
+        classAuth.setConverter(classConverter());
+
+        kursAuth.getItems().addAll(getKursList());
+        kursAuth.setConverter(kursConverter());
+
+        nodeIsActive(false, kursAuth, ageField, ageKursLbl);
     }
 
-    public void onRoleAction(){
-        if (role.getValue().equals(roleList.get(0))){
-            ageField.setDisable(false);
-            ageField.setVisible(true);
-            ageLbl.setVisible(true);
-        } else {
-            ageField.setDisable(true);
-            ageField.setVisible(false);
-            ageLbl.setVisible(false);
+    public void onRoleAction() {
+        if (role.getValue().equals("Ученик")) {
+            ageKursLbl.setText("Возраст");
+            nodeIsActive(true, ageField, ageKursLbl);
+            nodeIsActive(false, kursAuth);
+        }
+        if (role.getValue().equals("Учитель")){
+            ageKursLbl.setText("Выберите предмет");
+            nodeIsActive(true, kursAuth, ageKursLbl);
+            nodeIsActive(false, ageField);
         }
     }
 
-    public void onRegistration(){
-        if (role.getValue().equals(roleList.get(0))){
-            Students students = getNewStudent();
-            List<Students> studentsList = studentsDAO().getAll();
-            if (!studentsList.contains(students)){
-                studentsDAO().save(students);
-                firstNameField.clear();
-                midNameField.clear();
-                lastNameField.clear();
-                ageField.clear();
-                phoneField.clear();
-                emailField.clear();
-                password.clear();
-                registrationMsg.setText("Регистрация прошла успешно");
+    public void onRegistration() {
+
+        if (role.getValue().equals("Ученик")){
+            validator = getValidator(StudentBean.class);
+            Set<String> messages = validator.validate(getStudentBean());
+            if (messages.isEmpty()){
+                Students students = getNewStudent();
+                List<Students> studentsList = studentsDAO().getAll();
+                if (!studentsList.contains(students)){
+                    studentsDAO().save(students);
+                    clearingFields();
+                    registrationMsg.setText("Регистрация прошла успешно");
+                }
             } else {
-                registrationMsg.setText("Пользователь с таким именем уже существует");
+                registrationMsg.setText(String.valueOf(messages));
+            }
+        }
+
+        if(role.getValue().equals("Учитель")){
+            validator = getValidator(TeacherBean.class);
+            Set<String> messages = validator.validate(getTeacherBean());
+            if (messages.isEmpty()){
+                Teachers teachers = getNewTeacher();
+                List<Teachers> teachersList = teachersDAO().getAll();
+                if (!teachersList.contains(teachers)){
+                    teachersDAO().save(teachers);
+                    clearingFields();
+                    registrationMsg.setText("Регистрация прошла успешно");
+                }
+            } else {
+                registrationMsg.setText(String.valueOf(messages));
             }
         }
     }
 
-    private Students getNewStudent(){
+    public void onEnter(){
+        new Login();
+        Authorization.getStage().close();
+    }
+
+    private Validator getValidator (java.lang.Class cl){
+        return new Validator(cl);
+    }
+
+    private TeacherBean getTeacherBean(){
+        return new TeacherBean(role.getValue(), classConverter().toString(classAuth.getValue()),
+                kursConverter().toString(kursAuth.getValue()),
+                lastNameField.getText(), firstNameField.getText(), midNameField.getText(),
+                phoneField.getText(), emailField.getText(), password.getText());
+    }
+
+    private StudentBean getStudentBean(){
+        return new StudentBean(role.getValue(),
+                classConverter().toString(classAuth.getValue()),
+                lastNameField.getText(), firstNameField.getText(), midNameField.getText(),
+                ageField.getText(), phoneField.getText(), emailField.getText(), password.getText());
+    }
+
+    private Students getNewStudent() {
         return new Students(null,
                 firstNameField.getText(),
                 midNameField.getText(),
@@ -86,7 +132,8 @@ public class AuthorizationController {
                 Integer.valueOf(ageField.getText()),
                 phoneField.getText(),
                 emailField.getText(),
-                getClassConverter().checkClassInDB(classAuth.getValue()));
+                classConverter().checkClassInDB(classAuth.getValue()),
+                password.getText());
     }
 
     private Teachers getNewTeacher(){
@@ -96,19 +143,18 @@ public class AuthorizationController {
                 lastNameField.getText(),
                 phoneField.getText(),
                 emailField.getText(),
-                null,
-                null);
+                kursConverter().checkKursInDB(kursAuth.getValue()),
+                classConverter().checkClassInDB(classAuth.getValue()),
+                password.getText());
     }
 
-    public ObservableList<Class> getClassList(){
-        return FXCollections.observableList(classDAO().getAll());
-    }
-
-    public ObservableList<String> getRoleList() {
-        return roleList;
-    }
-
-    public ClassStringConverter getClassConverter() {
-        return new ClassStringConverter();
+   private void clearingFields(){
+        firstNameField.clear();
+        midNameField.clear();
+        lastNameField.clear();
+        ageField.clear();
+        phoneField.clear();
+        emailField.clear();
+        password.clear();
     }
 }

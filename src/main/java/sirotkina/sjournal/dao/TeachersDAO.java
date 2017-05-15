@@ -16,22 +16,26 @@ public class TeachersDAO extends AbstractDAO <Teachers>{
 
     @Override
     protected Teachers createEntityFromRS(ResultSet rs) throws SQLException {
-        return new Teachers(rs.getInt("id"), rs.getString("firstName"),
-                rs.getString("midName"), rs.getString("lastName"),
-                rs.getString("phone"), rs.getString("email"),
+        return new Teachers(rs.getInt("id"),
+                rs.getString("firstName"),
+                rs.getString("midName"),
+                rs.getString("lastName"),
+                rs.getString("phone"),
+                rs.getString("email"),
                 kursDAO().getById(rs.getInt("kursId")),
-                classDAO().getById(rs.getInt("classId")));
+                classDAO().getById(rs.getInt("classId")),
+                rs.getString("password"));
     }
 
     @Override
     protected String getSaveQuery() {
-        return "INSERT INTO teachers VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+        return "INSERT INTO teachers VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
     }
 
     @Override
     protected String getUpdateQuery() {
         return "UPDATE teachers SET firstName=?, midName=?," +
-                "lastName=?, phone=?, email=?, kursId=?, classId=? WHERE id=?";
+                "lastName=?, phone=?, email=?, kursId=?, classId=?, password=? WHERE id=?";
     }
 
     @Override
@@ -44,6 +48,7 @@ public class TeachersDAO extends AbstractDAO <Teachers>{
         ps.setString(6, teacher.getEmail());
         ps.setInt(7, teacher.getKursFKId().getId());
         ps.setInt(8, teacher.getClassFKId().getId());
+        ps.setString(9, teacher.getPassword());
     }
 
     @Override
@@ -55,6 +60,7 @@ public class TeachersDAO extends AbstractDAO <Teachers>{
         ps.setString(5, teacher.getEmail());
         ps.setInt(6, teacher.getKursFKId().getId());
         ps.setInt(7, teacher.getClassFKId().getId());
-        ps.setInt(8, teacher.getId());
+        ps.setString(8, teacher.getPassword());
+        ps.setInt(9, teacher.getId());
     }
 }
