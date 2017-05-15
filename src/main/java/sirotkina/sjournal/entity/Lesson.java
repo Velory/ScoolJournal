@@ -1,18 +1,17 @@
 package sirotkina.sjournal.entity;
 
 import java.sql.Date;
-import java.sql.Time;
 
 public class Lesson extends Entity{
 
     private Date date;
-    private Time time;
+    private String time;
     private String homeTask;
     private Class classFKId;
     private Teachers teachersFKId;
     private Kurs kursFKId;
 
-    public Lesson(Integer id, Date date, Time time, String homeTask, Class classFKId,
+    public Lesson(Integer id, Date date, String time, String homeTask, Class classFKId,
                   Teachers teachersFKId, Kurs kursFKId) {
         setId(id);
         this.date = date;
@@ -31,11 +30,11 @@ public class Lesson extends Entity{
         this.date = date;
     }
 
-    public Time getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Time time) {
+    public void setTime(String time) {
         this.time = time;
     }
 

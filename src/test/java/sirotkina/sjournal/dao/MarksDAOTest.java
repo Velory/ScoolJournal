@@ -25,7 +25,7 @@ public class MarksDAOTest {
         kursDAO().save(new Kurs(1, "math"));
         teachersDAO().save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
                 "13141", "tatyana@mail.me", kursDAO().getById(1), classDAO().getById(1), "13981"));
-        lessonDAO().save(new Lesson(1, Date.valueOf("2017-04-10"), Time.valueOf("09:15:00"), "hometask",
+        lessonDAO().save(new Lesson(1, Date.valueOf("2017-04-10"), "09:15:00", "hometask",
                 classDAO().getById(1), teachersDAO().getById(1),kursDAO().getById(1)));
         studentsDAO().save(new Students(1,"Petya", "Petrovich", "Ivanov",
                 10, "19389372", "petya@mail.me", classDAO().getById(1), "sgh"));

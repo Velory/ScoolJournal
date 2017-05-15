@@ -1,19 +1,18 @@
 package sirotkina.sjournal.utils;
 
-import javafx.util.converter.DefaultStringConverter;
 import sirotkina.sjournal.utils.converters.*;
 
 public class ConvertersUtils {
     private static ClassStringConverter classConverter;
     private static KursStringConverter kursConverter;
     private static TeacherStringConverter teacherConverter;
-    private static TimeStringConverter timeConverter;
+    private static StudentStringConverter  studentConverter;
 
     static {
         classConverter = new ClassStringConverter();
         kursConverter = new KursStringConverter();
         teacherConverter = new TeacherStringConverter();
-        timeConverter = new TimeStringConverter();
+        studentConverter = new StudentStringConverter();
     }
 
     public static ClassStringConverter classConverter() {
@@ -28,12 +27,7 @@ public class ConvertersUtils {
         return teacherConverter;
     }
 
-    public static TimeStringConverter timeConverter(){
-        return timeConverter;
+    public static StudentStringConverter studentConverter() {
+        return studentConverter;
     }
-
-    public static TimeFormatter timeFormatter(){
-        return new TimeFormatter(timeConverter());
-    }
-
 }

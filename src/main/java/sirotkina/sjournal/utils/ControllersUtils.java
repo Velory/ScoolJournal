@@ -3,11 +3,18 @@ package sirotkina.sjournal.utils;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import sirotkina.sjournal.domain.ScheduleBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Kurs;
 import sirotkina.sjournal.entity.Schedule;
 import sirotkina.sjournal.entity.Teachers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static sirotkina.sjournal.utils.ConvertersUtils.classConverter;
+import static sirotkina.sjournal.utils.ConvertersUtils.kursConverter;
+import static sirotkina.sjournal.utils.ConvertersUtils.teacherConverter;
 import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class ControllersUtils {
@@ -15,13 +22,12 @@ public class ControllersUtils {
     private static ObservableList<Class> classList;
     private static ObservableList<Kurs> kursList;
     private static ObservableList<Teachers> teachersList;
-    private static ObservableList<Schedule> scheduleList;
+    //private static ObservableList<Schedule> scheduleBeanList;
 
     static {
         classList = FXCollections.observableList(classDAO().getAll());
         kursList = FXCollections.observableList(kursDAO().getAll());
         teachersList = FXCollections.observableList(teachersDAO().getAll());
-        scheduleList = FXCollections.observableList(scheduleDAO().getAll());
     }
 
     public static ObservableList<Class> getClassList (){
@@ -36,8 +42,17 @@ public class ControllersUtils {
         return teachersList;
     }
 
-    public static ObservableList<Schedule> getScheduleList() {
-        return scheduleList;
+    public static ObservableList<ScheduleBean> getSheduleBeanList(){
+        List<ScheduleBean> scheduleList = new ArrayList<>();
+
+        List<Schedule> schedules = scheduleDAO().getAll();
+        for (Schedule schedule: schedules){
+            scheduleList.add(new ScheduleBean(schedule.getWeekDay(),
+                    classConverter().toString(schedule.getScoolClass()),
+                    schedule.getId(), schedule.getLessonTime(), kursConverter().toString(schedule.getNameOfKurs()),
+                    teacherConverter().toString(schedule.getTeacherOfLesson())));
+        }
+        return FXCollections.observableList(scheduleList);
     }
 
     public static ObservableList<String> getRoleList (){

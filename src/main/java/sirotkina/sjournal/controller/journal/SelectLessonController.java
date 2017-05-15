@@ -1,6 +1,5 @@
 package sirotkina.sjournal.controller.journal;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,13 +13,11 @@ import javafx.scene.paint.Paint;
 import javafx.util.Callback;
 import sirotkina.sjournal.controller.MainMenuController;
 import sirotkina.sjournal.domain.ScheduleBean;
-import sirotkina.sjournal.entity.Schedule;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import static sirotkina.sjournal.utils.ControllersUtils.*;
 import static sirotkina.sjournal.utils.ConvertersUtils.*;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class SelectLessonController {
 
@@ -32,28 +29,16 @@ public class SelectLessonController {
     @FXML private TableColumn<ScheduleBean, String> newLesson;
 
     private AnchorPane createLesson;
-
-    protected ObservableList<ScheduleBean> getSheduleBeanList(){
-        List<ScheduleBean> scheduleList = new ArrayList<>();
-
-        List<Schedule> schedules = getScheduleList();
-        for (Schedule schedule: schedules){
-            scheduleList.add(new ScheduleBean(schedule.getWeekDay(),
-                    classConverter().toString(schedule.getScoolClass()),
-                    schedule.getId(), schedule.getLessonTime(),
-                    kursConverter().toString(schedule.getNameOfKurs()),
-                    teacherConverter().toString(schedule.getTeacherOfLesson())));
-        }
-        return FXCollections.observableList(scheduleList);
-    }
+    private ObservableList<ScheduleBean> scheduleBeans;
 
     public void initialize() throws IOException {
+        scheduleBeans = getSheduleBeanList();
         createLesson = FXMLLoader.load(getClass().getClassLoader().getResource("view/lessons/createLesson.fxml"));
         timeSelectLesson.setCellValueFactory(new PropertyValueFactory<>("lessonTime"));
         kursSelectLesson.setCellValueFactory(new PropertyValueFactory<>("nameOfKurs"));
         classSelectLesson.setCellValueFactory(new PropertyValueFactory<>("scoolClass"));
         teacherSelectLesson.setCellValueFactory(new PropertyValueFactory<>("teacherOfLesson"));
-        selectLessonTable.setItems(getSheduleBeanList());
+        selectLessonTable.setItems(scheduleBeans);
         newLesson.setCellFactory(labelCellFactory());
     }
 
@@ -76,7 +61,12 @@ public class SelectLessonController {
                         if (!empty) {
                             lbl.setOnMouseMoved(event -> lbl.setTextFill(Paint.valueOf("#a3748a")));
                             lbl.setOnMouseExited(event -> lbl.setTextFill(Paint.valueOf("#fa3242")));
-                            lbl.setOnMouseClicked(event -> new MainMenuController().getMainMenuContainer().setCenter(createLesson));
+                            lbl.setOnMouseClicked(event -> {
+                                ScheduleBean scheduleBean = getTableView().getItems().get(getIndex());
+                                System.out.println(scheduleBean.toString());
+                                new MainMenuController()
+                                        .getMainMenuContainer().setCenter(createLesson);
+                            });
                             setGraphic(lbl);
                             setText(null);
                         } else {

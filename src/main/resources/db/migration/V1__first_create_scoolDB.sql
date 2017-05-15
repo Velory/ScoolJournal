@@ -40,7 +40,7 @@ CREATE TABLE `students` (
 CREATE TABLE `lesson` (
   `id` int(11) NOT NULL,
   `date` date DEFAULT NULL,
-  `time` time DEFAULT NULL,
+  `time` varchar(20) DEFAULT NULL,
   `homeTask` varchar(100) DEFAULT NULL,
   `classId` int(11) NOT NULL,
   `teachersId` int(11) NOT NULL,

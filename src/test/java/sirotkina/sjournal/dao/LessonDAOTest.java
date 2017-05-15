@@ -24,9 +24,9 @@ public class LessonDAOTest {
         kursDAO().save(new Kurs(null, "math"));
         teachersDAO().save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
                 "13141", "tatyana@mail.me", kursDAO().getById(1), classDAO().getById(1), "shgb"));
-        lessonDAO().save(new Lesson(1, Date.valueOf("2017-03-16"), Time.valueOf("11:00:00"),
+        lessonDAO().save(new Lesson(1, Date.valueOf("2017-03-16"), "11:00:00",
                 "hometask", classDAO().getById(1), teachersDAO().getById(1),kursDAO().getById(1)));
-        lessonDAO().save(new Lesson(null, Date.valueOf("2017-03-10"), Time.valueOf("15:30:00"),
+        lessonDAO().save(new Lesson(null, Date.valueOf("2017-03-10"), "15:30:00",
                 "hometask1", classDAO().getById(2), teachersDAO().getById(1), kursDAO().getById(1)));
     }
 
@@ -50,17 +50,17 @@ public class LessonDAOTest {
         Lesson lesson = lessonDAO().getById(1);
         assertNotNull(lesson);
         assertEquals(Date.valueOf("2017-03-16"), lesson.getDate());
-        assertEquals(Time.valueOf("11:00:00"), lesson.getTime());
+        assertEquals("11:00:00", lesson.getTime());
     }
 
     @Test
     public void update() throws Exception {
-        lessonDAO().update(new Lesson(1, Date.valueOf("2017-03-10"), Time.valueOf("15:30:00"),
+        lessonDAO().update(new Lesson(1, Date.valueOf("2017-03-10"), "15:30:00",
                 "hometask1", classDAO().getById(2), teachersDAO().getById(1), kursDAO().getById(1)));
         Lesson lesson = lessonDAO().getById(1);
         assertNotNull(lesson);
         assertEquals(Date.valueOf("2017-03-10"), lesson.getDate());
-        assertEquals(Time.valueOf("15:30:00"), lesson.getTime());
+        assertEquals("15:30:00", lesson.getTime());
         assertEquals("hometask1", lesson.getHomeTask());
         assertEquals(classDAO().getById(2), lesson.getClassFKId());
     }

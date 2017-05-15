@@ -15,7 +15,7 @@ public class LessonDAO extends AbstractDAO <Lesson>{
     @Override
     protected Lesson createEntityFromRS(ResultSet rs) throws SQLException {
         return new Lesson(rs.getInt("id"), rs.getDate("date"),
-                rs.getTime("time"), rs.getString("homeTask"),
+                rs.getString("time"), rs.getString("homeTask"),
                 classDAO().getById(rs.getInt("classId")),
                 teachersDAO().getById(rs.getInt("teachersId")),
                 kursDAO().getById(rs.getInt("kursId")));
@@ -36,7 +36,7 @@ public class LessonDAO extends AbstractDAO <Lesson>{
     protected void prepareSaveInsertQuery(PreparedStatement ps, Lesson lesson) throws SQLException {
         ps.setInt(1, lesson.getId());
         ps.setDate(2, lesson.getDate());
-        ps.setTime(3, lesson.getTime());
+        ps.setString(3, lesson.getTime());
         ps.setString(4, lesson.getHomeTask());
         ps.setInt(5, lesson.getClassFKId().getId());
         ps.setInt(6, lesson.getTeachersFKId().getId());
@@ -46,7 +46,7 @@ public class LessonDAO extends AbstractDAO <Lesson>{
     @Override
     protected void prepareUpdateInsertQuery(PreparedStatement ps, Lesson lesson) throws SQLException {
         ps.setDate(1, lesson.getDate());
-        ps.setTime(2, lesson.getTime());
+        ps.setString(2, lesson.getTime());
         ps.setString(3, lesson.getHomeTask());
         ps.setInt(4, lesson.getClassFKId().getId());
         ps.setInt(5, lesson.getTeachersFKId().getId());
