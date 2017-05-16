@@ -30,6 +30,7 @@ public class SelectLessonController {
 
     private AnchorPane createLesson;
     private ObservableList<ScheduleBean> scheduleBeans;
+    private ScheduleBean scheduleBean;
 
     public void initialize() throws IOException {
         scheduleBeans = getSheduleBeanList();
@@ -62,7 +63,7 @@ public class SelectLessonController {
                             lbl.setOnMouseMoved(event -> lbl.setTextFill(Paint.valueOf("#a3748a")));
                             lbl.setOnMouseExited(event -> lbl.setTextFill(Paint.valueOf("#fa3242")));
                             lbl.setOnMouseClicked(event -> {
-                                ScheduleBean scheduleBean = getTableView().getItems().get(getIndex());
+                                scheduleBean = getTableView().getItems().get(getIndex());
                                 System.out.println(scheduleBean.toString());
                                 new MainMenuController()
                                         .getMainMenuContainer().setCenter(createLesson);
@@ -81,4 +82,7 @@ public class SelectLessonController {
         return cellFactory;
     }
 
+    public ScheduleBean getScheduleBean() {
+        return scheduleBean;
+    }
 }

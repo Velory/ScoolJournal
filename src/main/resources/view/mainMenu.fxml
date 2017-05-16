@@ -42,6 +42,7 @@
                   <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Уроки" textFill="WHITE" GridPane.rowIndex="2">
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#onJournal" text="Новый урок" />
+                        <MenuItem mnemonicParsing="false" onAction="#onLesson" text="Создать урок" />
                      </items>
                   </MenuButton>
                   <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" stylesheets="@theme.css" text="Домашнее задание" textFill="WHITE" GridPane.rowIndex="3" />

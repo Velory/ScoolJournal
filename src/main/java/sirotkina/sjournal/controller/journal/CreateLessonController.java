@@ -7,7 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import sirotkina.sjournal.domain.LessonBean;
+import sirotkina.sjournal.domain.ScheduleBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Lesson;
 import sirotkina.sjournal.entity.Schedule;
@@ -15,6 +17,7 @@ import sirotkina.sjournal.entity.Students;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +32,8 @@ public class CreateLessonController {
     @FXML private Label lessonOfClass;
     @FXML private Label lastHomeTask;
     @FXML private TextArea newHomeTask;
+    @FXML private Label teacherOfLesson;
+    @FXML private Label kursOfLesson;
 
     @FXML private TableView<LessonBean> newLessonTable;
     @FXML private TableColumn<LessonBean, Integer> num;
@@ -36,27 +41,63 @@ public class CreateLessonController {
     @FXML private TableColumn<LessonBean, String> mark;
     @FXML private TableColumn<LessonBean, String> comment;
 
+    private SelectLessonController selectLessonController;
+    private ScheduleBean scheduleBean;
     private ObservableList<LessonBean> lessonBeans;
-
+    private String homeTask = "";
     public ObservableList<LessonBean> getLessonBeanList(){
+
         List<LessonBean> lessonBeans = new ArrayList<>();
 
-        List<Schedule> scheduleList = scheduleDAO().getAll();
+        //List<Schedule> scheduleList = scheduleDAO().getAll();
         List<Students> studentsList = studentsDAO().getAll();
         List<Lesson> lessonList = lessonDAO().getAll();
-        String lastHomeTask = "";
+        Class cl = classConverter().checkClassInDB(classConverter().fromString(lessonOfClass.getText()));
         for (Lesson l: lessonList) {
-            if (l.getDate().toLocalDate().isBefore(LocalDate.now())){
-                lastHomeTask = l.getHomeTask();
+            if (l.getDate().toLocalDate().isBefore(LocalDate.now()) && l.getClassFKId().equals(cl)){
+                homeTask = l.getHomeTask();
             }
         }
-        lessonBeans.add(new LessonBean(lessonDate.getText(), lessonTime.getText(),
-                lessonOfClass.getText(), lastHomeTask, newHomeTask.getText(), 0,
-                studentConverter().toString()));
+        int i = 1;
+        for (Students st: studentsList) {
+            if (st.getClassFKId().equals(cl)){
+                lessonBeans.add(new LessonBean(lessonDate.getText(), lessonTime.getText(),
+                        lessonOfClass.getText(), homeTask, newHomeTask.getText(), i,
+                        studentConverter().toString(st), null, null));
+            }
+            i++;
+        }
 
         return FXCollections.observableList(lessonBeans);
     }
 
+    public void initialize(){
+        selectLessonController = new SelectLessonController();
+        scheduleBean = selectLessonController.getScheduleBean();
 
+        kursOfLesson.setText(scheduleBean.getNameOfKurs());
+        lessonDate.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd MM yyyy")));
+        lessonTime.setText(scheduleBean.getLessonTime());
+        kursOfLesson.setText(scheduleBean.getScoolClass());
+        teacherOfLesson.setText(scheduleBean.getTeacherOfLesson());
+        lastHomeTask.setText(homeTask);
+
+        lessonBeans = getLessonBeanList();
+        num.setCellValueFactory(new PropertyValueFactory<>("num"));
+        fio.setCellValueFactory(new PropertyValueFactory<>("fio"));
+        mark.setCellValueFactory(new PropertyValueFactory<>("mark"));
+        comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
+        newLessonTable.setItems(lessonBeans);
+
+    }
+
+    public void onSaveLesson(){
+        Lesson lesson = new Lesson(null, Date.valueOf(LocalDate.now()), lessonTime.getText(), newHomeTask.getText(),
+                classConverter().checkClassInDB(classConverter().fromString(lessonOfClass.getText())),
+                teacherConverter().checkTeacherInDB(teacherConverter().fromString(teacherOfLesson.getText())),
+                kursConverter().checkKursInDB(kursConverter().fromString(kursOfLesson.getText())));
+
+        lessonDAO().save(lesson);
+    }
 
 }

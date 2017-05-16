@@ -36,36 +36,42 @@
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
+                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label prefHeight="21.0" prefWidth="166.0" text="Дата урока:" />
-                        <Label fx:id="lessonDate" prefHeight="21.0" prefWidth="165.0" text="Label" GridPane.columnIndex="1" />
-                        <Label prefHeight="21.0" prefWidth="166.0" text="Время урока:" GridPane.rowIndex="1" />
-                        <Label fx:id="lessonTime" prefHeight="21.0" prefWidth="165.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label prefHeight="21.0" prefWidth="165.0" text="Класс" GridPane.rowIndex="2" />
-                        <Label fx:id="lessonOfClass" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label prefHeight="21.0" prefWidth="166.0" text="Домашнее задание:" GridPane.rowIndex="3">
+                        <Label prefHeight="21.0" prefWidth="166.0" text="Дата урока:" GridPane.rowIndex="1" />
+                        <Label fx:id="lessonDate" prefHeight="21.0" prefWidth="165.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label prefHeight="21.0" prefWidth="166.0" text="Время урока:" GridPane.rowIndex="2" />
+                        <Label fx:id="lessonTime" prefHeight="21.0" prefWidth="165.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label prefHeight="21.0" prefWidth="165.0" text="Класс" GridPane.rowIndex="3" />
+                        <Label fx:id="lessonOfClass" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label prefHeight="21.0" prefWidth="166.0" text="Домашнее задание:" GridPane.rowIndex="5">
                            <GridPane.margin>
-                              <Insets bottom="50.0" />
+                              <Insets bottom="80.0" />
                            </GridPane.margin>
                         </Label>
-                        <Label fx:id="lastHomeTask" prefHeight="21.0" prefWidth="169.0" text="Label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label fx:id="lastHomeTask" prefHeight="21.0" prefWidth="169.0" text="Label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <GridPane.margin>
-                              <Insets bottom="50.0" />
+                              <Insets bottom="80.0" />
                            </GridPane.margin></Label>
-                        <Label prefHeight="47.0" prefWidth="150.0" text="Новое домашнее задание:" wrapText="true" GridPane.rowIndex="4">
+                        <Label prefHeight="47.0" prefWidth="150.0" text="Новое домашнее задание:" wrapText="true" GridPane.rowIndex="6">
                            <GridPane.margin>
-                              <Insets bottom="400.0" />
+                              <Insets bottom="300.0" />
                            </GridPane.margin>
                         </Label>
-                        <TextArea fx:id="newHomeTask" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="334.0" text="Сохранить урок" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                        <TextArea fx:id="newHomeTask" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <Button mnemonicParsing="false" onAction="#onSaveLesson" prefHeight="31.0" prefWidth="334.0" text="Сохранить урок" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+                        <Label prefHeight="21.0" prefWidth="150.0" text="Преподаватель" GridPane.rowIndex="4" />
+                        <Label fx:id="" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label prefHeight="21.0" prefWidth="150.0" text="Предмет" />
+                        <Label fx:id="kursOfLesson" text="Label" GridPane.columnIndex="1" />
                      </children>
                   </GridPane>
                </items>
