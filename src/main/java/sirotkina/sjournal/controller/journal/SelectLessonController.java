@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Paint;
 import javafx.util.Callback;
+import sirotkina.sjournal.controller.MainMenuController;
 import sirotkina.sjournal.domain.ScheduleBean;
 
 import java.io.IOException;
@@ -33,7 +34,6 @@ public class SelectLessonController {
     @FXML
     private TableColumn<ScheduleBean, String> newLesson;
 
-    //private AnchorPane createLesson;
     private ObservableList<ScheduleBean> scheduleBeans;
     private ScheduleBean scheduleBean;
 

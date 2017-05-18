@@ -2,6 +2,7 @@ package sirotkina.sjournal.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -11,11 +12,11 @@ public class MainMenuController {
 
     @FXML
     private BorderPane mainMenuContainer;
-    private AnchorPane createSchedule;
+    private Parent createSchedule;
     private AnchorPane currentSchedule;
-    private AnchorPane diary;
-    private AnchorPane selectLesson;
-    private AnchorPane createLesson;
+    private Parent diary;
+    private Parent selectLesson;
+    private Parent createLesson;
 
     public void initialize() throws IOException {
         createSchedule = FXMLLoader.load(getClass().getClassLoader().getResource("view/createSchedule.fxml"));
