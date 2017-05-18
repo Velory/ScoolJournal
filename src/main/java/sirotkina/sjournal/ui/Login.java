@@ -9,17 +9,22 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 
-public class Login extends Application{
+public class Login extends Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(Login.class);
 
     private static Stage stage;
+
     public static void main(String[] args) {
         Application.launch(args);
 
         LOG.debug("Login DEBUG");
         LOG.warn("Login WARNING");
         LOG.error("Login ERROR");
+    }
+
+    public static Stage getStage() {
+        return stage;
     }
 
     @Override
@@ -30,9 +35,5 @@ public class Login extends Application{
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-    }
-
-    public static Stage getStage() {
-        return stage;
     }
 }

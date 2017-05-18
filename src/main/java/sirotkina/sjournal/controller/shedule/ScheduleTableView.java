@@ -7,22 +7,28 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sirotkina.sjournal.domain.ScheduleBean;
 
-import static sirotkina.sjournal.utils.ControllersUtils.*;
+import static sirotkina.sjournal.utils.ControllersUtils.getSheduleBeanList;
 
 public class ScheduleTableView {
 
+    @FXML
+    protected TableView<ScheduleBean> curentSchedule;
+    @FXML
+    protected TableColumn<ScheduleBean, String> day;
+    @FXML
+    protected TableColumn<ScheduleBean, String> scoolClass;
+    @FXML
+    protected TableColumn<ScheduleBean, Integer> id;
+    @FXML
+    protected TableColumn<ScheduleBean, String> lessonTime;
+    @FXML
+    protected TableColumn<ScheduleBean, String> nameOfKurs;
+    @FXML
+    protected TableColumn<ScheduleBean, String> teacherOfLesson;
     private ObservableList<ScheduleBean> tableElements;
 
-    @FXML protected TableView<ScheduleBean> curentSchedule;
-    @FXML protected TableColumn<ScheduleBean, String> day;
-    @FXML protected TableColumn<ScheduleBean, String> scoolClass;
-    @FXML protected TableColumn<ScheduleBean, Integer> id;
-    @FXML protected TableColumn<ScheduleBean, String> lessonTime;
-    @FXML protected TableColumn<ScheduleBean, String> nameOfKurs;
-    @FXML protected TableColumn<ScheduleBean, String> teacherOfLesson;
-
     @FXML
-    protected void initialize(){
+    protected void initialize() {
         tableElements = getSheduleBeanList();
         day.setCellValueFactory(new PropertyValueFactory<>("weekDay"));
         scoolClass.setCellValueFactory(new PropertyValueFactory<>("scoolClass"));

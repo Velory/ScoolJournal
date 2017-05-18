@@ -1,11 +1,15 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Marks;
-import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class MarksDAO extends AbstractDAO <Marks>{
+import static sirotkina.sjournal.utils.DatabaseUtils.lessonDAO;
+import static sirotkina.sjournal.utils.DatabaseUtils.studentsDAO;
+
+public class MarksDAO extends AbstractDAO<Marks> {
 
     @Override
     protected String getTableName() {
@@ -32,11 +36,11 @@ public class MarksDAO extends AbstractDAO <Marks>{
 
     @Override
     protected void prepareSaveInsertQuery(PreparedStatement ps, Marks mark) throws SQLException {
-        ps.setInt(1,mark.getId());
+        ps.setInt(1, mark.getId());
         ps.setInt(2, mark.getMark());
         ps.setString(3, mark.getComment());
         ps.setInt(4, mark.getLessonFKId().getId());
-        ps.setInt(5,mark.getStudentsFKId().getId());
+        ps.setInt(5, mark.getStudentsFKId().getId());
     }
 
     @Override

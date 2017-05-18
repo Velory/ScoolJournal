@@ -39,11 +39,11 @@ public class LoginController {
         Login.getStage().close();
     }
 
-    public void onMovedAuthorization(){
+    public void onMovedAuthorization() {
         auth.setTextFill(Paint.valueOf("#a3748a"));
     }
 
-    public void onExitedAuthorization(){
+    public void onExitedAuthorization() {
         auth.setTextFill(Paint.valueOf("#fa3242"));
     }
 

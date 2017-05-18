@@ -2,9 +2,11 @@ package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Kurs;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class KursDAO extends AbstractDAO <Kurs>{
+public class KursDAO extends AbstractDAO<Kurs> {
 
     @Override
     protected String getTableName() {

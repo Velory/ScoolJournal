@@ -2,7 +2,7 @@ package sirotkina.sjournal.entity;
 
 import java.sql.Date;
 
-public class Lesson extends Entity{
+public class Lesson extends Entity {
 
     private Date date;
     private String time;

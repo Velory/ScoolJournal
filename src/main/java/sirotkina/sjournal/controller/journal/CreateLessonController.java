@@ -12,74 +12,82 @@ import sirotkina.sjournal.domain.LessonBean;
 import sirotkina.sjournal.domain.ScheduleBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Lesson;
-import sirotkina.sjournal.entity.Schedule;
 import sirotkina.sjournal.entity.Students;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-import static sirotkina.sjournal.utils.ControllersUtils.*;
 import static sirotkina.sjournal.utils.ConvertersUtils.*;
-import static sirotkina.sjournal.utils.DatabaseUtils.*;
+import static sirotkina.sjournal.utils.DatabaseUtils.lessonDAO;
+import static sirotkina.sjournal.utils.DatabaseUtils.studentsDAO;
 
 public class CreateLessonController {
 
-    @FXML private Label lessonDate;
-    @FXML private Label lessonTime;
-    @FXML private Label lessonOfClass;
-    @FXML private Label lastHomeTask;
-    @FXML private TextArea newHomeTask;
-    @FXML private Label teacherOfLesson;
-    @FXML private Label kursOfLesson;
+    @FXML
+    private Label lessonDate;
+    @FXML
+    private Label lessonTime;
+    @FXML
+    private Label lessonOfClass;
+    @FXML
+    private Label lastHomeTask;
+    @FXML
+    private TextArea newHomeTask;
+    @FXML
+    private Label teacherOfLesson;
+    @FXML
+    private Label kursOfLesson;
 
-    @FXML private TableView<LessonBean> newLessonTable;
-    @FXML private TableColumn<LessonBean, Integer> num;
-    @FXML private TableColumn<LessonBean, String> fio;
-    @FXML private TableColumn<LessonBean, String> mark;
-    @FXML private TableColumn<LessonBean, String> comment;
+    @FXML
+    private TableView<LessonBean> newLessonTable;
+    @FXML
+    private TableColumn<LessonBean, Integer> num;
+    @FXML
+    private TableColumn<LessonBean, String> fio;
+    @FXML
+    private TableColumn<LessonBean, String> mark;
+    @FXML
+    private TableColumn<LessonBean, String> comment;
 
-    private SelectLessonController selectLessonController;
     private ScheduleBean scheduleBean;
     private ObservableList<LessonBean> lessonBeans;
     private String homeTask = "";
-    public ObservableList<LessonBean> getLessonBeanList(){
 
+    public ObservableList<LessonBean> getLessonBeanList() {
         List<LessonBean> lessonBeans = new ArrayList<>();
-
-        //List<Schedule> scheduleList = scheduleDAO().getAll();
         List<Students> studentsList = studentsDAO().getAll();
         List<Lesson> lessonList = lessonDAO().getAll();
         Class cl = classConverter().checkClassInDB(classConverter().fromString(lessonOfClass.getText()));
-        for (Lesson l: lessonList) {
-            if (l.getDate().toLocalDate().isBefore(LocalDate.now()) && l.getClassFKId().equals(cl)){
+        for (Lesson l : lessonList) {
+            if (l.getDate().toLocalDate().isBefore(LocalDate.now()) && l.getClassFKId().equals(cl)) {
                 homeTask = l.getHomeTask();
             }
         }
         int i = 1;
-        for (Students st: studentsList) {
-            if (st.getClassFKId().equals(cl)){
+        for (Students st : studentsList) {
+            if (st.getClassFKId().equals(cl)) {
                 lessonBeans.add(new LessonBean(lessonDate.getText(), lessonTime.getText(),
                         lessonOfClass.getText(), homeTask, newHomeTask.getText(), i,
                         studentConverter().toString(st), null, null));
             }
             i++;
         }
-
         return FXCollections.observableList(lessonBeans);
     }
 
-    public void initialize(){
-        selectLessonController = new SelectLessonController();
-        scheduleBean = selectLessonController.getScheduleBean();
 
-        kursOfLesson.setText(scheduleBean.getNameOfKurs());
+    public void initialize() throws IOException {
+
+        //scheduleBean = selectLessonController.getScheduleBean();
+        //kursOfLesson.setText(scheduleBean.getNameOfKurs());
         lessonDate.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd MM yyyy")));
-        lessonTime.setText(scheduleBean.getLessonTime());
-        kursOfLesson.setText(scheduleBean.getScoolClass());
-        teacherOfLesson.setText(scheduleBean.getTeacherOfLesson());
+        //lessonTime.setText(scheduleBean.getLessonTime());
+        //kursOfLesson.setText(scheduleBean.getScoolClass());
+        //teacherOfLesson.setText(scheduleBean.getTeacherOfLesson());
         lastHomeTask.setText(homeTask);
 
         lessonBeans = getLessonBeanList();
@@ -88,10 +96,9 @@ public class CreateLessonController {
         mark.setCellValueFactory(new PropertyValueFactory<>("mark"));
         comment.setCellValueFactory(new PropertyValueFactory<>("comment"));
         newLessonTable.setItems(lessonBeans);
-
     }
 
-    public void onSaveLesson(){
+    public void onSaveLesson() {
         Lesson lesson = new Lesson(null, Date.valueOf(LocalDate.now()), lessonTime.getText(), newHomeTask.getText(),
                 classConverter().checkClassInDB(classConverter().fromString(lessonOfClass.getText())),
                 teacherConverter().checkTeacherInDB(teacherConverter().fromString(teacherOfLesson.getText())),

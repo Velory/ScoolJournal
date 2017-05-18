@@ -2,7 +2,7 @@ package sirotkina.sjournal.domain;
 
 import java.io.Serializable;
 
-public class Mark implements Serializable{
+public class Mark implements Serializable {
     private int mark;
     private String comment;
     private int lessonID;

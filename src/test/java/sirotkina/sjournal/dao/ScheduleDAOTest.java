@@ -3,17 +3,16 @@ package sirotkina.sjournal.dao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.entity.Class;
+import sirotkina.sjournal.entity.Kurs;
+import sirotkina.sjournal.entity.Schedule;
+import sirotkina.sjournal.entity.Teachers;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
-import java.sql.Time;
 import java.util.List;
 
 import static org.junit.Assert.*;
 import static sirotkina.sjournal.utils.DatabaseUtils.*;
-import static sirotkina.sjournal.utils.DatabaseUtils.kursDAO;
 
 /**
  * Created by Марина on 09.05.2017.

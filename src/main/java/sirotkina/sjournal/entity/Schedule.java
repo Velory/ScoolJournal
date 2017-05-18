@@ -1,6 +1,6 @@
 package sirotkina.sjournal.entity;
 
-public class Schedule extends Entity{
+public class Schedule extends Entity {
     private String weekDay;
     private Class scoolClass;
     private String lessonTime;

@@ -20,9 +20,9 @@ public class KursDAOTest {
     public void setUp() throws Exception {
         DatabaseUtils.migrate();
         kursDAO = new KursDAO();
-        kursDAO.save(new Kurs(1,"ukr lang"));
-        kursDAO.save(new Kurs(2,"math"));
-        kursDAO.save(new Kurs(null,"lang"));
+        kursDAO.save(new Kurs(1, "ukr lang"));
+        kursDAO.save(new Kurs(2, "math"));
+        kursDAO.save(new Kurs(null, "lang"));
     }
 
     @After
@@ -52,7 +52,7 @@ public class KursDAOTest {
 
     @Test
     public void update() throws Exception {
-        kursDAO.update(new Kurs(1,"math"));
+        kursDAO.update(new Kurs(1, "math"));
         Kurs kurs = kursDAO.getById(1);
         assertNotNull(kurs);
         assertEquals("math", kurs.getTitle());

@@ -2,7 +2,7 @@ package sirotkina.sjournal.domain;
 
 import java.io.Serializable;
 
-public class Kurs implements Serializable{
+public class Kurs implements Serializable {
     private int id;
     private String name;
 

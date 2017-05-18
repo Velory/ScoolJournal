@@ -18,9 +18,9 @@ public class ClassDAOTest {
     public void setUp() throws Exception {
         DatabaseUtils.migrate();
         classDAO = new ClassDAO();
-        classDAO.save(new Class(1,1,"A"));
-        classDAO.save(new Class(2,1,"B"));
-        classDAO.save(new Class(null,1,"C"));
+        classDAO.save(new Class(1, 1, "A"));
+        classDAO.save(new Class(2, 1, "B"));
+        classDAO.save(new Class(null, 1, "C"));
     }
 
     @After

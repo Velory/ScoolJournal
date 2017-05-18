@@ -3,17 +3,15 @@ package sirotkina.sjournal.dao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.entity.Class;
-import static sirotkina.sjournal.utils.DatabaseUtils.*;
+import sirotkina.sjournal.entity.*;
 
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static sirotkina.sjournal.utils.DatabaseUtils.classDAO;
-import static sirotkina.sjournal.utils.DatabaseUtils.kursDAO;
-import static sirotkina.sjournal.utils.DatabaseUtils.teachersDAO;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class MarksDAOTest {
 
@@ -21,19 +19,19 @@ public class MarksDAOTest {
     public void setUp() throws Exception {
         migrate();
 
-        classDAO().save(new Class(1,1,"A"));
+        classDAO().save(new Class(1, 1, "A"));
         kursDAO().save(new Kurs(1, "math"));
         teachersDAO().save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
                 "13141", "tatyana@mail.me", kursDAO().getById(1), classDAO().getById(1), "13981"));
         lessonDAO().save(new Lesson(1, Date.valueOf("2017-04-10"), "09:15:00", "hometask",
-                classDAO().getById(1), teachersDAO().getById(1),kursDAO().getById(1)));
-        studentsDAO().save(new Students(1,"Petya", "Petrovich", "Ivanov",
+                classDAO().getById(1), teachersDAO().getById(1), kursDAO().getById(1)));
+        studentsDAO().save(new Students(1, "Petya", "Petrovich", "Ivanov",
                 10, "19389372", "petya@mail.me", classDAO().getById(1), "sgh"));
-        studentsDAO().save(new Students(2,"Vasya", "Vasilyevich", "Petrov",
+        studentsDAO().save(new Students(2, "Vasya", "Vasilyevich", "Petrov",
                 10, "41247", "vasya@mail.me", classDAO().getById(1), "agbh"));
-        marksDAO().save(new Marks(1,10, "for reading", lessonDAO().getById(1),
+        marksDAO().save(new Marks(1, 10, "for reading", lessonDAO().getById(1),
                 studentsDAO().getById(1)));
-        marksDAO().save(new Marks(null,12, "for reading",
+        marksDAO().save(new Marks(null, 12, "for reading",
                 lessonDAO().getById(1), studentsDAO().getById(2)));
     }
 
@@ -62,7 +60,7 @@ public class MarksDAOTest {
 
     @Test
     public void update() throws Exception {
-        marksDAO().update(new Marks(1,12, "for reading",
+        marksDAO().update(new Marks(1, 12, "for reading",
                 lessonDAO().getById(1), studentsDAO().getById(2)));
         Marks marks = marksDAO().getById(1);
         assertNotNull(marks);

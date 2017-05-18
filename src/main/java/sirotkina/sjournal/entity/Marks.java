@@ -1,6 +1,6 @@
 package sirotkina.sjournal.entity;
 
-public class Marks extends Entity{
+public class Marks extends Entity {
 
     private int mark;
     private String comment;

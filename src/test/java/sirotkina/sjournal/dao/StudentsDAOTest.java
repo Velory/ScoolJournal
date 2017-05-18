@@ -5,11 +5,12 @@ import org.junit.Before;
 import org.junit.Test;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Students;
-import static sirotkina.sjournal.utils.DatabaseUtils.*;
+
 import java.sql.PreparedStatement;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class StudentsDAOTest {
 
@@ -17,7 +18,7 @@ public class StudentsDAOTest {
     public void setUp() throws Exception {
         migrate();
         classDAO().save(new Class(1, 1, "A"));
-        studentsDAO().save(new Students(1,"Ivan", "Ivanovich", "Ivanov",
+        studentsDAO().save(new Students(1, "Ivan", "Ivanovich", "Ivanov",
                 9, "293847", "ivan@mail.me", classDAO().getById(1), "12345"));
         studentsDAO().save(new Students(null, "Vasya", "Vasilyevich", "Petrov",
                 10, "293847", "vasya@mail.me", classDAO().getById(1), "482762"));

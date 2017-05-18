@@ -5,7 +5,7 @@ import sirotkina.sjournal.entity.Kurs;
 
 import java.util.List;
 
-import static sirotkina.sjournal.utils.DatabaseUtils.*;
+import static sirotkina.sjournal.utils.DatabaseUtils.kursDAO;
 
 public class KursStringConverter extends StringConverter<Kurs> {
     @Override
@@ -19,10 +19,10 @@ public class KursStringConverter extends StringConverter<Kurs> {
         return new Kurs(null, str);
     }
 
-    public Kurs checkKursInDB(Kurs kurs){
+    public Kurs checkKursInDB(Kurs kurs) {
         List<Kurs> kurses = kursDAO().getAll();
-        for (Kurs kursFromDB: kurses) {
-            if(kurs.getTitle().equals(kursFromDB.getTitle())){
+        for (Kurs kursFromDB : kurses) {
+            if (kurs.getTitle().equals(kursFromDB.getTitle())) {
                 return kursFromDB;
             }
         }

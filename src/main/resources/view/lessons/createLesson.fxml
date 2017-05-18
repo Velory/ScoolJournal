@@ -1,85 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane prefHeight="755.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.journal.CreateLessonController">
-   <children>
-      <BorderPane prefHeight="755.0" prefWidth="1020.0">
-         <left>
-            <Pane prefHeight="200.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <Pane prefHeight="200.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
-         </right>
-         <bottom>
-            <Pane prefHeight="20.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-         </bottom>
-         <center>
-            <SplitPane dividerPositions="0.656441717791411" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <items>
-                  <TableView fx:id="newLessonTable" prefHeight="713.0" prefWidth="647.0">
-                    <columns>
-                      <TableColumn fx:id="num" prefWidth="67.0" text="№ п/п" />
-                      <TableColumn fx:id="fio" prefWidth="329.0" text="Фамилия Имя Отчество" />
-                      <TableColumn fx:id="mark" prefWidth="83.0" text="Оценка" />
-                      <TableColumn fx:id="comment" prefWidth="159.0" text="Примечание" />
-                    </columns>
-                  </TableView>
-                  <GridPane prefHeight="713.0" prefWidth="311.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="120.0" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Label prefHeight="21.0" prefWidth="166.0" text="Дата урока:" GridPane.rowIndex="1" />
-                        <Label fx:id="lessonDate" prefHeight="21.0" prefWidth="165.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label prefHeight="21.0" prefWidth="166.0" text="Время урока:" GridPane.rowIndex="2" />
-                        <Label fx:id="lessonTime" prefHeight="21.0" prefWidth="165.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Label prefHeight="21.0" prefWidth="165.0" text="Класс" GridPane.rowIndex="3" />
-                        <Label fx:id="lessonOfClass" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Label prefHeight="21.0" prefWidth="166.0" text="Домашнее задание:" GridPane.rowIndex="5">
-                           <GridPane.margin>
-                              <Insets bottom="80.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <Label fx:id="lastHomeTask" prefHeight="21.0" prefWidth="169.0" text="Label" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <GridPane.margin>
-                              <Insets bottom="80.0" />
-                           </GridPane.margin></Label>
-                        <Label prefHeight="47.0" prefWidth="150.0" text="Новое домашнее задание:" wrapText="true" GridPane.rowIndex="6">
-                           <GridPane.margin>
-                              <Insets bottom="300.0" />
-                           </GridPane.margin>
-                        </Label>
-                        <TextArea fx:id="newHomeTask" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                        <Button mnemonicParsing="false" onAction="#onSaveLesson" prefHeight="31.0" prefWidth="334.0" text="Сохранить урок" GridPane.columnSpan="2" GridPane.rowIndex="7" />
-                        <Label prefHeight="21.0" prefWidth="150.0" text="Преподаватель" GridPane.rowIndex="4" />
-                        <Label fx:id="" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Label prefHeight="21.0" prefWidth="150.0" text="Предмет" />
-                        <Label fx:id="kursOfLesson" text="Label" GridPane.columnIndex="1" />
-                     </children>
-                  </GridPane>
-               </items>
-            </SplitPane>
-         </center>
-         <top>
-            <Pane prefHeight="20.0" prefWidth="1020.0" BorderPane.alignment="CENTER" />
-         </top>
-      </BorderPane>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="755.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="sirotkina.sjournal.controller.journal.CreateLessonController">
+    <children>
+        <BorderPane prefHeight="755.0" prefWidth="1020.0">
+            <left>
+                <Pane prefHeight="200.0" prefWidth="20.0" BorderPane.alignment="CENTER"/>
+            </left>
+            <right>
+                <Pane prefHeight="200.0" prefWidth="20.0" BorderPane.alignment="CENTER"/>
+            </right>
+            <bottom>
+                <Pane prefHeight="20.0" prefWidth="200.0" BorderPane.alignment="CENTER"/>
+            </bottom>
+            <center>
+                <SplitPane dividerPositions="0.656441717791411" prefHeight="200.0" prefWidth="200.0"
+                           BorderPane.alignment="CENTER">
+                    <items>
+                        <TableView fx:id="newLessonTable" prefHeight="713.0" prefWidth="647.0">
+                            <columns>
+                                <TableColumn fx:id="num" prefWidth="67.0" text="№ п/п"/>
+                                <TableColumn fx:id="fio" prefWidth="329.0" text="Фамилия Имя Отчество"/>
+                                <TableColumn fx:id="mark" prefWidth="83.0" text="Оценка"/>
+                                <TableColumn fx:id="comment" prefWidth="159.0" text="Примечание"/>
+                            </columns>
+                        </TableView>
+                        <GridPane prefHeight="713.0" prefWidth="311.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0"
+                                                   prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="120.0"
+                                                vgrow="SOMETIMES"/>
+                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <Label prefHeight="21.0" prefWidth="166.0" text="Дата урока:" GridPane.rowIndex="1"/>
+                                <Label fx:id="lessonDate" prefHeight="21.0" prefWidth="165.0" text="Label"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                                <Label prefHeight="21.0" prefWidth="166.0" text="Время урока:" GridPane.rowIndex="2"/>
+                                <Label fx:id="lessonTime" prefHeight="21.0" prefWidth="165.0" text="Label"
+                                       GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                                <Label prefHeight="21.0" prefWidth="165.0" text="Класс" GridPane.rowIndex="3"/>
+                                <Label fx:id="lessonOfClass" text="Label" GridPane.columnIndex="1"
+                                       GridPane.rowIndex="3"/>
+                                <Label prefHeight="21.0" prefWidth="166.0" text="Домашнее задание:"
+                                       GridPane.rowIndex="5">
+                                    <GridPane.margin>
+                                        <Insets bottom="80.0"/>
+                                    </GridPane.margin>
+                                </Label>
+                                <Label fx:id="lastHomeTask" prefHeight="21.0" prefWidth="169.0" text="Label"
+                                       wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                    <GridPane.margin>
+                                        <Insets bottom="80.0"/>
+                                    </GridPane.margin>
+                                </Label>
+                                <Label prefHeight="47.0" prefWidth="150.0" text="Новое домашнее задание:"
+                                       wrapText="true" GridPane.rowIndex="6">
+                                    <GridPane.margin>
+                                        <Insets bottom="300.0"/>
+                                    </GridPane.margin>
+                                </Label>
+                                <TextArea fx:id="newHomeTask" prefHeight="200.0" prefWidth="200.0"
+                                          GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                                <Button mnemonicParsing="false" onAction="#onSaveLesson" prefHeight="31.0"
+                                        prefWidth="334.0" text="Сохранить урок" GridPane.columnSpan="2"
+                                        GridPane.rowIndex="7"/>
+                                <Label prefHeight="21.0" prefWidth="150.0" text="Преподаватель" GridPane.rowIndex="4"/>
+                                <Label fx:id="" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                <Label prefHeight="21.0" prefWidth="150.0" text="Предмет"/>
+                                <Label fx:id="kursOfLesson" text="Label" GridPane.columnIndex="1"/>
+                            </children>
+                        </GridPane>
+                    </items>
+                </SplitPane>
+            </center>
+            <top>
+                <Pane prefHeight="20.0" prefWidth="1020.0" BorderPane.alignment="CENTER"/>
+            </top>
+        </BorderPane>
+    </children>
 </AnchorPane>

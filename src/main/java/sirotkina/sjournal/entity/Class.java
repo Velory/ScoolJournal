@@ -1,9 +1,9 @@
 package sirotkina.sjournal.entity;
 
-public class Class extends Entity{
+public class Class extends Entity {
 
     private int num;
-    private  String letter;
+    private String letter;
 
     public Class(Integer id, int num, String letter) {
         this.num = num;

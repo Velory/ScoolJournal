@@ -1,6 +1,6 @@
 package sirotkina.sjournal.entity;
 
-public class Students extends Entity{
+public class Students extends Entity {
 
     private String firstName;
     private String midName;

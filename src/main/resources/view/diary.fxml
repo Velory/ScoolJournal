@@ -1,89 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.DiaryController">
-   <children>
-      <Label alignment="CENTER" layoutX="103.0" layoutY="14.0" prefHeight="21.0" prefWidth="814.0" text="Дневник">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-      <TabPane layoutX="14.0" layoutY="87.0" prefHeight="653.0" prefWidth="994.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Понедельник">
-               <content>
-                  <TableView prefHeight="706.0" prefWidth="955.0">
-                     <columns>
-                        <TableColumn prefWidth="46.0" text="№" />
-                        <TableColumn prefWidth="254.0" text="Предмет" />
-                        <TableColumn prefWidth="425.0" text="Домашнее задание" />
-                        <TableColumn prefWidth="77.0" text="Оценка" />
-                        <TableColumn prefWidth="192.0" text="Примечание" />
-                     </columns>
-                  </TableView>
-               </content>
-            </Tab>
-          <Tab text="Вторник">
-               <content>
-                  <TableView prefHeight="706.0" prefWidth="955.0">
-                    <columns>
-                        <TableColumn prefWidth="46.0" text="№" />
-                        <TableColumn prefWidth="254.0" text="Предмет" />
-                        <TableColumn prefWidth="425.0" text="Домашнее задание" />
-                        <TableColumn prefWidth="77.0" text="Оценка" />
-                        <TableColumn prefWidth="192.0" text="Примечание" />
-                    </columns>
-                  </TableView>
-               </content>
-            </Tab>
-            <Tab text="Среда">
-               <content>
-                  <TableView prefHeight="706.0" prefWidth="955.0">
-                     <columns>
-                         <TableColumn prefWidth="46.0" text="№" />
-                         <TableColumn prefWidth="254.0" text="Предмет" />
-                         <TableColumn prefWidth="425.0" text="Домашнее задание" />
-                         <TableColumn prefWidth="77.0" text="Оценка" />
-                         <TableColumn prefWidth="192.0" text="Примечание" />
-                     </columns>
-                  </TableView>
-               </content>
-            </Tab>
-            <Tab text="Четверг">
-               <content>
-                  <TableView prefHeight="706.0" prefWidth="955.0">
-                     <columns>
-                         <TableColumn prefWidth="46.0" text="№" />
-                         <TableColumn prefWidth="254.0" text="Предмет" />
-                         <TableColumn prefWidth="425.0" text="Домашнее задание" />
-                         <TableColumn prefWidth="77.0" text="Оценка" />
-                         <TableColumn prefWidth="192.0" text="Примечание" />
-                     </columns>
-                  </TableView>
-               </content>
-            </Tab>
-            <Tab text="Пятница">
-               <content>
-                  <TableView prefHeight="706.0" prefWidth="955.0">
-                     <columns>
-                         <TableColumn prefWidth="46.0" text="№" />
-                         <TableColumn prefWidth="254.0" text="Предмет" />
-                         <TableColumn prefWidth="425.0" text="Домашнее задание" />
-                         <TableColumn prefWidth="77.0" text="Оценка" />
-                         <TableColumn prefWidth="192.0" text="Примечание" />
-                     </columns>
-                  </TableView>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-      <DatePicker layoutX="572.0" layoutY="56.0" promptText="Начало периода" />
-      <DatePicker layoutX="790.0" layoutY="56.0" promptText="Окончание периода" />
-      <ChoiceBox layoutX="14.0" layoutY="56.0" prefHeight="31.0" prefWidth="247.0" />
-   </children>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="755.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="sirotkina.sjournal.controller.DiaryController">
+    <children>
+        <Label alignment="CENTER" layoutX="103.0" layoutY="14.0" prefHeight="21.0" prefWidth="814.0" text="Дневник">
+            <font>
+                <Font size="24.0"/>
+            </font>
+        </Label>
+        <TabPane layoutX="14.0" layoutY="87.0" prefHeight="653.0" prefWidth="994.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Понедельник">
+                    <content>
+                        <TableView prefHeight="706.0" prefWidth="955.0">
+                            <columns>
+                                <TableColumn prefWidth="46.0" text="№"/>
+                                <TableColumn prefWidth="254.0" text="Предмет"/>
+                                <TableColumn prefWidth="425.0" text="Домашнее задание"/>
+                                <TableColumn prefWidth="77.0" text="Оценка"/>
+                                <TableColumn prefWidth="192.0" text="Примечание"/>
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+                <Tab text="Вторник">
+                    <content>
+                        <TableView prefHeight="706.0" prefWidth="955.0">
+                            <columns>
+                                <TableColumn prefWidth="46.0" text="№"/>
+                                <TableColumn prefWidth="254.0" text="Предмет"/>
+                                <TableColumn prefWidth="425.0" text="Домашнее задание"/>
+                                <TableColumn prefWidth="77.0" text="Оценка"/>
+                                <TableColumn prefWidth="192.0" text="Примечание"/>
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+                <Tab text="Среда">
+                    <content>
+                        <TableView prefHeight="706.0" prefWidth="955.0">
+                            <columns>
+                                <TableColumn prefWidth="46.0" text="№"/>
+                                <TableColumn prefWidth="254.0" text="Предмет"/>
+                                <TableColumn prefWidth="425.0" text="Домашнее задание"/>
+                                <TableColumn prefWidth="77.0" text="Оценка"/>
+                                <TableColumn prefWidth="192.0" text="Примечание"/>
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+                <Tab text="Четверг">
+                    <content>
+                        <TableView prefHeight="706.0" prefWidth="955.0">
+                            <columns>
+                                <TableColumn prefWidth="46.0" text="№"/>
+                                <TableColumn prefWidth="254.0" text="Предмет"/>
+                                <TableColumn prefWidth="425.0" text="Домашнее задание"/>
+                                <TableColumn prefWidth="77.0" text="Оценка"/>
+                                <TableColumn prefWidth="192.0" text="Примечание"/>
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+                <Tab text="Пятница">
+                    <content>
+                        <TableView prefHeight="706.0" prefWidth="955.0">
+                            <columns>
+                                <TableColumn prefWidth="46.0" text="№"/>
+                                <TableColumn prefWidth="254.0" text="Предмет"/>
+                                <TableColumn prefWidth="425.0" text="Домашнее задание"/>
+                                <TableColumn prefWidth="77.0" text="Оценка"/>
+                                <TableColumn prefWidth="192.0" text="Примечание"/>
+                            </columns>
+                        </TableView>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <DatePicker layoutX="572.0" layoutY="56.0" promptText="Начало периода"/>
+        <DatePicker layoutX="790.0" layoutY="56.0" promptText="Окончание периода"/>
+        <ChoiceBox layoutX="14.0" layoutY="56.0" prefHeight="31.0" prefWidth="247.0"/>
+    </children>
 </AnchorPane>

@@ -2,7 +2,7 @@ package sirotkina.sjournal.domain;
 
 import java.io.Serializable;
 
-public class LessonBean implements Serializable{
+public class LessonBean implements Serializable {
 
     private String date;
     private String time;

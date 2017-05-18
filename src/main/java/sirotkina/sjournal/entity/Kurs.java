@@ -1,6 +1,6 @@
 package sirotkina.sjournal.entity;
 
-public class Kurs extends Entity{
+public class Kurs extends Entity {
 
     private String title;
 

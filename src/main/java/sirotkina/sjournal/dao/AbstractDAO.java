@@ -10,16 +10,16 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class AbstractDAO <T extends Entity>{
+public abstract class AbstractDAO<T extends Entity> {
 
 
-    public T getById (int id){
+    public T getById(int id) {
         String query = "SELECT * FROM " + getTableName() + " WHERE id=?";
         ResultSet rs = null;
         try (PreparedStatement ps = getConnection().prepareStatement(query)) {
             ps.setInt(1, id);
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 return createEntityFromRS(rs);
             }
         } catch (SQLException e) {
@@ -37,7 +37,7 @@ public abstract class AbstractDAO <T extends Entity>{
     public void save(T o) {
         checkAndSaveId(o);
         String query = getSaveQuery();
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
             prepareSaveInsertQuery(ps, o);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -47,7 +47,7 @@ public abstract class AbstractDAO <T extends Entity>{
 
     public void update(T o) {
         String query = getUpdateQuery();
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
             prepareUpdateInsertQuery(ps, o);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -57,7 +57,7 @@ public abstract class AbstractDAO <T extends Entity>{
 
     public void deleteById(int id) {
         String query = "DELETE FROM " + getTableName() + " WHERE id=?";
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
             ps.setInt(1, id);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -69,9 +69,9 @@ public abstract class AbstractDAO <T extends Entity>{
         String query = "SELECT * FROM " + getTableName();
         List<T> list = new LinkedList<>();
         ResultSet rs = null;
-        try (PreparedStatement ps = getConnection().prepareStatement(query)){
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
             rs = ps.executeQuery();
-            while (rs.next()){
+            while (rs.next()) {
                 list.add(createEntityFromRS(rs));
             }
         } catch (SQLException e) {
@@ -87,23 +87,28 @@ public abstract class AbstractDAO <T extends Entity>{
     }
 
     protected abstract String getTableName();
-    protected abstract T createEntityFromRS (ResultSet rs) throws SQLException;
+
+    protected abstract T createEntityFromRS(ResultSet rs) throws SQLException;
+
     protected abstract String getSaveQuery();
+
     protected abstract String getUpdateQuery();
+
     protected abstract void prepareSaveInsertQuery(PreparedStatement ps, T o) throws SQLException;
+
     protected abstract void prepareUpdateInsertQuery(PreparedStatement ps, T o) throws SQLException;
 
-    protected Connection getConnection(){
+    protected Connection getConnection() {
         return DatabaseUtils.getConnection();
     }
 
-    private void checkAndSaveId(T o){
-        if (o.getId() == null){
+    private void checkAndSaveId(T o) {
+        if (o.getId() == null) {
             String query = "SELECT MAX(id) FROM " + getTableName();
             ResultSet rs = null;
-            try (PreparedStatement ps = getConnection().prepareStatement(query)){
+            try (PreparedStatement ps = getConnection().prepareStatement(query)) {
                 rs = ps.executeQuery();
-                while (rs.next()){
+                while (rs.next()) {
                     o.setId(rs.getInt("max(id)") + 1);
                 }
             } catch (SQLException e) {

@@ -4,11 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+
 import java.io.IOException;
 
 public class MainMenuController {
 
-    @FXML private BorderPane mainMenuContainer;
+    @FXML
+    private BorderPane mainMenuContainer;
     private AnchorPane createSchedule;
     private AnchorPane currentSchedule;
     private AnchorPane diary;
@@ -23,27 +25,24 @@ public class MainMenuController {
         createLesson = FXMLLoader.load(getClass().getClassLoader().getResource("view/lessons/createLesson.fxml"));
     }
 
-    public void onNewSchedule () throws IOException {
+    public void onNewSchedule() {
         mainMenuContainer.setCenter(createSchedule);
     }
 
-    public void onOpenSchedule () throws IOException {
+    public void onOpenSchedule() {
         mainMenuContainer.setCenter(currentSchedule);
     }
 
-    public void onDiary () throws IOException {
+    public void onDiary() {
         mainMenuContainer.setCenter(diary);
     }
 
-    public void onJournal () throws IOException {
+    public void onJournal() {
         mainMenuContainer.setCenter(selectLesson);
     }
 
-    public void onLesson() {
+    public void onCreateLesson() {
         mainMenuContainer.setCenter(createLesson);
     }
 
-    public BorderPane getMainMenuContainer() {
-        return mainMenuContainer;
-    }
 }

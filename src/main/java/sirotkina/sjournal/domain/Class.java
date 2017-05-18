@@ -2,7 +2,7 @@ package sirotkina.sjournal.domain;
 
 import java.io.Serializable;
 
-public class Class implements Serializable{
+public class Class implements Serializable {
 
     private int id;
     private int num;

@@ -6,9 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static sirotkina.sjournal.utils.DatabaseUtils.classDAO;
-import static sirotkina.sjournal.utils.DatabaseUtils.kursDAO;
-import static sirotkina.sjournal.utils.DatabaseUtils.teachersDAO;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class ScheduleDAO extends AbstractDAO<Schedule> {
     @Override

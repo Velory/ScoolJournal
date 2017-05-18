@@ -7,13 +7,13 @@ import java.util.Properties;
 public class PropertiesUtils {
 
 
-    public static Properties readProperties (){
+    public static Properties readProperties() {
         Properties properties = new Properties();
-        try (InputStream is = DatabaseUtils.class.getClassLoader().getResourceAsStream("db.properties")){
+        try (InputStream is = DatabaseUtils.class.getClassLoader().getResourceAsStream("db.properties")) {
             properties.load(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
-    return properties;
+        return properties;
     }
 }

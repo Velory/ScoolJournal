@@ -3,23 +3,22 @@ package sirotkina.sjournal.dao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Kurs;
 import sirotkina.sjournal.entity.Teachers;
-import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 import java.sql.PreparedStatement;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class TeachersDAOTest {
 
     @Before
     public void setUp() throws Exception {
         migrate();
-        classDAO().save(new Class(null,1,"A"));
+        classDAO().save(new Class(null, 1, "A"));
         kursDAO().save(new Kurs(null, "math"));
         teachersDAO().save(new Teachers(null, "Olga", "Igorevna", "Petrova",
                 "2938475", "olga@mail.me", kursDAO().getById(1), classDAO().getById(1), "2149871"));

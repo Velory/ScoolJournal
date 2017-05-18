@@ -35,9 +35,9 @@ public class DatabaseUtils {
 
     public static Connection getConnection() {
         try {
-            if (connection == null || connection.isClosed()){
-                 return connection = DriverManager.getConnection(dbProps.getProperty("db.url"),
-                            dbProps.getProperty("db.user"), dbProps.getProperty("db.password"));
+            if (connection == null || connection.isClosed()) {
+                return connection = DriverManager.getConnection(dbProps.getProperty("db.url"),
+                        dbProps.getProperty("db.user"), dbProps.getProperty("db.password"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,8 +45,8 @@ public class DatabaseUtils {
         return connection;
     }
 
-    public static void closeConnection(){
-        if (connection != null){
+    public static void closeConnection() {
+        if (connection != null) {
             try {
                 connection.close();
             } catch (SQLException e) {
@@ -55,11 +55,11 @@ public class DatabaseUtils {
         }
     }
 
-    public static void migrate (){
+    public static void migrate() {
         Flyway flyway = new Flyway();
-            flyway.setDataSource(dbProps.getProperty("db.url"),
-                    dbProps.getProperty("db.user"), dbProps.getProperty("db.password"));
-            flyway.migrate();
+        flyway.setDataSource(dbProps.getProperty("db.url"),
+                dbProps.getProperty("db.user"), dbProps.getProperty("db.password"));
+        flyway.migrate();
     }
 
     public static ClassDAO classDAO() {
@@ -86,7 +86,7 @@ public class DatabaseUtils {
         return teachersDAO;
     }
 
-    public static ScheduleDAO scheduleDAO(){
+    public static ScheduleDAO scheduleDAO() {
         return scheduleDAO;
     }
 }

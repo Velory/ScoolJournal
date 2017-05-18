@@ -1,11 +1,14 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Students;
-import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public class StudentsDAO extends AbstractDAO <Students>{
+import static sirotkina.sjournal.utils.DatabaseUtils.classDAO;
+
+public class StudentsDAO extends AbstractDAO<Students> {
 
     @Override
     protected String getTableName() {
@@ -39,7 +42,7 @@ public class StudentsDAO extends AbstractDAO <Students>{
     @Override
     protected void prepareSaveInsertQuery(PreparedStatement ps, Students student) throws SQLException {
         ps.setInt(1, student.getId());
-        ps.setString(2,student.getFirstName());
+        ps.setString(2, student.getFirstName());
         ps.setString(3, student.getMidName());
         ps.setString(4, student.getLastName());
         ps.setInt(5, student.getAge());
@@ -51,7 +54,7 @@ public class StudentsDAO extends AbstractDAO <Students>{
 
     @Override
     protected void prepareUpdateInsertQuery(PreparedStatement ps, Students student) throws SQLException {
-        ps.setString(1,student.getFirstName());
+        ps.setString(1, student.getFirstName());
         ps.setString(2, student.getMidName());
         ps.setString(3, student.getLastName());
         ps.setInt(4, student.getAge());

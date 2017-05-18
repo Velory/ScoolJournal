@@ -1,7 +1,9 @@
 package sirotkina.sjournal.utils.myValidator;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.*;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -9,15 +11,15 @@ public class Validator {
     private Class c;
     private String message;
 
-    public Validator (Class c){
+    public Validator(Class c) {
         this.c = c;
     }
 
     private boolean isNotNull(Object o, Annotation annotation, Field f) throws IllegalAccessException, InstantiationException,
             NoSuchMethodException, InvocationTargetException {
         boolean result = false;
-        if (annotation.annotationType().getSimpleName().equals(NotNull.class.getSimpleName())){
-            if ((Integer)f.get(o) != 0){
+        if (annotation.annotationType().getSimpleName().equals(NotNull.class.getSimpleName())) {
+            if ((Integer) f.get(o) != 0) {
                 result = true;
             } else {
                 Method method = annotation.annotationType().getMethod("message");
@@ -30,9 +32,9 @@ public class Validator {
     private boolean isNotEmpty(Object o, Annotation annotation, Field f) throws IllegalAccessException, InstantiationException,
             NoSuchMethodException, InvocationTargetException {
         boolean result = false;
-        if (annotation.annotationType().getSimpleName().equals(NotEmpty.class.getSimpleName())){
-            String str = (String)f.get(o);
-            if (f.get(o) != null && !str.isEmpty()){
+        if (annotation.annotationType().getSimpleName().equals(NotEmpty.class.getSimpleName())) {
+            String str = (String) f.get(o);
+            if (f.get(o) != null && !str.isEmpty()) {
                 result = true;
             } else {
                 Method method = annotation.annotationType().getMethod("message");
@@ -45,11 +47,11 @@ public class Validator {
     private boolean isPattern(Object o, Annotation annotation, Field f) throws IllegalAccessException, InstantiationException,
             NoSuchMethodException, InvocationTargetException {
         boolean result = false;
-        if (annotation.annotationType().getSimpleName().equals(Pattern.class.getSimpleName())){
+        if (annotation.annotationType().getSimpleName().equals(Pattern.class.getSimpleName())) {
             Method method = annotation.annotationType().getMethod("regexp");
             String msgRegexp = (String) method.invoke(annotation);
             String value = (String) f.get(o);
-            if (f.get(o) != null && !f.get(o).equals("") && value.matches(msgRegexp)){
+            if (f.get(o) != null && !f.get(o).equals("") && value.matches(msgRegexp)) {
                 result = true;
             } else {
                 method = annotation.annotationType().getMethod("message");
@@ -61,27 +63,27 @@ public class Validator {
 
     public Set<String> validate(Object o) {
         Set<String> messageList = new LinkedHashSet<>();
-        try{
-            Field [] fields = c.getDeclaredFields();
-            for (Field f: fields) {
+        try {
+            Field[] fields = c.getDeclaredFields();
+            for (Field f : fields) {
                 f.setAccessible(true);
                 Annotation[] annotations = f.getAnnotations();
-                for (Annotation annotation: annotations){
-                    if (annotation.annotationType().equals(NotNull.class)){
+                for (Annotation annotation : annotations) {
+                    if (annotation.annotationType().equals(NotNull.class)) {
                         isNotNull(o, annotation, f);
                         if (message != null) {
                             messageList.add(message);
                         }
                     }
 
-                    if (annotation.annotationType().equals(NotEmpty.class)){
+                    if (annotation.annotationType().equals(NotEmpty.class)) {
                         isNotEmpty(o, annotation, f);
                         if (message != null) {
                             messageList.add(message);
                         }
                     }
 
-                    if (annotation.annotationType().equals(Pattern.class)){
+                    if (annotation.annotationType().equals(Pattern.class)) {
                         isPattern(o, annotation, f);
                         if (message != null) {
                             messageList.add(message);

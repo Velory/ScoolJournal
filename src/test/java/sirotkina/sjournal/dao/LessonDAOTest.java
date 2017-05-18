@@ -7,12 +7,13 @@ import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Kurs;
 import sirotkina.sjournal.entity.Lesson;
 import sirotkina.sjournal.entity.Teachers;
-import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.util.List;
 
 import static org.junit.Assert.*;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class LessonDAOTest {
 
@@ -25,7 +26,7 @@ public class LessonDAOTest {
         teachersDAO().save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
                 "13141", "tatyana@mail.me", kursDAO().getById(1), classDAO().getById(1), "shgb"));
         lessonDAO().save(new Lesson(1, Date.valueOf("2017-03-16"), "11:00:00",
-                "hometask", classDAO().getById(1), teachersDAO().getById(1),kursDAO().getById(1)));
+                "hometask", classDAO().getById(1), teachersDAO().getById(1), kursDAO().getById(1)));
         lessonDAO().save(new Lesson(null, Date.valueOf("2017-03-10"), "15:30:00",
                 "hometask1", classDAO().getById(2), teachersDAO().getById(1), kursDAO().getById(1)));
     }

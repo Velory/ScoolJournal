@@ -1,13 +1,15 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Teachers;
-import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TeachersDAO extends AbstractDAO <Teachers>{
+import static sirotkina.sjournal.utils.DatabaseUtils.classDAO;
+import static sirotkina.sjournal.utils.DatabaseUtils.kursDAO;
+
+public class TeachersDAO extends AbstractDAO<Teachers> {
 
     @Override
     protected String getTableName() {

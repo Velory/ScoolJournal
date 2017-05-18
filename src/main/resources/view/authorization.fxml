@@ -1,94 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.AuthorizationController">
-   <children>
-      <BorderPane fx:id="authorizationContainer" prefHeight="680.0" prefWidth="840.0">
-         <center>
-            <GridPane prefHeight="480.0" prefWidth="555.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="183.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="396.0" minWidth="10.0" prefWidth="242.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="126.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Label prefHeight="21.0" prefWidth="170.0" text="Фамилия" GridPane.rowIndex="1" />
-                  <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Label prefHeight="21.0" prefWidth="170.0" text="Имя" GridPane.rowIndex="2" />
-                  <TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <Label prefHeight="21.0" prefWidth="170.0" text="Отчество" GridPane.rowIndex="3" />
-                  <TextField fx:id="midNameField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                  <Label prefHeight="21.0" prefWidth="106.0" text="Email" GridPane.rowIndex="4" />
-                  <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                  <Label prefHeight="21.0" prefWidth="170.0" text="Телефон" GridPane.rowIndex="5" />
-                  <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                  <Label fx:id="classLbl" prefHeight="21.0" prefWidth="170.0" text="Выберите класс" GridPane.rowIndex="6" />
-                  <ComboBox fx:id="classAuth" prefWidth="237.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                  <Label fx:id="ageKursLbl" prefHeight="21.0" prefWidth="170.0" GridPane.rowIndex="7" />
-                  <ComboBox fx:id="kursAuth" prefHeight="31.0" prefWidth="237.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                  <Label prefHeight="21.0" prefWidth="170.0" text="Введите пароль" GridPane.rowIndex="8" />
-                  <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                  <Label fx:id="registrationMsg" alignment="CENTER" prefHeight="43.0" prefWidth="540.0" GridPane.columnSpan="3" GridPane.rowIndex="9" />
-                  <ComboBox fx:id="role" prefHeight="31.0" prefWidth="237.0" GridPane.columnIndex="1" />
-                  <Label contentDisplay="RIGHT" prefHeight="21.0" prefWidth="170.0" text="Выберите роль" />
-               </children>
-            </GridPane>
-         </center>
-         <left>
-            <Pane prefHeight="530.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
-         </left>
-         <right>
-            <Pane prefHeight="530.0" prefWidth="150.0" BorderPane.alignment="CENTER" />
-         </right>
-         <top>
-            <GridPane prefHeight="70.0" prefWidth="840.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="260.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="304.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="276.0" minWidth="10.0" prefWidth="274.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-            </GridPane>
-         </top>
-         <bottom>
-            <GridPane prefHeight="106.0" prefWidth="840.0" BorderPane.alignment="CENTER">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="330.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="383.0" minWidth="10.0" prefWidth="238.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="272.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button fx:id="registration" mnemonicParsing="false" onAction="#onRegistration" prefHeight="31.0" prefWidth="235.0" text="Зарегистрировать" GridPane.columnIndex="1" />
-                  <Button fx:id="enter" mnemonicParsing="false" onAction="#onEnter" prefHeight="31.0" prefWidth="235.0" text="Войти" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
-         </bottom>
-      </BorderPane>
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="680.0" prefWidth="840.0" xmlns="http://javafx.com/javafx/8"
+            fx:controller="sirotkina.sjournal.controller.AuthorizationController">
+    <children>
+        <BorderPane fx:id="authorizationContainer" prefHeight="680.0" prefWidth="840.0">
+            <center>
+                <GridPane prefHeight="480.0" prefWidth="555.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="183.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="396.0" minWidth="10.0" prefWidth="242.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="245.0" minWidth="10.0" prefWidth="126.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <Label prefHeight="21.0" prefWidth="170.0" text="Фамилия" GridPane.rowIndex="1"/>
+                        <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                        <Label prefHeight="21.0" prefWidth="170.0" text="Имя" GridPane.rowIndex="2"/>
+                        <TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                        <Label prefHeight="21.0" prefWidth="170.0" text="Отчество" GridPane.rowIndex="3"/>
+                        <TextField fx:id="midNameField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                        <Label prefHeight="21.0" prefWidth="106.0" text="Email" GridPane.rowIndex="4"/>
+                        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                        <Label prefHeight="21.0" prefWidth="170.0" text="Телефон" GridPane.rowIndex="5"/>
+                        <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                        <Label fx:id="classLbl" prefHeight="21.0" prefWidth="170.0" text="Выберите класс"
+                               GridPane.rowIndex="6"/>
+                        <ComboBox fx:id="classAuth" prefWidth="237.0" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                        <Label fx:id="ageKursLbl" prefHeight="21.0" prefWidth="170.0" GridPane.rowIndex="7"/>
+                        <ComboBox fx:id="kursAuth" prefHeight="31.0" prefWidth="237.0" GridPane.columnIndex="1"
+                                  GridPane.rowIndex="7"/>
+                        <TextField fx:id="ageField" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                        <Label prefHeight="21.0" prefWidth="170.0" text="Введите пароль" GridPane.rowIndex="8"/>
+                        <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+                        <Label fx:id="registrationMsg" alignment="CENTER" prefHeight="43.0" prefWidth="540.0"
+                               GridPane.columnSpan="3" GridPane.rowIndex="9"/>
+                        <ComboBox fx:id="role" prefHeight="31.0" prefWidth="237.0" GridPane.columnIndex="1"/>
+                        <Label contentDisplay="RIGHT" prefHeight="21.0" prefWidth="170.0" text="Выберите роль"/>
+                    </children>
+                </GridPane>
+            </center>
+            <left>
+                <Pane prefHeight="530.0" prefWidth="150.0" BorderPane.alignment="CENTER"/>
+            </left>
+            <right>
+                <Pane prefHeight="530.0" prefWidth="150.0" BorderPane.alignment="CENTER"/>
+            </right>
+            <top>
+                <GridPane prefHeight="70.0" prefWidth="840.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="284.0" minWidth="10.0" prefWidth="260.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="354.0" minWidth="10.0" prefWidth="304.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="276.0" minWidth="10.0" prefWidth="274.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                </GridPane>
+            </top>
+            <bottom>
+                <GridPane prefHeight="106.0" prefWidth="840.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="330.0" minWidth="10.0" prefWidth="330.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="383.0" minWidth="10.0" prefWidth="238.0"/>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="272.0" minWidth="10.0" prefWidth="272.0"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                    </rowConstraints>
+                    <children>
+                        <Button fx:id="registration" mnemonicParsing="false" onAction="#onRegistration"
+                                prefHeight="31.0" prefWidth="235.0" text="Зарегистрировать" GridPane.columnIndex="1"/>
+                        <Button fx:id="enter" mnemonicParsing="false" onAction="#onEnter" prefHeight="31.0"
+                                prefWidth="235.0" text="Войти" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                    </children>
+                </GridPane>
+            </bottom>
+        </BorderPane>
+    </children>
 </AnchorPane>

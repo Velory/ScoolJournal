@@ -9,6 +9,7 @@ import java.io.IOException;
 
 public class Authorization {
     private static Stage stage;
+
     public Authorization() throws IOException {
         AnchorPane root = FXMLLoader.load(getClass().getClassLoader().getResource("view/authorization.fxml"));
         stage = new Stage();

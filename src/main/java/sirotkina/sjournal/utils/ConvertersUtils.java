@@ -1,12 +1,15 @@
 package sirotkina.sjournal.utils;
 
-import sirotkina.sjournal.utils.converters.*;
+import sirotkina.sjournal.utils.converters.ClassStringConverter;
+import sirotkina.sjournal.utils.converters.KursStringConverter;
+import sirotkina.sjournal.utils.converters.StudentStringConverter;
+import sirotkina.sjournal.utils.converters.TeacherStringConverter;
 
 public class ConvertersUtils {
     private static ClassStringConverter classConverter;
     private static KursStringConverter kursConverter;
     private static TeacherStringConverter teacherConverter;
-    private static StudentStringConverter  studentConverter;
+    private static StudentStringConverter studentConverter;
 
     static {
         classConverter = new ClassStringConverter();
