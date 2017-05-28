@@ -8,9 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import sirotkina.sjournal.domain.ScheduleBean;
 import sirotkina.sjournal.entity.Class;
-import sirotkina.sjournal.entity.Kurs;
-import sirotkina.sjournal.entity.Schedule;
-import sirotkina.sjournal.entity.Teachers;
+import sirotkina.sjournal.entity.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +30,7 @@ public class ScheduleTableEdit extends ScheduleTableView {
     @FXML
     private ComboBox<Kurs> newNameOfKurs;
     @FXML
-    private ComboBox<Teachers> newTeacherOfLesson;
+    private ComboBox<Users> newTeacherOfLesson;
     /*@FXML private Button add;
     @FXML private Button save;
     @FXML private Button delete;
@@ -55,7 +53,7 @@ public class ScheduleTableEdit extends ScheduleTableView {
         newNameOfKurs.setConverter(kursConverter());
 
         newTeacherOfLesson.getItems().addAll(getTeachersList());
-        newTeacherOfLesson.setConverter(teacherConverter());
+        //newTeacherOfLesson.setConverter(teacherConverter());
 
         day.setCellFactory(TextFieldTableCell.forTableColumn());
         day.setOnEditCommit(event -> event.getTableView()
@@ -138,4 +136,3 @@ public class ScheduleTableEdit extends ScheduleTableView {
         super.initialize();
     }
 }
-

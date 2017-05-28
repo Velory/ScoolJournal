@@ -49,10 +49,6 @@ public class Class extends Entity {
 
     @Override
     public String toString() {
-        return "Class{" +
-                "id=" + getId() +
-                ", num=" + num +
-                ", letter='" + letter + '\'' +
-                '}';
+        return num + "-" + letter;
     }
 }

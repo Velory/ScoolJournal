@@ -5,10 +5,10 @@ public class Schedule extends Entity {
     private Class scoolClass;
     private String lessonTime;
     private Kurs nameOfKurs;
-    private Teachers teacherOfLesson;
+    private Users teacherOfLesson;
 
     public Schedule(String weekDay, Class scoolClass, Integer id,
-                    String lessonTime, Kurs nameOfKurs, Teachers teacherOfLesson) {
+                    String lessonTime, Kurs nameOfKurs, Users teacherOfLesson) {
         this.weekDay = weekDay;
         this.scoolClass = scoolClass;
         setId(id);
@@ -49,11 +49,11 @@ public class Schedule extends Entity {
         this.nameOfKurs = nameOfKurs;
     }
 
-    public Teachers getTeacherOfLesson() {
+    public Users getTeacherOfLesson() {
         return teacherOfLesson;
     }
 
-    public void setTeacherOfLesson(Teachers teacherOfLesson) {
+    public void setTeacherOfLesson(Users teacherOfLesson) {
         this.teacherOfLesson = teacherOfLesson;
     }
 }

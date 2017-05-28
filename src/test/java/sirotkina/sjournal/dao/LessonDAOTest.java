@@ -3,10 +3,8 @@ package sirotkina.sjournal.dao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.entity.Class;
-import sirotkina.sjournal.entity.Kurs;
-import sirotkina.sjournal.entity.Lesson;
-import sirotkina.sjournal.entity.Teachers;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -23,12 +21,14 @@ public class LessonDAOTest {
         classDAO().save(new Class(1, 1, "A"));
         classDAO().save(new Class(null, 1, "B"));
         kursDAO().save(new Kurs(null, "math"));
-        teachersDAO().save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
-                "13141", "tatyana@mail.me", kursDAO().getById(1), classDAO().getById(1), "shgb"));
+        roleDAO().save(new Role(null, "Teacher"));
+        usersDAO().save(new Users(1, "Tatyana", "Ivanovna", "Smirnova", 35,
+                "13141", "tatyana@mail.me", classDAO().getById(1),
+                kursDAO().getById(1), "shgb", roleDAO().getById(1)));
         lessonDAO().save(new Lesson(1, Date.valueOf("2017-03-16"), "11:00:00",
-                "hometask", classDAO().getById(1), teachersDAO().getById(1), kursDAO().getById(1)));
+                "hometask", classDAO().getById(1), usersDAO().getById(1), kursDAO().getById(1)));
         lessonDAO().save(new Lesson(null, Date.valueOf("2017-03-10"), "15:30:00",
-                "hometask1", classDAO().getById(2), teachersDAO().getById(1), kursDAO().getById(1)));
+                "hometask1", classDAO().getById(2), usersDAO().getById(1), kursDAO().getById(1)));
     }
 
     @After
@@ -57,7 +57,7 @@ public class LessonDAOTest {
     @Test
     public void update() throws Exception {
         lessonDAO().update(new Lesson(1, Date.valueOf("2017-03-10"), "15:30:00",
-                "hometask1", classDAO().getById(2), teachersDAO().getById(1), kursDAO().getById(1)));
+                "hometask1", classDAO().getById(2), usersDAO().getById(1), kursDAO().getById(1)));
         Lesson lesson = lessonDAO().getById(1);
         assertNotNull(lesson);
         assertEquals(Date.valueOf("2017-03-10"), lesson.getDate());

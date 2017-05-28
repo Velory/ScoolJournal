@@ -5,9 +5,9 @@ public class Marks extends Entity {
     private int mark;
     private String comment;
     private Lesson lessonFKId;
-    private Students studentsFKId;
+    private Users studentsFKId;
 
-    public Marks(Integer id, int mark, String comment, Lesson lessonFKId, Students studentsFKId) {
+    public Marks(Integer id, int mark, String comment, Lesson lessonFKId, Users studentsFKId) {
         setId(id);
         this.mark = mark;
         this.comment = comment;
@@ -39,11 +39,11 @@ public class Marks extends Entity {
         this.lessonFKId = lessonFKId;
     }
 
-    public Students getStudentsFKId() {
+    public Users getStudentsFKId() {
         return studentsFKId;
     }
 
-    public void setStudentsFKId(Students studentsFKId) {
+    public void setStudentsFKId(Users studentsFKId) {
         this.studentsFKId = studentsFKId;
     }
 

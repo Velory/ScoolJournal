@@ -16,10 +16,12 @@ public class ScheduleDAO extends AbstractDAO<Schedule> {
 
     @Override
     protected Schedule createEntityFromRS(ResultSet rs) throws SQLException {
-        return new Schedule(rs.getString("weekDay"), classDAO().getById(rs.getInt("scoolClass")),
-                rs.getInt("id"), rs.getString("lessonTime"),
+        return new Schedule(rs.getString("weekDay"),
+                classDAO().getById(rs.getInt("scoolClass")),
+                rs.getInt("id"),
+                rs.getString("lessonTime"),
                 kursDAO().getById(rs.getInt("nameOfKurs")),
-                teachersDAO().getById(rs.getInt("teacherOfLesson")));
+                usersDAO().getById(rs.getInt("teacherOfLesson")));
     }
 
     @Override

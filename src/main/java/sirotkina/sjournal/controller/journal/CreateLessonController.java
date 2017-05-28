@@ -12,8 +12,6 @@ import sirotkina.sjournal.domain.LessonBean;
 import sirotkina.sjournal.domain.ScheduleBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Lesson;
-import sirotkina.sjournal.entity.Students;
-
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -23,9 +21,10 @@ import java.util.List;
 
 import static sirotkina.sjournal.utils.ConvertersUtils.*;
 import static sirotkina.sjournal.utils.DatabaseUtils.lessonDAO;
-import static sirotkina.sjournal.utils.DatabaseUtils.studentsDAO;
 
 public class CreateLessonController {
+
+    private static CreateLessonController lessonController;
 
     @FXML
     private Label lessonDate;
@@ -53,11 +52,10 @@ public class CreateLessonController {
     @FXML
     private TableColumn<LessonBean, String> comment;
 
-    private ScheduleBean scheduleBean;
     private ObservableList<LessonBean> lessonBeans;
     private String homeTask = "";
 
-    public ObservableList<LessonBean> getLessonBeanList() {
+    /*public ObservableList<LessonBean> getLessonBeanList() {
         List<LessonBean> lessonBeans = new ArrayList<>();
         List<Students> studentsList = studentsDAO().getAll();
         List<Lesson> lessonList = lessonDAO().getAll();
@@ -77,20 +75,12 @@ public class CreateLessonController {
             i++;
         }
         return FXCollections.observableList(lessonBeans);
-    }
+    }*/
 
 
     public void initialize() throws IOException {
-
-        //scheduleBean = selectLessonController.getScheduleBean();
-        //kursOfLesson.setText(scheduleBean.getNameOfKurs());
-        lessonDate.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd MM yyyy")));
-        //lessonTime.setText(scheduleBean.getLessonTime());
-        //kursOfLesson.setText(scheduleBean.getScoolClass());
-        //teacherOfLesson.setText(scheduleBean.getTeacherOfLesson());
-        lastHomeTask.setText(homeTask);
-
-        lessonBeans = getLessonBeanList();
+        lessonController = this;
+        //lessonBeans = getLessonBeanList();
         num.setCellValueFactory(new PropertyValueFactory<>("num"));
         fio.setCellValueFactory(new PropertyValueFactory<>("fio"));
         mark.setCellValueFactory(new PropertyValueFactory<>("mark"));
@@ -107,4 +97,16 @@ public class CreateLessonController {
         lessonDAO().save(lesson);
     }
 
+    public void setValuesForNewLesson(ScheduleBean scheduleBean){
+        kursOfLesson.setText(scheduleBean.getNameOfKurs());
+        lessonDate.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd MM yyyy")));
+        lessonTime.setText(scheduleBean.getLessonTime());
+        lessonOfClass.setText(scheduleBean.getScoolClass());
+        teacherOfLesson.setText(scheduleBean.getTeacherOfLesson());
+        lastHomeTask.setText(homeTask);
+    }
+
+    public static CreateLessonController getLessonController() {
+        return lessonController;
+    }
 }

@@ -8,11 +8,11 @@ public class Lesson extends Entity {
     private String time;
     private String homeTask;
     private Class classFKId;
-    private Teachers teachersFKId;
+    private Users teachersFKId;
     private Kurs kursFKId;
 
     public Lesson(Integer id, Date date, String time, String homeTask, Class classFKId,
-                  Teachers teachersFKId, Kurs kursFKId) {
+                  Users teachersFKId, Kurs kursFKId) {
         setId(id);
         this.date = date;
         this.time = time;
@@ -54,11 +54,11 @@ public class Lesson extends Entity {
         this.classFKId = classFKId;
     }
 
-    public Teachers getTeachersFKId() {
+    public Users getTeachersFKId() {
         return teachersFKId;
     }
 
-    public void setTeachersFKId(Teachers teachersFKId) {
+    public void setTeachersFKId(Users teachersFKId) {
         this.teachersFKId = teachersFKId;
     }
 

@@ -17,13 +17,20 @@ public class MainMenuController {
     private Parent diary;
     private Parent selectLesson;
     private Parent createLesson;
+    private Parent schoolData;
+    private Parent personalProfile;
+
+    private static MainMenuController menuController;
 
     public void initialize() throws IOException {
+        menuController = this;
         createSchedule = FXMLLoader.load(getClass().getClassLoader().getResource("view/createSchedule.fxml"));
         currentSchedule = FXMLLoader.load(getClass().getClassLoader().getResource("view/currentSchedule.fxml"));
         diary = FXMLLoader.load(getClass().getClassLoader().getResource("view/diary.fxml"));
         selectLesson = FXMLLoader.load(getClass().getClassLoader().getResource("view/lessons/selectLesson.fxml"));
         createLesson = FXMLLoader.load(getClass().getClassLoader().getResource("view/lessons/createLesson.fxml"));
+        schoolData = FXMLLoader.load(getClass().getClassLoader().getResource("view/schoolData.fxml"));
+        personalProfile = FXMLLoader.load(getClass().getClassLoader().getResource("view/personalProfile.fxml"));
     }
 
     public void onNewSchedule() {
@@ -46,4 +53,15 @@ public class MainMenuController {
         mainMenuContainer.setCenter(createLesson);
     }
 
+    public void onEditSchoolData(){
+        mainMenuContainer.setCenter(schoolData);
+    }
+
+    public void onPersonalProfile(){
+        mainMenuContainer.setCenter(personalProfile);
+    }
+
+    public static MainMenuController getMenuController() {
+        return menuController;
+    }
 }

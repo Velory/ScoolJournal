@@ -15,18 +15,18 @@ public class DatabaseUtils {
     private static KursDAO kursDAO;
     private static LessonDAO lessonDAO;
     private static MarksDAO marksDAO;
-    private static StudentsDAO studentsDAO;
-    private static TeachersDAO teachersDAO;
     private static ScheduleDAO scheduleDAO;
+    private static RoleDAO roleDAO;
+    private static UsersDAO usersDAO;
 
     static {
         classDAO = new ClassDAO();
         kursDAO = new KursDAO();
         lessonDAO = new LessonDAO();
         marksDAO = new MarksDAO();
-        studentsDAO = new StudentsDAO();
-        teachersDAO = new TeachersDAO();
         scheduleDAO = new ScheduleDAO();
+        roleDAO = new RoleDAO();
+        usersDAO = new UsersDAO();
     }
 
     static {
@@ -59,6 +59,7 @@ public class DatabaseUtils {
         Flyway flyway = new Flyway();
         flyway.setDataSource(dbProps.getProperty("db.url"),
                 dbProps.getProperty("db.user"), dbProps.getProperty("db.password"));
+        //flyway.clean();
         flyway.migrate();
     }
 
@@ -78,16 +79,16 @@ public class DatabaseUtils {
         return marksDAO;
     }
 
-    public static StudentsDAO studentsDAO() {
-        return studentsDAO;
-    }
-
-    public static TeachersDAO teachersDAO() {
-        return teachersDAO;
-    }
-
     public static ScheduleDAO scheduleDAO() {
         return scheduleDAO;
+    }
+
+    public static RoleDAO roleDAO() {
+        return roleDAO;
+    }
+
+    public static UsersDAO usersDAO() {
+        return usersDAO;
     }
 }
 

@@ -1,4 +1,4 @@
-CREATE TABLE `schedule` (
+CREATE TABLE IF NOT EXISTS`schedule` (
   `weekDay` varchar(20) DEFAULT NULL,
   `scoolClass` int(11) DEFAULT NULL,
   `id` int(11) NOT NULL,

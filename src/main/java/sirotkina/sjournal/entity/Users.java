@@ -1,28 +1,30 @@
 package sirotkina.sjournal.entity;
 
-public class Teachers extends Entity {
-
+public class Users extends Entity {
     private String firstName;
     private String midName;
     private String lastName;
+    private int age;
     private String phone;
     private String email;
-    private Kurs kursFKId;
     private Class classFKId;
+    private Kurs kursFKId;
     private String password;
+    private Role roleId;
 
-    public Teachers(Integer id, String firstName, String midName,
-                    String lastName, String phone, String email,
-                    Kurs kursFKId, Class classFKId, String password) {
+    public Users(Integer id, String firstName, String midName, String lastName, int age, String phone, String email,
+                 Class classFKId, Kurs kursFKId, String password, Role roleId) {
         setId(id);
         this.firstName = firstName;
         this.midName = midName;
         this.lastName = lastName;
+        this.age = age;
         this.phone = phone;
         this.email = email;
-        this.kursFKId = kursFKId;
         this.classFKId = classFKId;
+        this.kursFKId = kursFKId;
         this.password = password;
+        this.roleId = roleId;
     }
 
     public String getFirstName() {
@@ -49,6 +51,14 @@ public class Teachers extends Entity {
         this.lastName = lastName;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -65,20 +75,20 @@ public class Teachers extends Entity {
         this.email = email;
     }
 
-    public Kurs getKursFKId() {
-        return kursFKId;
-    }
-
-    public void setKursFKId(Kurs kursFKId) {
-        this.kursFKId = kursFKId;
-    }
-
     public Class getClassFKId() {
         return classFKId;
     }
 
     public void setClassFKId(Class classFKId) {
         this.classFKId = classFKId;
+    }
+
+    public Kurs getKursFKId() {
+        return kursFKId;
+    }
+
+    public void setKursFKId(Kurs kursFKId) {
+        this.kursFKId = kursFKId;
     }
 
     public String getPassword() {
@@ -89,17 +99,26 @@ public class Teachers extends Entity {
         this.password = password;
     }
 
+    public Role getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Role roleId) {
+        this.roleId = roleId;
+    }
+
     @Override
     public String toString() {
-        return "Teachers{" +
-                "id=" + getId() +
-                ", firstName='" + firstName + '\'' +
+        return "Users: " +
+                "firstName='" + firstName + '\'' +
                 ", midName='" + midName + '\'' +
                 ", lastName='" + lastName + '\'' +
+                ", age=" + age +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
-                ", kursId=" + kursFKId +
-                ", classId=" + classFKId +
-                '}';
+                ", classFKId=" + classFKId +
+                ", kursFKId=" + kursFKId +
+                ", password='" + password + '\'' +
+                ", roleId=" + roleId;
     }
 }

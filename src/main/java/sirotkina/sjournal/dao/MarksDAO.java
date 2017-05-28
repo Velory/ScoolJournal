@@ -1,13 +1,10 @@
 package sirotkina.sjournal.dao;
 
 import sirotkina.sjournal.entity.Marks;
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import static sirotkina.sjournal.utils.DatabaseUtils.lessonDAO;
-import static sirotkina.sjournal.utils.DatabaseUtils.studentsDAO;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class MarksDAO extends AbstractDAO<Marks> {
 
@@ -21,7 +18,7 @@ public class MarksDAO extends AbstractDAO<Marks> {
         return new Marks(rs.getInt("id"), rs.getInt("mark"),
                 rs.getString("comment"),
                 lessonDAO().getById(rs.getInt("lessonId")),
-                studentsDAO().getById(rs.getInt("studentsId")));
+                usersDAO().getById(rs.getInt("studentsId")));
     }
 
     @Override

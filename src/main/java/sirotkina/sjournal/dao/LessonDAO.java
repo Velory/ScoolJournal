@@ -20,7 +20,7 @@ public class LessonDAO extends AbstractDAO<Lesson> {
         return new Lesson(rs.getInt("id"), rs.getDate("date"),
                 rs.getString("time"), rs.getString("homeTask"),
                 classDAO().getById(rs.getInt("classId")),
-                teachersDAO().getById(rs.getInt("teachersId")),
+                usersDAO().getById(rs.getInt("teachersId")),
                 kursDAO().getById(rs.getInt("kursId")));
     }
 

@@ -18,21 +18,25 @@ public class MarksDAOTest {
     @Before
     public void setUp() throws Exception {
         migrate();
-
+        roleDAO().save(new Role(null, "Teacher"));
+        roleDAO().save(new Role(null, "Student"));
         classDAO().save(new Class(1, 1, "A"));
         kursDAO().save(new Kurs(1, "math"));
-        teachersDAO().save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
-                "13141", "tatyana@mail.me", kursDAO().getById(1), classDAO().getById(1), "13981"));
+        usersDAO().save(new Users(1, "Tatyana", "Ivanovna", "Smirnova", 35,
+                "13141", "tatyana@mail.me", classDAO().getById(1),
+                kursDAO().getById(1), "13981", roleDAO().getById(1)));
         lessonDAO().save(new Lesson(1, Date.valueOf("2017-04-10"), "09:15:00", "hometask",
-                classDAO().getById(1), teachersDAO().getById(1), kursDAO().getById(1)));
-        studentsDAO().save(new Students(1, "Petya", "Petrovich", "Ivanov",
-                10, "19389372", "petya@mail.me", classDAO().getById(1), "sgh"));
-        studentsDAO().save(new Students(2, "Vasya", "Vasilyevich", "Petrov",
-                10, "41247", "vasya@mail.me", classDAO().getById(1), "agbh"));
+                classDAO().getById(1), usersDAO().getById(1), kursDAO().getById(1)));
+        usersDAO().save(new Users(1, "Petya", "Petrovich", "Ivanov",
+                10, "19389372", "petya@mail.me", classDAO().getById(1),
+                kursDAO().getById(1), "sgh", roleDAO().getById(2)));
+        usersDAO().save(new Users(2, "Vasya", "Vasilyevich", "Petrov",
+                10, "41247", "vasya@mail.me", classDAO().getById(1),
+                kursDAO().getById(1), "agbh", roleDAO().getById(2)));
         marksDAO().save(new Marks(1, 10, "for reading", lessonDAO().getById(1),
-                studentsDAO().getById(1)));
+                usersDAO().getById(1)));
         marksDAO().save(new Marks(null, 12, "for reading",
-                lessonDAO().getById(1), studentsDAO().getById(2)));
+                lessonDAO().getById(1), usersDAO().getById(2)));
     }
 
     @After
@@ -61,11 +65,11 @@ public class MarksDAOTest {
     @Test
     public void update() throws Exception {
         marksDAO().update(new Marks(1, 12, "for reading",
-                lessonDAO().getById(1), studentsDAO().getById(2)));
+                lessonDAO().getById(1), usersDAO().getById(2)));
         Marks marks = marksDAO().getById(1);
         assertNotNull(marks);
         assertEquals(12, marks.getMark());
-        assertEquals(studentsDAO().getById(2), marks.getStudentsFKId());
+        assertEquals(usersDAO().getById(2), marks.getStudentsFKId());
     }
 
     @Test
@@ -76,7 +80,7 @@ public class MarksDAOTest {
         Marks marks1 = marksDAO().getById(2);
         assertNotNull(marks1);
         assertEquals(12, marks1.getMark());
-        assertEquals(studentsDAO().getById(2), marks1.getStudentsFKId());
+        assertEquals(usersDAO().getById(2), marks1.getStudentsFKId());
         assertEquals("for reading", marks1.getComment());
     }
 

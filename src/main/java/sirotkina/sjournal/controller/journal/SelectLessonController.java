@@ -18,8 +18,7 @@ import static sirotkina.sjournal.utils.ControllersUtils.getSheduleBeanList;
 
 public class SelectLessonController {
 
-    //private MainMenuController mainMenuController;
-    private CreateLessonController createLessonController;
+    private static SelectLessonController lessonController;
 
     @FXML
     private TableView<ScheduleBean> selectLessonTable;
@@ -37,11 +36,8 @@ public class SelectLessonController {
     private ObservableList<ScheduleBean> scheduleBeans;
     private ScheduleBean scheduleBean;
 
-    public SelectLessonController() {
-        this.createLessonController = new CreateLessonController();
-    }
-
     public void initialize() throws IOException {
+        lessonController = this;
         scheduleBeans = getSheduleBeanList();
 
         timeSelectLesson.setCellValueFactory(new PropertyValueFactory<>("lessonTime"));
@@ -69,7 +65,9 @@ public class SelectLessonController {
                                     lbl.setOnMouseClicked(event -> {
                                         scheduleBean = getTableView().getItems().get(getIndex());
                                         System.out.println(scheduleBean.toString());
-                                        //mainMenuController.onCreateLesson();
+                                        CreateLessonController.getLessonController()
+                                                .setValuesForNewLesson(scheduleBean);
+                                        MainMenuController.getMenuController().onCreateLesson();
                                     });
                                     setGraphic(lbl);
                                     setText(null);
@@ -87,5 +85,9 @@ public class SelectLessonController {
 
     public ScheduleBean getScheduleBean() {
         return scheduleBean;
+    }
+
+    public static SelectLessonController getLessonController() {
+        return lessonController;
     }
 }

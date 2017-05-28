@@ -3,10 +3,8 @@ package sirotkina.sjournal.dao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.entity.Class;
-import sirotkina.sjournal.entity.Kurs;
-import sirotkina.sjournal.entity.Schedule;
-import sirotkina.sjournal.entity.Teachers;
 
 import java.sql.PreparedStatement;
 import java.util.List;
@@ -24,12 +22,14 @@ public class ScheduleDAOTest {
         classDAO().save(new Class(1, 1, "A"));
         classDAO().save(new Class(null, 1, "B"));
         kursDAO().save(new Kurs(null, "math"));
-        teachersDAO().save(new Teachers(1, "Tatyana", "Ivanovna", "Smirnova",
-                "13141", "tatyana@mail.me", kursDAO().getById(1), classDAO().getById(1), "shgb"));
+        roleDAO().save(new Role(null, "Teacher"));
+        usersDAO().save(new Users(1, "Tatyana", "Ivanovna", "Smirnova", 25,
+                "13141", "tatyana@mail.me", classDAO().getById(1), kursDAO().getById(1),
+                "shgb", roleDAO().getById(1)));
         scheduleDAO().save(new Schedule("Monday", classDAO().getById(1), null,
-                "09:30", kursDAO().getById(1), teachersDAO().getById(1)));
+                "09:30", kursDAO().getById(1), usersDAO().getById(1)));
         scheduleDAO().save(new Schedule("Tuesday", classDAO().getById(2), null,
-                "10:30", kursDAO().getById(1), teachersDAO().getById(1)));
+                "10:30", kursDAO().getById(1), usersDAO().getById(1)));
     }
 
     @After
@@ -58,7 +58,7 @@ public class ScheduleDAOTest {
     @Test
     public void update() throws Exception {
         scheduleDAO().update(new Schedule("Wednesday", classDAO().getById(2), 1,
-                "09:30", kursDAO().getById(1), teachersDAO().getById(1)));
+                "09:30", kursDAO().getById(1), usersDAO().getById(1)));
         Schedule schedule = scheduleDAO().getById(1);
         assertNotNull(schedule);
         assertEquals("Wednesday", schedule.getWeekDay());
