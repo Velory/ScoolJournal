@@ -22,16 +22,16 @@ public class MarksDAOTest {
         roleDAO().save(new Role(null, "Student"));
         classDAO().save(new Class(1, 1, "A"));
         kursDAO().save(new Kurs(1, "math"));
-        usersDAO().save(new Users(1, "Tatyana", "Ivanovna", "Smirnova", 35,
+        usersDAO().save(new Users(1, "Tatyana", "Ivanovna", "Smirnova", Date.valueOf("2017-06-01"),
                 "13141", "tatyana@mail.me", classDAO().getById(1),
                 kursDAO().getById(1), "13981", roleDAO().getById(1)));
         lessonDAO().save(new Lesson(1, Date.valueOf("2017-04-10"), "09:15:00", "hometask",
                 classDAO().getById(1), usersDAO().getById(1), kursDAO().getById(1)));
         usersDAO().save(new Users(1, "Petya", "Petrovich", "Ivanov",
-                10, "19389372", "petya@mail.me", classDAO().getById(1),
+                Date.valueOf("2017-06-01"), "19389372", "petya@mail.me", classDAO().getById(1),
                 kursDAO().getById(1), "sgh", roleDAO().getById(2)));
         usersDAO().save(new Users(2, "Vasya", "Vasilyevich", "Petrov",
-                10, "41247", "vasya@mail.me", classDAO().getById(1),
+                Date.valueOf("2017-06-01"), "41247", "vasya@mail.me", classDAO().getById(1),
                 kursDAO().getById(1), "agbh", roleDAO().getById(2)));
         marksDAO().save(new Marks(1, 10, "for reading", lessonDAO().getById(1),
                 usersDAO().getById(1)));

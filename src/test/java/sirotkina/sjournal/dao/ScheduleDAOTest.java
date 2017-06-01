@@ -6,6 +6,7 @@ import org.junit.Test;
 import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.entity.Class;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ScheduleDAOTest {
         classDAO().save(new Class(null, 1, "B"));
         kursDAO().save(new Kurs(null, "math"));
         roleDAO().save(new Role(null, "Teacher"));
-        usersDAO().save(new Users(1, "Tatyana", "Ivanovna", "Smirnova", 25,
+        usersDAO().save(new Users(1, "Tatyana", "Ivanovna", "Smirnova", Date.valueOf("2017-06-01"),
                 "13141", "tatyana@mail.me", classDAO().getById(1), kursDAO().getById(1),
                 "shgb", roleDAO().getById(1)));
         scheduleDAO().save(new Schedule("Monday", classDAO().getById(1), null,

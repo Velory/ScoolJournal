@@ -4,27 +4,14 @@
 
 .button {
     -fx-background-color: #797a7d;
-    -fx-text-fill: white;
-}
-
-.button:default {
-    -fx-background-color: #797a7d;
-}
-
-.button:cancel {
-    -fx-background-color: #f49ca2;
-}
-
-.label {
-}
-
-.titled-pane > .title > {
-        -fx-background-color: #f4f5f8;
+    -fx-text-fill: #ffffff;
+    /*-fx-font-size: 20px;*/
 }
 
 .menu-button {
     -fx-background-color: #797a7d;
-
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
 }
 
 .border-pane {

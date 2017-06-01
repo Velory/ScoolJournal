@@ -22,13 +22,13 @@ public class TeacherStringConverter extends StringConverter<Users> {
         int index = str.indexOf(" ");
         if (index == -1) {
             teacher = new Users(null, null, null,
-                    null, 0, null, null, null,
+                    null, null, null, null, null,
                     null, null, null);
         } else {
             String firstName = str.substring(0, index);
             String lastName = str.substring(index + 1);
             teacher = new Users(null, firstName, null,
-                    lastName, 0, null, null, null,
+                    lastName, null, null, null, null,
                     null, null, null);
         }
         return teacher;

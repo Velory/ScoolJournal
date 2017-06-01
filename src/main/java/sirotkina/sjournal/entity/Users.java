@@ -1,10 +1,12 @@
 package sirotkina.sjournal.entity;
 
+import java.sql.Date;
+
 public class Users extends Entity {
     private String firstName;
     private String midName;
     private String lastName;
-    private int age;
+    private Date birthday;
     private String phone;
     private String email;
     private Class classFKId;
@@ -12,13 +14,13 @@ public class Users extends Entity {
     private String password;
     private Role roleId;
 
-    public Users(Integer id, String firstName, String midName, String lastName, int age, String phone, String email,
-                 Class classFKId, Kurs kursFKId, String password, Role roleId) {
+    public Users(Integer id, String firstName, String midName, String lastName, Date birthday,
+                 String phone, String email, Class classFKId, Kurs kursFKId, String password, Role roleId) {
         setId(id);
         this.firstName = firstName;
         this.midName = midName;
         this.lastName = lastName;
-        this.age = age;
+        this.birthday = birthday;
         this.phone = phone;
         this.email = email;
         this.classFKId = classFKId;
@@ -51,12 +53,12 @@ public class Users extends Entity {
         this.lastName = lastName;
     }
 
-    public int getAge() {
-        return age;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getPhone() {
@@ -113,7 +115,7 @@ public class Users extends Entity {
                 "firstName='" + firstName + '\'' +
                 ", midName='" + midName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", age=" + age +
+                ", birthday=" + birthday +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
                 ", classFKId=" + classFKId +

@@ -1,14 +1,12 @@
 package sirotkina.sjournal.utils.converters;
 
 import javafx.util.StringConverter;
-
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
-public class DateStringConverter extends StringConverter<Date> {
+public class DateStringConverter extends StringConverter<LocalDate> {
 
     private final String DATE_PATTERN = "dd/MM/yyyy";
     private final Locale locale = new Locale("uk", "UA", "Ukrainian (Ukraine)");
@@ -20,24 +18,24 @@ public class DateStringConverter extends StringConverter<Date> {
     }
 
     @Override
-    public String toString(Date date) {
+    public String toString(LocalDate date) {
         String text = null;
         if (date != null) {
-            text = dateTimeFormatter.format(date.toLocalDate());
+            text = dateTimeFormatter.format(date);
         }
         return text;
     }
 
     @Override
-    public Date fromString(String text) {
-        Date date = null;
+    public LocalDate fromString(String text) {
+        LocalDate date = null;
         if (text != null && !text.trim().isEmpty()) {
-            date = Date.valueOf(LocalDate.parse(text, dateTimeFormatter));
+            date = LocalDate.parse(text, dateTimeFormatter);
         }
         return date;
     }
 
-    public String toDayOfWeek(Date date) {
+    /*public String toDayOfWeek(Date date) {
         LocalDate localDate = LocalDate.from(dateTimeFormatter.parse(toString(date)));
         return localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, locale);
     }
@@ -51,5 +49,5 @@ public class DateStringConverter extends StringConverter<Date> {
         }
         return null;
     }
-
+*/
 }

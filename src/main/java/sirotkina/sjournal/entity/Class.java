@@ -1,7 +1,6 @@
 package sirotkina.sjournal.entity;
 
 public class Class extends Entity {
-
     private int num;
     private String letter;
 

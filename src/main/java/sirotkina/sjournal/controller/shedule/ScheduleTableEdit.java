@@ -1,6 +1,5 @@
 package sirotkina.sjournal.controller.shedule;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.SelectionMode;
@@ -10,7 +9,6 @@ import sirotkina.sjournal.domain.ScheduleBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static sirotkina.sjournal.utils.ControllersUtils.*;
@@ -39,7 +37,6 @@ public class ScheduleTableEdit extends ScheduleTableView {
     @Override
     protected void initialize() {
         super.initialize();
-
         selectionModel = curentSchedule.getSelectionModel();
         selectionModel.setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -116,18 +113,7 @@ public class ScheduleTableEdit extends ScheduleTableView {
 
     @FXML
     private void onDeleteClick() {
-        selectionModel = curentSchedule.getSelectionModel();
-        if (selectionModel.isEmpty()) return;
-
-        ObservableList<Integer> list = selectionModel.getSelectedIndices();
-        Integer[] selectedIndices = new Integer[list.size()];
-        selectedIndices = list.toArray(selectedIndices);
-        Arrays.sort(selectedIndices);
-
-        for (int i = selectedIndices.length - 1; i >= 0; i--) {
-            selectionModel.clearSelection(selectedIndices[i]);
-            curentSchedule.getItems().remove(selectedIndices[i].intValue());
-        }
+        deleteRow(curentSchedule, selectionModel);
     }
 
     @FXML

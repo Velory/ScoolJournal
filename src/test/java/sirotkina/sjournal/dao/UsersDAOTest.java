@@ -6,6 +6,7 @@ import org.junit.Test;
 import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.entity.Class;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.util.List;
 
@@ -25,13 +26,13 @@ public class UsersDAOTest {
         roleDAO().save(new Role(null, "Teacher"));
         roleDAO().save(new Role(null, "Admin"));
         usersDAO().save(new Users(null, "Ivan", "Ivanovich", "Ivanov",
-                30, "3526214", "never@mail.me", classDAO().getById(1), kursDAO().getById(1),
+                Date.valueOf("2017-06-01"), "3526214", "never@mail.me", classDAO().getById(1), kursDAO().getById(1),
                 "djdhsg", roleDAO().getById(1)));
-        usersDAO().save(new Users(null, "Tatyana", "Ivanovna", "Smirnova", 35,
+        usersDAO().save(new Users(null, "Tatyana", "Ivanovna", "Smirnova", Date.valueOf("2017-06-01"),
                 "13141", "tatyana@mail.me", classDAO().getById(1),
                 kursDAO().getById(1), "shgb", roleDAO().getById(1)));
         usersDAO().save(new Users(null, "Alexandr", "Olegovich", "Mironov",
-                40, "266335", "sfwaf@mail.me", classDAO().getById(1), kursDAO().getById(1),
+                Date.valueOf("2017-06-01"), "266335", "sfwaf@mail.me", classDAO().getById(1), kursDAO().getById(1),
                 "dfsfsgg", roleDAO().getById(2)));
     }
 
@@ -60,8 +61,8 @@ public class UsersDAOTest {
     @Test
     public void update() throws Exception {
         usersDAO().update(new Users(1, "John", "Ivanovich", "Ivanov",
-                30, "3526214", "never@mail.me", classDAO().getById(2), kursDAO().getById(1),
-                "djdhsg", roleDAO().getById(1)));
+                Date.valueOf("2017-06-01"), "3526214", "never@mail.me", classDAO().getById(2),
+                kursDAO().getById(1), "djdhsg", roleDAO().getById(1)));
         Users users = usersDAO().getById(1);
         assertNotNull(users);
         assertEquals("John", users.getFirstName());
@@ -92,5 +93,4 @@ public class UsersDAOTest {
         assertEquals("Alexandr", usersList.get(0).getFirstName());
         assertEquals(Integer.valueOf(3), usersList.get(0).getId());
     }
-
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.SchoolDataController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.SchoolDataController">
     <left>
         <Pane prefHeight="755.0" prefWidth="10.0" BorderPane.alignment="CENTER" />
     </left>
@@ -19,31 +19,32 @@
     <center>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="150.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="195.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="0.0" prefWidth="10.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="300.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.0" minWidth="10.0" prefWidth="400.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="10.0" prefWidth="195.0" />
-            <ColumnConstraints />
+                <ColumnConstraints />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="950.0" minHeight="10.0" prefHeight="663.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="950.0" minHeight="10.0" prefHeight="62.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="950.0" minHeight="10.0" prefHeight="664.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="950.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="950.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label alignment="CENTER" prefHeight="21.0" prefWidth="501.0" text="Классы" GridPane.columnSpan="3" />
                 <Label alignment="CENTER" prefHeight="21.0" prefWidth="502.0" text="Предметы" GridPane.columnIndex="4" GridPane.columnSpan="3" />
-                <TableView fx:id="classTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                <TableView fx:id="classTable" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
                     <columns>
                         <TableColumn fx:id="idClass" prefWidth="73.0" text="id" />
                         <TableColumn fx:id="numberClass" prefWidth="123.0" text="Номер" />
                         <TableColumn fx:id="letterClass" prefWidth="110.0" text="Буква" />
                     </columns>
                 </TableView>
-                <TableView fx:id="kursTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                <TableView fx:id="kursTable" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="2">
                     <columns>
                         <TableColumn fx:id="idKurs" prefWidth="75.0" text="id" />
                         <TableColumn fx:id="nameOfKurs" prefWidth="418.0" text="Предмет" />
@@ -51,16 +52,26 @@
                 </TableView>
                 <TextField fx:id="numberFld" promptText="Номер" GridPane.rowIndex="1" />
                 <TextField fx:id="letterFld" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button fx:id="addClass" mnemonicParsing="false" prefHeight="31.0" prefWidth="195.0" text="Добавить" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <Button fx:id="saveClass" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" text="Сохранить в БД" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <Button fx:id="addKurs" mnemonicParsing="false" prefHeight="31.0" prefWidth="195.0" text="Добавить" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                <Button fx:id="addClass" mnemonicParsing="false" onAction="#onAddClass" prefHeight="31.0" prefWidth="195.0" text="Добавить" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Button fx:id="saveClass" mnemonicParsing="false" onAction="#onSaveClass" prefHeight="31.0" prefWidth="195.0" text="Сохранить в БД" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <Button fx:id="addKurs" mnemonicParsing="false" onAction="#onAddKurs" prefHeight="31.0" prefWidth="195.0" text="Добавить" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                 <TextField fx:id="kursNameFld" promptText="Введите предмет" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                <Button fx:id="saveKurs" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" text="Сохранить в БД" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                <Button fx:id="saveKurs" mnemonicParsing="false" onAction="#onSaveKurs" prefHeight="31.0" prefWidth="195.0" text="Сохранить в БД" GridPane.columnIndex="5" GridPane.rowIndex="3">
                     <GridPane.margin>
-                        <Insets left="150.0" />
+                        <Insets />
                     </GridPane.margin>
                 </Button>
                 <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowSpan="4" />
+                <Button mnemonicParsing="false" onAction="#onDeleteClass" prefHeight="31.0" prefWidth="152.0" text="Удалить строку" GridPane.rowIndex="3" />
+                <Label fx:id="msgLblClass" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <Label fx:id="msgLblKurs" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                <Button mnemonicParsing="false" onAction="#onDeleteKurs" prefHeight="31.0" prefWidth="150.0" text="Удалить строку" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                <Button mnemonicParsing="false" onAction="#onRestoreClass" prefHeight="31.0" prefWidth="150.0" text="Вернуть все" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Button mnemonicParsing="false" onAction="#onRestoreKurs" prefHeight="31.0" prefWidth="150.0" text="Вернуть все" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                    <GridPane.margin>
+                        <Insets left="200.0" />
+                    </GridPane.margin>
+                </Button>
             </children>
         </GridPane>
     </center>

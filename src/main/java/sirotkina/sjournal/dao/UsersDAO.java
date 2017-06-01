@@ -24,7 +24,7 @@ public class UsersDAO extends AbstractDAO<Users>{
                 rs.getString("firstName"),
                 rs.getString("midName"),
                 rs.getString("lastName"),
-                rs.getInt("age"),
+                rs.getDate("birthday"),
                 rs.getString("phone"),
                 rs.getString("email"),
                 classDAO().getById(rs.getInt("classId")),
@@ -40,7 +40,7 @@ public class UsersDAO extends AbstractDAO<Users>{
 
     @Override
     protected String getUpdateQuery() {
-        return "UPDATE users SET firstName=?, midName=?, lastName=?, age=?, phone=?," +
+        return "UPDATE users SET firstName=?, midName=?, lastName=?, birthday=?, phone=?," +
                 " email=?, classId=?, kursId=?, password=?, roleId=? WHERE id=?";
     }
 
@@ -50,7 +50,7 @@ public class UsersDAO extends AbstractDAO<Users>{
         ps.setString(2, user.getFirstName());
         ps.setString(3, user.getMidName());
         ps.setString(4, user.getLastName());
-        ps.setInt(5, user.getAge());
+        ps.setDate(5, user.getBirthday());
         ps.setString(6, user.getPhone());
         ps.setString(7, user.getEmail());
         ps.setInt(8, user.getClassFKId().getId());
@@ -64,7 +64,7 @@ public class UsersDAO extends AbstractDAO<Users>{
         ps.setString(1, user.getFirstName());
         ps.setString(2, user.getMidName());
         ps.setString(3, user.getLastName());
-        ps.setInt(4, user.getAge());
+        ps.setDate(4, user.getBirthday());
         ps.setString(5, user.getPhone());
         ps.setString(6, user.getEmail());
         ps.setInt(7, user.getClassFKId().getId());
@@ -95,27 +95,4 @@ public class UsersDAO extends AbstractDAO<Users>{
         }
         return usersList;
     }
-
-    /*public Users getByRole(int roleId, int id) {
-        String query = "SELECT * FROM " + getTableName() + " WHERE (roleId=?, id=?)";
-        ResultSet rs = null;
-        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
-            ps.setInt(1, roleId);
-            ps.setInt(2, id);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                return createEntityFromRS(rs);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                rs.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }*/
-
 }

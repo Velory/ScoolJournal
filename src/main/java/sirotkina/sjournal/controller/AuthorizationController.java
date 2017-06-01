@@ -1,19 +1,14 @@
 package sirotkina.sjournal.controller;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import sirotkina.sjournal.domain.UsersBean;
 import sirotkina.sjournal.entity.Class;
-import sirotkina.sjournal.entity.Kurs;
-import sirotkina.sjournal.entity.Users;
+import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.ui.Authorization;
-import sirotkina.sjournal.utils.Role;
 import sirotkina.sjournal.utils.myValidator.Validator;
-
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -26,7 +21,7 @@ public class AuthorizationController {
     private Validator validator;
 
     @FXML
-    private ComboBox<String> role;
+    private ComboBox<Role> role;
     @FXML
     private ComboBox<Class> classAuth;
     @FXML
@@ -40,7 +35,7 @@ public class AuthorizationController {
     @FXML
     private TextField phoneField;
     @FXML
-    private TextField ageField;
+    private DatePicker birthday;
     @FXML
     private TextField emailField;
     @FXML
@@ -49,9 +44,13 @@ public class AuthorizationController {
     @FXML
     private Label registrationMsg;
     @FXML
-    private Label ageKursLbl;
+    private Label classLbl;
+    @FXML
+    private Label kursLbl;
 
     public void initialize() throws IOException {
+        birthday.setConverter(dateConverter());
+        birthday.setEditable(false);
 
         role.getItems().addAll(getRoleList());
         role.getSelectionModel().selectedItemProperty()
@@ -63,21 +62,25 @@ public class AuthorizationController {
         kursAuth.getItems().addAll(getKursList());
         kursAuth.setConverter(kursConverter());
 
-        nodeIsActive(false, kursAuth, ageField, ageKursLbl);
+        nodeIsActive(false, classAuth, classLbl, kursAuth, kursLbl);
     }
 
     public void onRoleAction() {
-        if (role.getValue().equals(Role.STUDENT.getValue())) {
-            ageKursLbl.setText("Возраст");
-            nodeIsActive(true, ageField, ageKursLbl);
-            nodeIsActive(false, kursAuth);
-            kursAuth.setValue(null);
+        if (role.getValue().getRole().equals(sirotkina.sjournal.utils.Role.ADMIN.getValue()) ||
+                role.getValue().getRole().equals(sirotkina.sjournal.utils.Role.PARENT.getValue())){
+            nodeIsActive(false, classAuth, classLbl, kursAuth, kursLbl);
+            classAuth.setValue(defaultClassFromDB());
+            kursAuth.setValue(defaultkursFromDB());
         }
-        if (role.getValue().equals(Role.TEACHER.getValue())) {
-            ageKursLbl.setText("Выберите предмет");
-            nodeIsActive(true, kursAuth, ageKursLbl);
-            nodeIsActive(false, ageField);
-            ageField.setText("0");
+        if (role.getValue().getRole().equals(sirotkina.sjournal.utils.Role.STUDENT.getValue())) {
+            nodeIsActive(true, classAuth, classLbl);
+            nodeIsActive(false, kursLbl, kursAuth);
+            kursAuth.setValue(defaultkursFromDB());
+        }
+        if (role.getValue().getRole().equals(sirotkina.sjournal.utils.Role.TEACHER.getValue())) {
+            nodeIsActive(true, kursAuth, kursLbl);
+            nodeIsActive(false, classLbl, classAuth);
+            classAuth.setValue(defaultClassFromDB());
         }
     }
 
@@ -89,7 +92,7 @@ public class AuthorizationController {
             List<Users> usersList = usersDAO().getAll();
             if (!usersList.contains(users)) {
                 usersDAO().save(users);
-                //clearingFields();
+                clearingFields();
                 registrationMsg.setText("Регистрация прошла успешно");
             }
         } else {
@@ -108,7 +111,7 @@ public class AuthorizationController {
 
     private UsersBean getUsersBean() {
         return new UsersBean(firstNameField.getText(), midNameField.getText(), lastNameField.getText(),
-                ageField.getText(), phoneField.getText(), emailField.getText(),
+                dateConverter().toString(birthday.getValue()), phoneField.getText(), emailField.getText(),
                 classConverter().toString(classAuth.getValue()),
                 kursConverter().toString(kursAuth.getValue()),
                 password.getText(), role.getValue());
@@ -119,22 +122,21 @@ public class AuthorizationController {
                 firstNameField.getText(),
                 midNameField.getText(),
                 lastNameField.getText(),
-                Integer.valueOf(ageField.getText()),
+                Date.valueOf(birthday.getValue()),
                 phoneField.getText(),
                 emailField.getText(),
                 classAuth.getValue(),
                 kursAuth.getValue(),
                 password.getText(),
-                roleConverter().checkRoleInDB(roleConverter().fromString(role.getValue())));
+                role.getValue());
     }
 
-    /*private void clearingFields() {
+    private void clearingFields() {
         firstNameField.clear();
         midNameField.clear();
         lastNameField.clear();
-        ageField.clear();
         phoneField.clear();
         emailField.clear();
         password.clear();
-    }*/
+    }
 }

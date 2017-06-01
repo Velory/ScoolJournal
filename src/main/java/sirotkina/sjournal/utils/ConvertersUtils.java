@@ -8,6 +8,7 @@ public class ConvertersUtils {
     private static TeacherStringConverter teacherConverter;
     private static StudentStringConverter studentConverter;
     private static RoleStringConverter roleConverter;
+    private static DateStringConverter dateConverter;
 
     static {
         classConverter = new ClassStringConverter();
@@ -15,6 +16,7 @@ public class ConvertersUtils {
         teacherConverter = new TeacherStringConverter();
         studentConverter = new StudentStringConverter();
         roleConverter = new RoleStringConverter();
+        dateConverter = new DateStringConverter();
     }
 
     public static ClassStringConverter classConverter() {
@@ -35,5 +37,9 @@ public class ConvertersUtils {
 
     public static RoleStringConverter roleConverter() {
         return roleConverter;
+    }
+
+    public static DateStringConverter dateConverter() {
+        return dateConverter;
     }
 }

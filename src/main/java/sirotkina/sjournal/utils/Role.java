@@ -1,9 +1,10 @@
 package sirotkina.sjournal.utils;
 
 public enum Role {
+    ADMIN("Администратор"),
     STUDENT("Ученик"),
-    TEACHER("Учитель");
-    //PARENT("Родитель");
+    TEACHER("Учитель"),
+    PARENT("Родитель");
 
     private String value;
 

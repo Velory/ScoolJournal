@@ -8,7 +8,7 @@ CREATE TABLE `users` (
   `firstName` varchar(20) DEFAULT NULL,
   `midName` varchar(20) DEFAULT NULL,
   `lastName` varchar(30) DEFAULT NULL,
-  `age` int(11) DEFAULT NULL,
+  `birthday` date DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
   `classId` int(11) DEFAULT NULL,
