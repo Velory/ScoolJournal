@@ -47,20 +47,28 @@ public class SchoolDataController {
 
     @FXML
     public void initialize() {
+        
         selectionModelClass = classTable.getSelectionModel();
         selectionModelClass.setSelectionMode(SelectionMode.MULTIPLE);
+        if(selectionModelClass.getSelectedIndex() == 0){
+            classTable.setEditable(false);
+        } else {
+            classTable.setEditable(true);
+        }
 
         selectionModelKurs = kursTable.getSelectionModel();
         selectionModelKurs.setSelectionMode(SelectionMode.MULTIPLE);
 
         classObservableList = getClassBeanList();
         idClass.setCellValueFactory(new PropertyValueFactory<>("id"));
+
         numberClass.setCellValueFactory(new PropertyValueFactory<>("num"));
         numberClass.setCellFactory(TextFieldTableCell.forTableColumn());
         numberClass.setOnEditCommit(event -> event.getTableView()
                 .getItems()
                 .get(event.getTablePosition().getRow())
                 .setNum(event.getNewValue()));
+
         letterClass.setCellFactory(TextFieldTableCell.forTableColumn());
         letterClass.setCellValueFactory(new PropertyValueFactory<>("letter"));
         letterClass.setOnEditCommit(event -> event.getTableView()
@@ -78,6 +86,8 @@ public class SchoolDataController {
                 .get(event.getTablePosition().getRow())
                 .setTitle(event.getNewValue()));
         kursTable.setItems(kursObservableList);
+
+
     }
 
     public void onAddClass() {
@@ -92,7 +102,7 @@ public class SchoolDataController {
 
     public void onSaveClass() {
         try {
-            classObservableList.add(defaultClassBean());
+            //classObservableList.add(defaultClassBean());
             List<Class> classes = classDAO().getAll();
             for (Class clDAO : classes) {
                 classDAO().deleteById(clDAO.getId());
@@ -111,7 +121,7 @@ public class SchoolDataController {
 
     public void onSaveKurs() {
         try {
-            kursObservableList.add(defaultKurs());
+            //kursObservableList.add(defaultKurs());
             List<Kurs> kursList = kursDAO().getAll();
             for (Kurs kurs: kursList){
                 kursDAO().deleteById(kurs.getId());
@@ -129,11 +139,15 @@ public class SchoolDataController {
     }
 
     public void onDeleteClass() {
-        deleteRow(classTable, selectionModelClass);
+        if(selectionModelClass.getSelectedIndex() != 0){
+            deleteRow(classTable, selectionModelClass);
+        }
     }
 
     public void onDeleteKurs() {
-        deleteRow(kursTable, selectionModelKurs);
+        if(selectionModelKurs.getSelectedIndex() != 0){
+            deleteRow(kursTable, selectionModelKurs);
+        }
     }
 
     public void onRestoreClass() {

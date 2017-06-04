@@ -114,7 +114,7 @@ public class AuthorizationController {
                 dateConverter().toString(birthday.getValue()), phoneField.getText(), emailField.getText(),
                 classConverter().toString(classAuth.getValue()),
                 kursConverter().toString(kursAuth.getValue()),
-                password.getText(), role.getValue());
+                password.getText(), roleConverter().toString(role.getValue()));
     }
 
     private Users getNewUser() {

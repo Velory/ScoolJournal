@@ -12,6 +12,8 @@ import sirotkina.sjournal.entity.Role;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import static sirotkina.sjournal.utils.ConvertersUtils.*;
 import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
@@ -21,20 +23,14 @@ public class ControllersUtils {
     private static final Class DEFAULTCLASS = new Class(null, 0, "N/A");
     private static final Kurs DEFAULTKURS = new Kurs(null, "N/A");
 
-    //private static ObservableList<Class> classBeanList;
-    //private static ObservableList<Kurs> kursList;
     private static ObservableList<String> timeOfLessonsList;
-    //private static ObservableList<String> roleList;
     private static ObservableList<String> daysList;
     private static ObservableList<Users> teachersList;
     private static ObservableList<Users> studentsList;
 
 
     static {
-        //classList = FXCollections.observableList(classDAO().getAll());
-        //kursList = FXCollections.observableList(kursDAO().getAll());
         timeOfLessonsList = FXCollections.observableArrayList();
-        //roleList = FXCollections.observableArrayList();
         daysList = FXCollections.observableArrayList();
         teachersList = FXCollections.observableList(usersDAO().getAllByRole(2));
         studentsList = FXCollections.observableList(usersDAO().getAllByRole(3));
@@ -47,6 +43,7 @@ public class ControllersUtils {
     public static ObservableList<ClassBean> getClassBeanList() {
         List<ClassBean> classBeanList = new ArrayList<>();
         List<Class> classes = classDAO().getAll();
+        classBeanList.add(defaultClassBean());
         for (Class cl: classes){
             classBeanList.add(new ClassBean(cl.getId(), String.valueOf(cl.getNum()), cl.getLetter()));
         }
@@ -54,7 +51,10 @@ public class ControllersUtils {
     }
 
     public static ObservableList<Kurs> getKursList() {
-        return FXCollections.observableList(kursDAO().getAll());
+        List<Kurs> kursList = new ArrayList<>();
+        kursList.add(defaultKurs());
+        kursList.addAll(kursDAO().getAll());
+        return FXCollections.observableList(kursList);
     }
 
     public static ObservableList<ScheduleBean> getSheduleBeanList() {
@@ -70,9 +70,6 @@ public class ControllersUtils {
     }
 
     public static ObservableList<Role> getRoleList() {
-        /*for (Role r : roleDAO().getAll()) {
-            roleList.add(r.getRole());
-        }*/
         return FXCollections.observableList(roleDAO().getAll());
     }
 
@@ -137,5 +134,10 @@ public class ControllersUtils {
 
     public static Class defaultClassFromDB() {
         return classConverter().checkClassInDB(DEFAULTCLASS);
+    }
+
+    public static ObservableList<String> toStringList(List<? extends Object> list){
+        return FXCollections.observableList(list.stream()
+                .map(Object::toString).collect(Collectors.toList()));
     }
 }

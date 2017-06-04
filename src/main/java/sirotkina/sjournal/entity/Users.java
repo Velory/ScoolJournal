@@ -111,16 +111,8 @@ public class Users extends Entity {
 
     @Override
     public String toString() {
-        return "Users: " +
-                "firstName='" + firstName + '\'' +
-                ", midName='" + midName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", birthday=" + birthday +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", classFKId=" + classFKId +
-                ", kursFKId=" + kursFKId +
-                ", password='" + password + '\'' +
-                ", roleId=" + roleId;
+        return firstName + ' ' +
+                midName + ' ' +
+                lastName;
     }
 }

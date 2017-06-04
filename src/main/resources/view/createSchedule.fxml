@@ -61,6 +61,7 @@
                 <Button fx:id="add" mnemonicParsing="false" onAction="#onAddClick" prefHeight="31.0" prefWidth="250.0" text="Добавить" GridPane.columnIndex="1" />
                 <Button fx:id="delete" mnemonicParsing="false" onAction="#onDeleteClick" prefHeight="31.0" prefWidth="250.0" text="Удалить" GridPane.columnIndex="2" />
                 <Button fx:id="restore" mnemonicParsing="false" onAction="#onRestoreClick" prefHeight="31.0" prefWidth="256.0" text="Вернуть все" GridPane.columnIndex="3" />
+                <Label fx:id="msgLbl" prefHeight="21.0" prefWidth="99.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             </children>
         </GridPane>
     </bottom>

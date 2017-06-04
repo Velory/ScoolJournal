@@ -24,8 +24,8 @@ public class UsersBean {
     @NotEmpty(message = "не корректно заполнено поле Фамилия")
     private String lastNameField;
 
-    //@Pattern(message = "неверно введен возраст", regexp = AGE_FIELD_PATTERN)
-    private String ageField;
+    @NotEmpty(message = "не выбрана дата рождения")
+    private String birthday;
 
     @Pattern(message = "неверно введен телефон", regexp = PHONE_FIELD_PATTERN)
     private String phoneField;
@@ -43,14 +43,14 @@ public class UsersBean {
     private String password;
 
     @NotEmpty(message = "не выбрана роль")
-    private Role role;
+    private String role;
 
-    public UsersBean(String firstNameField, String midNameField, String lastNameField, String ageField,
-                     String phoneField, String emailField, String classAuth, String kursAuth, String password, Role role) {
+    public UsersBean(String firstNameField, String midNameField, String lastNameField, String birthday,
+                     String phoneField, String emailField, String classAuth, String kursAuth, String password, String role) {
         this.firstNameField = firstNameField;
         this.midNameField = midNameField;
         this.lastNameField = lastNameField;
-        this.ageField = ageField;
+        this.birthday = birthday;
         this.phoneField = phoneField;
         this.emailField = emailField;
         this.classAuth = classAuth;

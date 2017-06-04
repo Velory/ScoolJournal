@@ -19,9 +19,6 @@ public class Kurs extends Entity {
 
     @Override
     public String toString() {
-        return "Kurs{" +
-                "id=" + getId() +
-                ", title='" + title + '\'' +
-                '}';
+        return title;
     }
 }

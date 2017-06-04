@@ -1,18 +1,21 @@
 package sirotkina.sjournal.controller.shedule;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.paint.Paint;
 import sirotkina.sjournal.domain.ScheduleBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.*;
-
 import java.util.List;
-
 import static sirotkina.sjournal.utils.ControllersUtils.*;
 import static sirotkina.sjournal.utils.ConvertersUtils.*;
+
 import static sirotkina.sjournal.utils.DatabaseUtils.scheduleDAO;
 
 public class ScheduleTableEdit extends ScheduleTableView {
@@ -29,10 +32,8 @@ public class ScheduleTableEdit extends ScheduleTableView {
     private ComboBox<Kurs> newNameOfKurs;
     @FXML
     private ComboBox<Users> newTeacherOfLesson;
-    /*@FXML private Button add;
-    @FXML private Button save;
-    @FXML private Button delete;
-    @FXML private Button restore;*/
+    @FXML
+    private Label msgLbl;
 
     @Override
     protected void initialize() {
@@ -52,31 +53,31 @@ public class ScheduleTableEdit extends ScheduleTableView {
         newTeacherOfLesson.getItems().addAll(getTeachersList());
         //newTeacherOfLesson.setConverter(teacherConverter());
 
-        day.setCellFactory(TextFieldTableCell.forTableColumn());
+        day.setCellFactory(ComboBoxTableCell.forTableColumn(getDaysOfWeek()));
         day.setOnEditCommit(event -> event.getTableView()
                 .getItems()
                 .get(event.getTablePosition().getRow())
                 .setWeekDay(event.getNewValue()));
 
-        scoolClass.setCellFactory(TextFieldTableCell.forTableColumn());
+        scoolClass.setCellFactory(ComboBoxTableCell.forTableColumn(toStringList(getClassList())));
         scoolClass.setOnEditCommit(event -> event.getTableView()
                 .getItems()
                 .get(event.getTablePosition().getRow())
                 .setScoolClass(event.getNewValue()));
 
-        lessonTime.setCellFactory(TextFieldTableCell.forTableColumn());
+        lessonTime.setCellFactory(ComboBoxTableCell.forTableColumn(getTimeOfLessons()));
         lessonTime.setOnEditCommit(event -> event.getTableView()
                 .getItems()
                 .get(event.getTablePosition().getRow())
                 .setLessonTime(event.getNewValue()));
 
-        nameOfKurs.setCellFactory(TextFieldTableCell.forTableColumn());
+        nameOfKurs.setCellFactory(ComboBoxTableCell.forTableColumn(toStringList(getKursList())));
         nameOfKurs.setOnEditCommit(event -> event.getTableView()
                 .getItems()
                 .get(event.getTablePosition().getRow())
                 .setNameOfKurs(event.getNewValue()));
 
-        teacherOfLesson.setCellFactory(TextFieldTableCell.forTableColumn());
+        teacherOfLesson.setCellFactory(ComboBoxTableCell.forTableColumn(toStringList(getTeachersList())));
         teacherOfLesson.setOnEditCommit(event -> event.getTableView()
                 .getItems()
                 .get(event.getTablePosition().getRow())
@@ -93,21 +94,19 @@ public class ScheduleTableEdit extends ScheduleTableView {
 
     @FXML
     private void onSaveClick() {
-        for (ScheduleBean el : getTableElements()) {
-            Schedule schedule = new Schedule(el.getWeekDay(),
-                    classConverter().checkClassInDB(classConverter().fromString(el.getScoolClass())),
-                    el.getId(), el.getLessonTime(),
-                    kursConverter().checkKursInDB(kursConverter().fromString(el.getNameOfKurs())),
-                    teacherConverter().checkTeacherInDB(teacherConverter().fromString(el.getTeacherOfLesson())));
+        try{
             List<Schedule> scheduleList = scheduleDAO().getAll();
-            for (Schedule sc : scheduleList) {
-                if (sc.getId().equals(schedule.getId())) {
-                    scheduleDAO().update(schedule);
-                }
-                if (schedule.getId() == null) {
-                    scheduleDAO().save(schedule);
-                }
+            for (Schedule schedule: scheduleList){
+                scheduleDAO().deleteById(schedule.getId());
             }
+            for (ScheduleBean el : getTableElements()){
+                scheduleDAO().save(getSchedule(el));
+            }
+            msgLbl.setText("Ok!");
+            msgLbl.setTextFill(Paint.valueOf("#4f9302"));
+        } catch (Exception e){
+            msgLbl.setText("Ошибка!");
+            msgLbl.setTextFill(Paint.valueOf("#fa3242"));
         }
     }
 
@@ -120,5 +119,14 @@ public class ScheduleTableEdit extends ScheduleTableView {
     private void onRestoreClick() {
         curentSchedule.getItems().clear();
         super.initialize();
+    }
+
+    private Schedule getSchedule(ScheduleBean scheduleBean){
+        return new Schedule(scheduleBean.getWeekDay(),
+                classConverter().checkClassInDB(classConverter().fromString(scheduleBean.getScoolClass())),
+                scheduleBean.getId(),
+                scheduleBean.getLessonTime(),
+                kursConverter().checkKursInDB(kursConverter().fromString(scheduleBean.getNameOfKurs())),
+                teacherConverter().checkTeacherInDB(teacherConverter().fromString(scheduleBean.getTeacherOfLesson())));
     }
 }

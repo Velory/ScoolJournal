@@ -37,7 +37,7 @@
             <children>
                 <Label alignment="CENTER" prefHeight="21.0" prefWidth="501.0" text="Классы" GridPane.columnSpan="3" />
                 <Label alignment="CENTER" prefHeight="21.0" prefWidth="502.0" text="Предметы" GridPane.columnIndex="4" GridPane.columnSpan="3" />
-                <TableView fx:id="classTable" editable="true" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                <TableView fx:id="classTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
                     <columns>
                         <TableColumn fx:id="idClass" prefWidth="73.0" text="id" />
                         <TableColumn fx:id="numberClass" prefWidth="123.0" text="Номер" />
