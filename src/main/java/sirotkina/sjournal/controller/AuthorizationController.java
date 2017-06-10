@@ -6,6 +6,7 @@ import sirotkina.sjournal.domain.UsersBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.ui.Authorization;
+import sirotkina.sjournal.ui.Login;
 import sirotkina.sjournal.utils.myValidator.Validator;
 import java.io.IOException;
 import java.sql.Date;
@@ -101,7 +102,7 @@ public class AuthorizationController {
     }
 
     public void onEnter() {
-        // Login.main(null);
+        Login.getStage().show();
         Authorization.getStage().close();
     }
 

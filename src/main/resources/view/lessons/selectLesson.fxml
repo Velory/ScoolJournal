@@ -28,8 +28,8 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <Label alignment="CENTER" prefHeight="21.0" prefWidth="966.0" text="Label" />
-                    <Label alignment="CENTER" prefHeight="21.0" prefWidth="964.0" text="Доступные уроки" GridPane.rowIndex="1" />
+                    <Label fx:id="curDateLbl" alignment="CENTER" prefHeight="21.0" prefWidth="966.0" text="Label" />
+                    <Label alignment="CENTER" prefHeight="21.0" prefWidth="964.0" text="Доступные уроки на текущую дату" GridPane.rowIndex="1" />
                     <TableView fx:id="selectLessonTable" prefHeight="568.0" prefWidth="660.0" GridPane.rowIndex="2">
                         <columns>
                             <TableColumn fx:id="timeSelectLesson" prefWidth="125.0" text="Время" />

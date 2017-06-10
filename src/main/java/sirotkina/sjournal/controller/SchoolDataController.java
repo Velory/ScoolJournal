@@ -1,5 +1,6 @@
 package sirotkina.sjournal.controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -9,6 +10,8 @@ import javafx.scene.paint.Paint;
 import sirotkina.sjournal.domain.ClassBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Kurs;
+
+import java.sql.SQLException;
 import java.util.List;
 
 import static sirotkina.sjournal.utils.ControllersUtils.*;
@@ -47,47 +50,54 @@ public class SchoolDataController {
 
     @FXML
     public void initialize() {
-        
+        classTable.setEditable(true);
+
         selectionModelClass = classTable.getSelectionModel();
         selectionModelClass.setSelectionMode(SelectionMode.MULTIPLE);
-        if(selectionModelClass.getSelectedIndex() == 0){
-            classTable.setEditable(false);
-        } else {
-            classTable.setEditable(true);
-        }
 
         selectionModelKurs = kursTable.getSelectionModel();
         selectionModelKurs.setSelectionMode(SelectionMode.MULTIPLE);
 
         classObservableList = getClassBeanList();
         idClass.setCellValueFactory(new PropertyValueFactory<>("id"));
-
         numberClass.setCellValueFactory(new PropertyValueFactory<>("num"));
         numberClass.setCellFactory(TextFieldTableCell.forTableColumn());
-        numberClass.setOnEditCommit(event -> event.getTableView()
-                .getItems()
-                .get(event.getTablePosition().getRow())
-                .setNum(event.getNewValue()));
-
+        numberClass.setOnEditCommit(event -> {
+            ClassBean classBean = event.getTableView().getItems()
+                    .get(event.getTablePosition().getRow());
+            if (classBean.getLetter().equals(defaultClassBean().getLetter())){
+                classBean.setNum(event.getOldValue());
+            }else {
+                classBean.setNum(event.getNewValue());
+            }
+        });
         letterClass.setCellFactory(TextFieldTableCell.forTableColumn());
         letterClass.setCellValueFactory(new PropertyValueFactory<>("letter"));
-        letterClass.setOnEditCommit(event -> event.getTableView()
-                .getItems()
-                .get(event.getTablePosition().getRow())
-                .setLetter(event.getNewValue()));
+        letterClass.setOnEditCommit(event -> {
+            ClassBean classBean = event.getTableView().getItems()
+                    .get(event.getTablePosition().getRow());
+            if (classBean.getLetter().equals(defaultClassBean().getLetter())){
+                classBean.setLetter(event.getOldValue());
+            }else {
+                classBean.setLetter(event.getNewValue());
+            }
+        });
         classTable.setItems(classObservableList);
 
         kursObservableList = getKursList();
         idKurs.setCellValueFactory(new PropertyValueFactory<>("id"));
         nameOfKurs.setCellValueFactory(new PropertyValueFactory<>("title"));
         nameOfKurs.setCellFactory(TextFieldTableCell.forTableColumn());
-        nameOfKurs.setOnEditCommit(event -> event.getTableView()
-                .getItems()
-                .get(event.getTablePosition().getRow())
-                .setTitle(event.getNewValue()));
+        nameOfKurs.setOnEditCommit(event -> {
+            Kurs kurs = event.getTableView().getItems()
+                    .get(event.getTablePosition().getRow());
+            if (kurs.getTitle().equals(defaultKurs().getTitle())){
+                kurs.setTitle(event.getOldValue());
+            } else {
+                kurs.setTitle(event.getNewValue());
+            }
+        });
         kursTable.setItems(kursObservableList);
-
-
     }
 
     public void onAddClass() {
@@ -102,7 +112,6 @@ public class SchoolDataController {
 
     public void onSaveClass() {
         try {
-            //classObservableList.add(defaultClassBean());
             List<Class> classes = classDAO().getAll();
             for (Class clDAO : classes) {
                 classDAO().deleteById(clDAO.getId());
@@ -121,10 +130,9 @@ public class SchoolDataController {
 
     public void onSaveKurs() {
         try {
-            //kursObservableList.add(defaultKurs());
             List<Kurs> kursList = kursDAO().getAll();
-            for (Kurs kurs: kursList){
-                kursDAO().deleteById(kurs.getId());
+            for (Kurs k: kursList){
+                kursDAO().deleteById(k.getId());
             }
             for (Kurs k : kursObservableList) {
                 kursDAO().save(new Kurs(null, k.getTitle()));

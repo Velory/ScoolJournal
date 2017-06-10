@@ -1,7 +1,5 @@
 package sirotkina.sjournal.controller.shedule;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -43,15 +41,9 @@ public class ScheduleTableEdit extends ScheduleTableView {
 
         newDay.getItems().addAll(getDaysOfWeek());
         newLessonTime.getItems().addAll(getTimeOfLessons());
-
         newScoolClass.getItems().addAll(getClassList());
-        newScoolClass.setConverter(classConverter());
-
         newNameOfKurs.getItems().addAll(getKursList());
-        newNameOfKurs.setConverter(kursConverter());
-
         newTeacherOfLesson.getItems().addAll(getTeachersList());
-        //newTeacherOfLesson.setConverter(teacherConverter());
 
         day.setCellFactory(ComboBoxTableCell.forTableColumn(getDaysOfWeek()));
         day.setOnEditCommit(event -> event.getTableView()

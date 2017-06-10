@@ -56,4 +56,24 @@ public class LessonDAO extends AbstractDAO<Lesson> {
         ps.setInt(6, lesson.getKursFKId().getId());
         ps.setInt(7, lesson.getId());
     }
+
+    public int checkLastId() {
+        String query = "SELECT MAX(id) FROM " + getTableName();
+        ResultSet rs = null;
+        try (PreparedStatement ps = getConnection().prepareStatement(query)) {
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt("max(id)");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
 }

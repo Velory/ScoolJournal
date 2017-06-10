@@ -1,71 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="755.0" prefWidth="1020.0" xmlns="http://javafx.com/javafx/8"
-            fx:controller="sirotkina.sjournal.controller.DiaryController">
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.DiaryController">
     <center>
         <TableView prefHeight="706.0" prefWidth="955.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn prefWidth="46.0" text="№"/>
-                <TableColumn prefWidth="254.0" text="Предмет"/>
-                <TableColumn prefWidth="425.0" text="Домашнее задание"/>
-                <TableColumn prefWidth="77.0" text="Оценка"/>
-                <TableColumn prefWidth="192.0" text="Примечание"/>
+                <TableColumn prefWidth="46.0" text="№" />
+                <TableColumn prefWidth="254.0" text="Предмет" />
+                <TableColumn prefWidth="425.0" text="Домашнее задание" />
+                <TableColumn prefWidth="77.0" text="Оценка" />
+                <TableColumn prefWidth="244.0" text="Примечание" />
             </columns>
         </TableView>
     </center>
     <top>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="10.0" prefWidth="200.0"/>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="220.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.0" minWidth="10.0" prefWidth="240.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="0.0" prefWidth="0.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <DatePicker promptText="Начало периода" GridPane.columnIndex="4" GridPane.rowIndex="1"/>
-                <Label alignment="CENTER" prefHeight="35.0" prefWidth="1020.0" text="Дневник" GridPane.columnIndex="1"
-                       GridPane.columnSpan="5">
+                <DatePicker fx:id="period" promptText="Начало периода" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                <Label alignment="CENTER" prefHeight="35.0" prefWidth="1200.0" text="Дневник" GridPane.columnIndex="1" GridPane.columnSpan="5">
                     <font>
-                        <Font size="24.0"/>
+                        <Font size="24.0" />
                     </font>
                 </Label>
-                <DatePicker promptText="Окончание периода" GridPane.columnIndex="5" GridPane.rowIndex="1"/>
-                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="200.0" text="Button"
-                        GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="200.0" text="Button"
-                        GridPane.columnIndex="2" GridPane.rowIndex="2"/>
-                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="200.0" text="Button"
-                        GridPane.columnIndex="3" GridPane.rowIndex="2"/>
-                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="200.0" text="Button"
-                        GridPane.columnIndex="4" GridPane.rowIndex="2"/>
-                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="200.0" text="Button"
-                        GridPane.columnIndex="5" GridPane.rowIndex="2"/>
-                <ComboBox prefHeight="31.0" prefWidth="200.0" promptText="Выберите ученика" GridPane.columnIndex="1"
-                          GridPane.rowIndex="1"/>
+                <Button fx:id="firstDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="secondDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Button fx:id="thirdDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Button fx:id="fourthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                <Button fx:id="fifthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                <ComboBox fx:id="selectStudentDiary" prefHeight="31.0" prefWidth="200.0" promptText="Выберите ученика" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox fx:id="selectClassDiary" prefWidth="200.0" promptText="Выберите класс" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </children>
         </GridPane>
     </top>
     <left>
-        <Pane prefHeight="665.0" prefWidth="10.0" BorderPane.alignment="CENTER"/>
+        <Pane prefHeight="665.0" prefWidth="10.0" BorderPane.alignment="CENTER" />
     </left>
     <right>
-        <Pane prefHeight="665.0" prefWidth="10.0" BorderPane.alignment="CENTER"/>
+        <Pane prefHeight="665.0" prefWidth="10.0" BorderPane.alignment="CENTER" />
     </right>
     <bottom>
-        <Pane prefHeight="10.0" prefWidth="1020.0" BorderPane.alignment="CENTER"/>
+        <Pane prefHeight="10.0" prefWidth="1020.0" BorderPane.alignment="CENTER" />
     </bottom>
 </BorderPane>
-
