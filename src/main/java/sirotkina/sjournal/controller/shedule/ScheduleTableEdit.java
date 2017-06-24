@@ -1,20 +1,20 @@
 package sirotkina.sjournal.controller.shedule;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.ComboBoxTableCell;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Paint;
 import sirotkina.sjournal.domain.ScheduleBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.*;
 import java.util.List;
+
+import static sirotkina.sjournal.utils.ObservableListUtils.*;
 import static sirotkina.sjournal.utils.ControllersUtils.*;
 import static sirotkina.sjournal.utils.ConvertersUtils.*;
-
-import static sirotkina.sjournal.utils.DatabaseUtils.scheduleDAO;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class ScheduleTableEdit extends ScheduleTableView {
 

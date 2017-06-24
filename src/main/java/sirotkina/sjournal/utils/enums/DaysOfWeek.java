@@ -1,4 +1,4 @@
-package sirotkina.sjournal.utils;
+package sirotkina.sjournal.utils.enums;
 
 public enum DaysOfWeek {
     MONDAY("Понедельник"),

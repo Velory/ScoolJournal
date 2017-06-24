@@ -10,8 +10,8 @@ import javafx.scene.paint.Paint;
 import sirotkina.sjournal.domain.ClassBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Kurs;
-
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import static sirotkina.sjournal.utils.ControllersUtils.*;
@@ -47,6 +47,38 @@ public class SchoolDataController {
     private Label msgLblClass;
     @FXML
     private Label msgLblKurs;
+
+    public ObservableList<Kurs> getKursList() {
+        List<Kurs> kursList = new ArrayList<>();
+        List<Kurs> kurses = kursDAO().getAll();
+        Iterator<Kurs> itr = kurses.iterator();
+        while (itr.hasNext()){
+            Kurs k = itr.next();
+            if (k.getTitle().equals(defaultKurs().getTitle())){
+                itr.remove();
+            }
+        }
+        kursList.add(defaultKurs());
+        kursList.addAll(kurses);
+        return FXCollections.observableList(kursList);
+    }
+
+    public ObservableList<ClassBean> getClassBeanList() {
+        List<ClassBean> classBeanList = new ArrayList<>();
+        List<Class> classes = classDAO().getAll();
+        Iterator<Class> itr = classes.iterator();
+        while (itr.hasNext()){
+            Class cl1 = itr.next();
+            if (cl1.getLetter().equals(defaultClassBean().getLetter())){
+                itr.remove();
+            }
+        }
+        classBeanList.add(defaultClassBean());
+        for (Class cl: classes){
+            classBeanList.add(new ClassBean(cl.getId(), String.valueOf(cl.getNum()), cl.getLetter()));
+        }
+        return FXCollections.observableList(classBeanList);
+    }
 
     @FXML
     public void initialize() {

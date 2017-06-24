@@ -32,10 +32,10 @@
                     <Label alignment="CENTER" prefHeight="21.0" prefWidth="964.0" text="Доступные уроки на текущую дату" GridPane.rowIndex="1" />
                     <TableView fx:id="selectLessonTable" prefHeight="568.0" prefWidth="660.0" GridPane.rowIndex="2">
                         <columns>
-                            <TableColumn fx:id="timeSelectLesson" prefWidth="125.0" text="Время" />
-                            <TableColumn fx:id="kursSelectLesson" prefWidth="264.0" text="Предмет" />
-                            <TableColumn fx:id="classSelectLesson" prefWidth="95.0" text="Класс" />
-                            <TableColumn fx:id="teacherSelectLesson" prefWidth="312.0" text="Преподаватель" />
+                            <TableColumn fx:id="lessonTime" prefWidth="125.0" text="Время" />
+                            <TableColumn fx:id="nameOfKurs" prefWidth="264.0" text="Предмет" />
+                            <TableColumn fx:id="scoolClass" prefWidth="95.0" text="Класс" />
+                            <TableColumn fx:id="teacherOfLesson" prefWidth="312.0" text="Преподаватель" />
                             <TableColumn fx:id="newLesson" prefWidth="163.0" />
                         </columns>
                     </TableView>

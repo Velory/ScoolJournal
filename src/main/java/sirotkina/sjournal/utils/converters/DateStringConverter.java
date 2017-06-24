@@ -9,7 +9,7 @@ import java.util.Locale;
 public class DateStringConverter extends StringConverter<LocalDate> {
 
     private final String DATE_PATTERN = "dd/MM/yyyy";
-    private final Locale locale = new Locale("uk", "UA", "Ukrainian (Ukraine)");
+    private final Locale locale = new Locale("ru", "RU", "Russian (Russia)");
 
     private DateTimeFormatter dateTimeFormatter;
 
@@ -35,12 +35,12 @@ public class DateStringConverter extends StringConverter<LocalDate> {
         return date;
     }
 
-    /*public String toDayOfWeek(Date date) {
+    public String toDayOfWeek(LocalDate date) {
         LocalDate localDate = LocalDate.from(dateTimeFormatter.parse(toString(date)));
         return localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, locale);
     }
 
-    public Date fromDayOfWeek(String day) {
+    /*public LocalDate fromDayOfWeek(String day) {
         LocalDate localDate = LocalDate.now();
         for (int i = 0; i < 7; i++) {
             if (localDate.getDayOfWeek().getDisplayName(TextStyle.FULL, locale).trim().equals(day)) {
@@ -48,6 +48,5 @@ public class DateStringConverter extends StringConverter<LocalDate> {
             }
         }
         return null;
-    }
-*/
+    }*/
 }

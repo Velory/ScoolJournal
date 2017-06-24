@@ -3,16 +3,12 @@ package sirotkina.sjournal.controller.journal;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Paint;
 import javafx.util.Callback;
 import sirotkina.sjournal.controller.MainMenuController;
-import sirotkina.sjournal.domain.LessonBean;
-import sirotkina.sjournal.domain.ScheduleBean;
+import sirotkina.sjournal.domain.*;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Lesson;
 import sirotkina.sjournal.entity.Users;
@@ -25,11 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import static sirotkina.sjournal.utils.ControllersUtils.getSheduleBeanList;
-import static sirotkina.sjournal.utils.ControllersUtils.getStudentsList;
-import static sirotkina.sjournal.utils.ConvertersUtils.classConverter;
-import static sirotkina.sjournal.utils.ConvertersUtils.studentConverter;
-import static sirotkina.sjournal.utils.DatabaseUtils.lessonDAO;
+import static sirotkina.sjournal.utils.ObservableListUtils.*;
+import static sirotkina.sjournal.utils.ConvertersUtils.*;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class SelectLessonController {
 
@@ -38,13 +32,13 @@ public class SelectLessonController {
     @FXML
     private TableView<ScheduleBean> selectLessonTable;
     @FXML
-    private TableColumn<ScheduleBean, String> timeSelectLesson;
+    private TableColumn<ScheduleBean, String> lessonTime;
     @FXML
-    private TableColumn<ScheduleBean, String> kursSelectLesson;
+    private TableColumn<ScheduleBean, String> nameOfKurs;
     @FXML
-    private TableColumn<ScheduleBean, String> classSelectLesson;
+    private TableColumn<ScheduleBean, String> scoolClass;
     @FXML
-    private TableColumn<ScheduleBean, String> teacherSelectLesson;
+    private TableColumn<ScheduleBean, String> teacherOfLesson;
     @FXML
     private TableColumn<ScheduleBean, String> newLesson;
     @FXML
@@ -59,10 +53,10 @@ public class SelectLessonController {
         lessonController = this;
         curDateLbl.setText("Сегодня " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd MM yyyy")));
         scheduleBeans = getSheduleBeanList();
-        timeSelectLesson.setCellValueFactory(new PropertyValueFactory<>("lessonTime"));
-        kursSelectLesson.setCellValueFactory(new PropertyValueFactory<>("nameOfKurs"));
-        classSelectLesson.setCellValueFactory(new PropertyValueFactory<>("scoolClass"));
-        teacherSelectLesson.setCellValueFactory(new PropertyValueFactory<>("teacherOfLesson"));
+        lessonTime.setCellValueFactory(new PropertyValueFactory<>("lessonTime"));
+        nameOfKurs.setCellValueFactory(new PropertyValueFactory<>("nameOfKurs"));
+        scoolClass.setCellValueFactory(new PropertyValueFactory<>("scoolClass"));
+        teacherOfLesson.setCellValueFactory(new PropertyValueFactory<>("teacherOfLesson"));
         selectLessonTable.setItems(getScheduleOnCurrentDate());
         newLesson.setCellFactory(labelCellFactory());
 

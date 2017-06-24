@@ -1,4 +1,4 @@
-package sirotkina.sjournal.utils;
+package sirotkina.sjournal.utils.enums;
 
 public enum TimeOfLessons {
     ONE("8:00 - 8:45"),

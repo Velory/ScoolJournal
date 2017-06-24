@@ -7,17 +7,6 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.DiaryController">
-    <center>
-        <TableView prefHeight="706.0" prefWidth="955.0" BorderPane.alignment="CENTER">
-            <columns>
-                <TableColumn prefWidth="46.0" text="№" />
-                <TableColumn prefWidth="254.0" text="Предмет" />
-                <TableColumn prefWidth="425.0" text="Домашнее задание" />
-                <TableColumn prefWidth="77.0" text="Оценка" />
-                <TableColumn prefWidth="244.0" text="Примечание" />
-            </columns>
-        </TableView>
-    </center>
     <top>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -41,13 +30,14 @@
                         <Font size="24.0" />
                     </font>
                 </Label>
-                <Button fx:id="firstDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <!--<Button fx:id="firstDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Button fx:id="secondDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                 <Button fx:id="thirdDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                 <Button fx:id="fourthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                <Button fx:id="fifthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                <Button fx:id="fifthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="2" />-->
                 <ComboBox fx:id="selectStudentDiary" prefHeight="31.0" prefWidth="200.0" promptText="Выберите ученика" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <ComboBox fx:id="selectClassDiary" prefWidth="200.0" promptText="Выберите класс" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="msgLabel" prefHeight="21.0" prefWidth="478.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
             </children>
         </GridPane>
     </top>
@@ -60,4 +50,39 @@
     <bottom>
         <Pane prefHeight="10.0" prefWidth="1020.0" BorderPane.alignment="CENTER" />
     </bottom>
+   <center>
+      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab fx:id="tab1" text="Untitled Tab 1">
+               <content>
+                    <TableView fx:id="diaryTable1" prefHeight="664.0" prefWidth="1198.0">
+                        <columns>
+                            <TableColumn fx:id="numDiary1" prefWidth="46.0" text="№" />
+                            <TableColumn fx:id="kursDiary1" prefWidth="254.0" text="Предмет" />
+                            <TableColumn fx:id="homeTaskDiary1" prefWidth="425.0" text="Домашнее задание" />
+                            <TableColumn fx:id="markDiary1" prefWidth="77.0" text="Оценка" />
+                            <TableColumn fx:id="commentDiary1" prefWidth="244.0" text="Примечание" />
+                        </columns>
+                    </TableView>
+               </content>
+          </Tab>
+          <Tab fx:id="tab2" text="Untitled Tab 2" >
+            <content>
+                <TableView fx:id="diaryTable2" prefHeight="664.0" prefWidth="1198.0">
+                    <columns>
+                        <TableColumn fx:id="numDiary2" prefWidth="46.0" text="№" />
+                        <TableColumn fx:id="kursDiary2" prefWidth="254.0" text="Предмет" />
+                        <TableColumn fx:id="homeTaskDiary2" prefWidth="425.0" text="Домашнее задание" />
+                        <TableColumn fx:id="markDiary2" prefWidth="77.0" text="Оценка" />
+                        <TableColumn fx:id="commentDiary2" prefWidth="244.0" text="Примечание" />
+                    </columns>
+                </TableView>
+            </content>
+        </Tab>
+            <Tab fx:id="tab3" text="Untitled Tab" />
+            <Tab fx:id="tab4" text="Untitled Tab" />
+            <Tab fx:id="tab5" text="Untitled Tab" />
+        </tabs>
+      </TabPane>
+   </center>
 </BorderPane>

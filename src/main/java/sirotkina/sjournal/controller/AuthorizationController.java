@@ -7,6 +7,7 @@ import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.*;
 import sirotkina.sjournal.ui.Authorization;
 import sirotkina.sjournal.ui.Login;
+import sirotkina.sjournal.utils.enums.RoleEnum;
 import sirotkina.sjournal.utils.myValidator.Validator;
 import java.io.IOException;
 import java.sql.Date;
@@ -15,7 +16,8 @@ import java.util.Set;
 
 import static sirotkina.sjournal.utils.ControllersUtils.*;
 import static sirotkina.sjournal.utils.ConvertersUtils.*;
-import static sirotkina.sjournal.utils.DatabaseUtils.usersDAO;
+import static sirotkina.sjournal.utils.DatabaseUtils.*;
+import static sirotkina.sjournal.utils.ObservableListUtils.*;
 
 public class AuthorizationController {
 
@@ -67,18 +69,18 @@ public class AuthorizationController {
     }
 
     public void onRoleAction() {
-        if (role.getValue().getRole().equals(sirotkina.sjournal.utils.Role.ADMIN.getValue()) ||
-                role.getValue().getRole().equals(sirotkina.sjournal.utils.Role.PARENT.getValue())){
+        if (role.getValue().getRole().equals(RoleEnum.ADMIN.getValue()) ||
+                role.getValue().getRole().equals(RoleEnum.PARENT.getValue())){
             nodeIsActive(false, classAuth, classLbl, kursAuth, kursLbl);
             classAuth.setValue(defaultClassFromDB());
             kursAuth.setValue(defaultkursFromDB());
         }
-        if (role.getValue().getRole().equals(sirotkina.sjournal.utils.Role.STUDENT.getValue())) {
+        if (role.getValue().getRole().equals(RoleEnum.STUDENT.getValue())) {
             nodeIsActive(true, classAuth, classLbl);
             nodeIsActive(false, kursLbl, kursAuth);
             kursAuth.setValue(defaultkursFromDB());
         }
-        if (role.getValue().getRole().equals(sirotkina.sjournal.utils.Role.TEACHER.getValue())) {
+        if (role.getValue().getRole().equals(RoleEnum.TEACHER.getValue())) {
             nodeIsActive(true, kursAuth, kursLbl);
             nodeIsActive(false, classLbl, classAuth);
             classAuth.setValue(defaultClassFromDB());
@@ -86,7 +88,7 @@ public class AuthorizationController {
     }
 
     public void onRegistration() {
-        validator = getValidator(UsersBean.class);
+        validator = new Validator(UsersBean.class);
         Set<String> messages = validator.validate(getUsersBean());
         if (messages.isEmpty()) {
             Users users = getNewUser();
@@ -106,9 +108,9 @@ public class AuthorizationController {
         Authorization.getStage().close();
     }
 
-    private Validator getValidator(java.lang.Class cl) {
+    /*private Validator getValidator(java.lang.Class cl) {
         return new Validator(cl);
-    }
+    }*/
 
     private UsersBean getUsersBean() {
         return new UsersBean(firstNameField.getText(), midNameField.getText(), lastNameField.getText(),

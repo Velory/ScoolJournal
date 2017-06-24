@@ -1,6 +1,6 @@
-package sirotkina.sjournal.utils;
+package sirotkina.sjournal.utils.enums;
 
-public enum Role {
+public enum RoleEnum {
     ADMIN("Администратор"),
     STUDENT("Ученик"),
     TEACHER("Учитель"),
@@ -8,7 +8,7 @@ public enum Role {
 
     private String value;
 
-    Role(String value) {
+    RoleEnum(String value) {
         this.value = value;
     }
 

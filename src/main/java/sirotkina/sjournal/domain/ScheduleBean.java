@@ -28,7 +28,6 @@ public class ScheduleBean {
     }
 
     public String getScoolClass() {
-
         return scoolClass;
     }
 

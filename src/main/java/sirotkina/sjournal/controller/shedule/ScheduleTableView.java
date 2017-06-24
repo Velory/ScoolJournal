@@ -7,7 +7,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sirotkina.sjournal.domain.ScheduleBean;
 
-import static sirotkina.sjournal.utils.ControllersUtils.getSheduleBeanList;
+import static sirotkina.sjournal.utils.ObservableListUtils.*;
 
 public class ScheduleTableView {
 
