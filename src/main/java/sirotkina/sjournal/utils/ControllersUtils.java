@@ -22,6 +22,22 @@ public class ControllersUtils {
         DEFAULTKURS = new Kurs(null, "N/A");
     }
 
+    public static ClassBean defaultClassBean() {
+        return DEFAULTCLASSBEAN;
+    }
+
+    public static Kurs defaultKurs() {
+        return DEFAULTKURS;
+    }
+
+    public static Kurs defaultkursFromDB(){
+        return kursConverter().checkKursInDB(DEFAULTKURS);
+    }
+
+    public static Class defaultClassFromDB() {
+        return classConverter().checkClassInDB(DEFAULTCLASS);
+    }
+
     public static void nodeIsActive(boolean b, Node... nodes) {
         if (b) {
             for (Node node : nodes) {
@@ -50,21 +66,4 @@ public class ControllersUtils {
             tableView.getItems().remove(selectedIndices[i].intValue());
         }
     }
-
-    public static ClassBean defaultClassBean() {
-        return DEFAULTCLASSBEAN;
-    }
-
-    public static Kurs defaultKurs() {
-        return DEFAULTKURS;
-    }
-
-    public static Kurs defaultkursFromDB(){
-        return kursConverter().checkKursInDB(DEFAULTKURS);
-    }
-
-    public static Class defaultClassFromDB() {
-        return classConverter().checkClassInDB(DEFAULTCLASS);
-    }
-
 }

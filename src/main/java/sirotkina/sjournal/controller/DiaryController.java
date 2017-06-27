@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import sirotkina.sjournal.domain.DiaryBean;
 import sirotkina.sjournal.entity.Class;
 import sirotkina.sjournal.entity.Lesson;
@@ -13,7 +14,6 @@ import sirotkina.sjournal.entity.Marks;
 import sirotkina.sjournal.entity.Users;
 import sirotkina.sjournal.utils.enums.DaysOfWeek;
 import sirotkina.sjournal.utils.myValidator.Validator;
-
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -24,16 +24,16 @@ import static sirotkina.sjournal.utils.DatabaseUtils.*;
 
 public class DiaryController {
 
-    //private List<Button> buttons;
+    private List<Button> buttons;
     private Validator validator;
 
     @FXML    private ComboBox<Users> selectStudentDiary;
     @FXML    private ComboBox<Class> selectClassDiary;
-    /*@FXML    private Button firstDay;
+    @FXML    private Button firstDay;
     @FXML    private Button secondDay;
     @FXML    private Button thirdDay;
     @FXML    private Button fourthDay;
-    @FXML    private Button fifthDay;*/
+    @FXML    private Button fifthDay;
     @FXML    private DatePicker period;
     @FXML    private TableView<DiaryBean> diaryTable;
     @FXML    private TableColumn<DiaryBean, Integer> numDiary;
@@ -42,12 +42,19 @@ public class DiaryController {
     @FXML    private TableColumn<DiaryBean, String> markDiary;
     @FXML    private TableColumn<DiaryBean, String> commentDiary;
     @FXML    private Label msgLabel;
-    @FXML private Tab tab1;
-    @FXML private Tab tab2;
-    @FXML private Tab tab3;
-    @FXML private Tab tab4;
-    @FXML private Tab tab5;
-    private List<Tab> tabs;
+
+    public void initialize(){
+        getButtons();
+        selectClassDiary.setItems(getClassList());
+        selectClassDiary.getSelectionModel().selectedItemProperty().addListener(this::classChanged);
+        period.setOnAction(event -> periodChanged(period.getValue()));
+        tableInitialize(LocalDate.now());
+        firstDay.setOnKeyPressed(event -> tableInitialize(LocalDate.parse(firstDay.getText().substring(0, 10))));
+        secondDay.setOnKeyPressed(event -> tableInitialize(LocalDate.parse(secondDay.getText().substring(0, 10))));
+        thirdDay.setOnKeyPressed(event -> tableInitialize(LocalDate.parse(thirdDay.getText().substring(0, 10))));
+        fourthDay.setOnKeyPressed(event -> tableInitialize(LocalDate.parse(fourthDay.getText().substring(0, 10))));
+        fifthDay.setOnKeyPressed(event -> tableInitialize(LocalDate.parse(firstDay.getText().substring(0, 10))));
+    }
 
     private ObservableList<Users> studentsOfClass(Class cl){
         ObservableList<Users> students = getStudentsList();
@@ -66,37 +73,20 @@ public class DiaryController {
         List<Marks> marks = marksDAO().getAll();
         int i = 0;
         for (Lesson l: lessons) {
-            if (l.getDate().equals(localDate) ){
+            if (l.getDate().toLocalDate().equals(localDate) ){
                 List<Marks> filteredMarks = marks.stream().filter(marks1 -> marks1.getLessonFKId().equals(l))
                         .filter(marks1 -> marks1.getStudentsFKId().equals(selectStudentDiary.getValue()))
                         .collect(Collectors.toList());
-                diaryBeansList.add(new DiaryBean(i++, kursConverter().toString(l.getKursFKId()),
-                        l.getHomeTask(), String.valueOf(filteredMarks.get(0).getMark()),
-                        filteredMarks.get(0).getComment()));
+                if (!filteredMarks.isEmpty()){
+                    for (Marks mark: filteredMarks){
+                        diaryBeansList.add(new DiaryBean(i++, kursConverter().toString(l.getKursFKId()),
+                                l.getHomeTask(), String.valueOf(mark.getMark()),
+                                mark.getComment()));
+                    }
+                }
             }
         }
         return FXCollections.observableList(diaryBeansList);
-    }
-
-    public void initialize(){
-        selectClassDiary.setItems(getClassList());
-        selectClassDiary.getSelectionModel().selectedItemProperty().addListener(this::classChanged);
-        period.setOnAction(event -> periodChanged(period.getValue()));
-
-        /*buttons = new ArrayList<>();
-        buttons.add(firstDay);
-        buttons.add(secondDay);
-        buttons.add(thirdDay);
-        buttons.add(fourthDay);
-        buttons.add(fifthDay);*/
-
-        tabs = new ArrayList<>();
-        tabs.add(tab1);
-        tabs.add(tab2);
-        tabs.add(tab3);
-        tabs.add(tab4);
-        tabs.add(tab5);
-
     }
 
     private void classChanged(ObservableValue<? extends Class> clItem, Class oldValue, Class newValue){
@@ -114,36 +104,49 @@ public class DiaryController {
                 .filter(localDate1 -> !dateConverter().toDayOfWeek(localDate1).equals(saturday))
                 .filter(localDate1 -> !dateConverter().toDayOfWeek(localDate1).equals(sunday))
                 .collect(Collectors.toList());
-        /*for (int i = 0; i < buttons.size(); i++){
+        for (int i = 0; i < buttons.size(); i++){
             buttons.get(i).setText(filteredDays.get(i).toString() + " "
-                    + dateConverter().toDayOfWeek(filteredDays.get(i)));
-        }*/
-        for (int i = 0; i < tabs.size(); i++){
-            tabs.get(i).setText(filteredDays.get(i).toString() + " "
                     + dateConverter().toDayOfWeek(filteredDays.get(i)));
         }
     }
 
-    private void diaryTableInitialize(TableView tableView, TableColumn... tableColumns){
+    private void diaryTableInitialize(){
         validator = new Validator(DiaryBean.class);
         Set<String> messages = validator.validate(getDiaryBean());
         if (messages.isEmpty()){
-            numDiary.setCellValueFactory(new PropertyValueFactory<>("numDiary"));
-            kursDiary.setCellValueFactory(new PropertyValueFactory<>("kursDiary"));
-            homeTaskDiary.setCellValueFactory(new PropertyValueFactory<>("homeTaskDiary"));
-            markDiary.setCellValueFactory(new PropertyValueFactory<>("markDiary"));
-            commentDiary.setCellValueFactory(new PropertyValueFactory<>("commentDiary"));
-            diaryTable.setItems(diaryBeanList(period.getValue()));
+            tableInitialize(period.getValue());
             msgLabel.setText("");
         } else {
             msgLabel.setText(String.valueOf(messages));
         }
     }
 
-    private DiaryBean getDiaryBean(){
-        return new DiaryBean(selectStudentDiary.getValue().toString(),
-                selectClassDiary.getValue().toString(),
-                period.getValue().toString());
+    public void onGoBtn(){
+        diaryTableInitialize();
     }
 
+    public void tableInitialize(LocalDate localDate){
+        numDiary.setCellValueFactory(new PropertyValueFactory<>("numDiary"));
+        kursDiary.setCellValueFactory(new PropertyValueFactory<>("kursDiary"));
+        homeTaskDiary.setCellValueFactory(new PropertyValueFactory<>("homeTask"));
+        markDiary.setCellValueFactory(new PropertyValueFactory<>("markDiary"));
+        commentDiary.setCellValueFactory(new PropertyValueFactory<>("commentDiary"));
+        diaryTable.setItems(diaryBeanList(localDate));
+    }
+
+    private DiaryBean getDiaryBean(){
+        return new DiaryBean(studentConverter().toString(selectStudentDiary.getValue()),
+                classConverter().toString(selectClassDiary.getValue()),
+                dateConverter().toString(period.getValue()));
+    }
+
+    public List<Button> getButtons() {
+        buttons = new ArrayList<>();
+        buttons.add(firstDay);
+        buttons.add(secondDay);
+        buttons.add(thirdDay);
+        buttons.add(fourthDay);
+        buttons.add(fifthDay);
+        return buttons;
+    }
 }
