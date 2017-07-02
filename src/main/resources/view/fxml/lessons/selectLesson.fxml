@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="805.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.journal.SelectLessonController">
+<BorderPane prefHeight="805.0" prefWidth="1220.0" style="-fx-background-color: #ffffff;" stylesheets="@../../css/theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.journal.SelectLessonController">
     <top>
         <Pane prefHeight="20.0" prefWidth="1020.0" BorderPane.alignment="CENTER" />
     </top>
@@ -28,8 +29,14 @@
                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 </rowConstraints>
                 <children>
-                    <Label fx:id="curDateLbl" alignment="CENTER" prefHeight="21.0" prefWidth="966.0" text="Label" />
-                    <Label alignment="CENTER" prefHeight="21.0" prefWidth="964.0" text="Доступные уроки на текущую дату" GridPane.rowIndex="1" />
+                    <Label fx:id="curDateLbl" alignment="CENTER" prefHeight="21.0" prefWidth="966.0" text="Label" textFill="#324597">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+                    <Label alignment="CENTER" prefHeight="21.0" prefWidth="964.0" text="Доступные уроки на текущую дату" textFill="#324597" GridPane.rowIndex="1">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
                     <TableView fx:id="selectLessonTable" prefHeight="568.0" prefWidth="660.0" GridPane.rowIndex="2">
                         <columns>
                             <TableColumn fx:id="lessonTime" prefWidth="125.0" text="Время" />

@@ -24,13 +24,13 @@ public class MainMenuController {
 
     public void initialize() throws IOException {
         menuController = this;
-        createSchedule = FXMLLoader.load(getClass().getClassLoader().getResource("view/createSchedule.fxml"));
-        currentSchedule = FXMLLoader.load(getClass().getClassLoader().getResource("view/currentSchedule.fxml"));
-        diary = FXMLLoader.load(getClass().getClassLoader().getResource("view/diary.fxml"));
-        selectLesson = FXMLLoader.load(getClass().getClassLoader().getResource("view/lessons/selectLesson.fxml"));
-        createLesson = FXMLLoader.load(getClass().getClassLoader().getResource("view/lessons/createLesson.fxml"));
-        schoolData = FXMLLoader.load(getClass().getClassLoader().getResource("view/schoolData.fxml"));
-        personalProfile = FXMLLoader.load(getClass().getClassLoader().getResource("view/personalProfile.fxml"));
+        createSchedule = FXMLLoader.load(getClass().getClassLoader().getResource("view/fxml/createSchedule.fxml"));
+        currentSchedule = FXMLLoader.load(getClass().getClassLoader().getResource("view/fxml/currentSchedule.fxml"));
+        diary = FXMLLoader.load(getClass().getClassLoader().getResource("view/fxml/diary.fxml"));
+        selectLesson = FXMLLoader.load(getClass().getClassLoader().getResource("view/fxml/lessons/selectLesson.fxml"));
+        createLesson = FXMLLoader.load(getClass().getClassLoader().getResource("view/fxml/lessons/createLesson.fxml"));
+        schoolData = FXMLLoader.load(getClass().getClassLoader().getResource("view/fxml/schoolData.fxml"));
+        personalProfile = FXMLLoader.load(getClass().getClassLoader().getResource("view/fxml/personalProfile.fxml"));
     }
 
     public void onNewSchedule() {

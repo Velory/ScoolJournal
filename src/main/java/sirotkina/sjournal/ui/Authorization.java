@@ -11,7 +11,7 @@ public class Authorization {
     private static Stage stage;
 
     public Authorization() throws IOException {
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/authorization.fxml"));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("view/fxml/authorization.fxml"));
         stage = new Stage();
         Scene scene = new Scene(root);
         stage.setScene(scene);

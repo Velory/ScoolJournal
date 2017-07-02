@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.DiaryController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1220.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.DiaryController">
     <top>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -24,28 +24,31 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="5.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="5.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="5.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <DatePicker fx:id="period" promptText="Начало периода" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                <Label alignment="CENTER" prefHeight="35.0" prefWidth="1200.0" text="Дневник" GridPane.columnIndex="1" GridPane.columnSpan="5">
+                <DatePicker fx:id="period" promptText="Начало периода" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <Label alignment="CENTER" prefHeight="35.0" prefWidth="1200.0" text="Дневник" textFill="#324597" GridPane.columnIndex="1" GridPane.columnSpan="5">
                     <font>
-                        <Font size="24.0" />
+                        <Font size="25.0" />
                     </font>
                 </Label>
-                <Button fx:id="firstDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Button fx:id="secondDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                <Button fx:id="thirdDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                <Button fx:id="fourthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                <Button fx:id="fifthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="240.0" text="Button" GridPane.columnIndex="5" GridPane.rowIndex="2" />
-                <ComboBox fx:id="selectStudentDiary" prefHeight="31.0" prefWidth="200.0" promptText="Выберите ученика" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <ComboBox fx:id="selectClassDiary" prefWidth="200.0" promptText="Выберите класс" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="msgLabel" prefHeight="21.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                <Button fx:id="firstDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="230.0" text="Понедельник" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Button fx:id="secondDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="230.0" text="Вторник" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <Button fx:id="thirdDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="230.0" text="Среда" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <Button fx:id="fourthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="230.0" text="Четверг" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                <Button fx:id="fifthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="230.0" text="Пятница" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                <ComboBox fx:id="selectStudentDiary" prefHeight="30.0" prefWidth="200.0" promptText="Выберите ученика" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ComboBox fx:id="selectClassDiary" prefHeight="30.0" prefWidth="200.0" promptText="Выберите класс" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="msgLabel" prefHeight="21.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="65.0" />
                </GridPane.margin></Label>
-            <Button fx:id="goBtn" mnemonicParsing="false" onAction="#onGoBtn" prefHeight="31.0" prefWidth="60.0" text="Go!" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <Button fx:id="goBtn" mnemonicParsing="false" onAction="#onGoBtn" prefHeight="20.0" prefWidth="60.0" text="Go!" GridPane.columnIndex="4" GridPane.rowIndex="2" />
             </children>
         </GridPane>
     </top>

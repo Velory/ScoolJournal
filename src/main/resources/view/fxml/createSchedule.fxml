@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="805.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.shedule.ScheduleTableEdit">
+<BorderPane prefHeight="805.0" prefWidth="1220.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.shedule.ScheduleTableEdit">
     <top>
         <GridPane BorderPane.alignment="CENTER">
             <columnConstraints>
@@ -26,9 +26,9 @@
                 <ComboBox fx:id="newTeacherOfLesson" prefHeight="31.0" prefWidth="256.0" promptText="Преподаватель" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                 <ComboBox fx:id="newScoolClass" prefHeight="31.0" prefWidth="97.0" promptText="Класс" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <ComboBox fx:id="newNameOfKurs" prefHeight="31.0" prefWidth="344.0" promptText="Предмет" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                <Label alignment="CENTER" prefHeight="32.0" prefWidth="1019.0" text="Расписание уроков" GridPane.columnIndex="1" GridPane.columnSpan="5">
+                <Label alignment="CENTER" prefHeight="32.0" prefWidth="1019.0" text="Расписание уроков" textFill="#324597" GridPane.columnIndex="1" GridPane.columnSpan="5">
                     <font>
-                        <Font size="22.0" />
+                        <Font size="25.0" />
                     </font>
                 </Label>
                 <ComboBox fx:id="newDay" prefHeight="31.0" prefWidth="101115.0" promptText="День" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -57,10 +57,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="save" mnemonicParsing="false" onAction="#onSaveClick" prefHeight="31.0" prefWidth="250.0" text="Сохранить" GridPane.columnIndex="4" />
-                <Button fx:id="add" mnemonicParsing="false" onAction="#onAddClick" prefHeight="31.0" prefWidth="250.0" text="Добавить" GridPane.columnIndex="1" />
-                <Button fx:id="delete" mnemonicParsing="false" onAction="#onDeleteClick" prefHeight="31.0" prefWidth="250.0" text="Удалить" GridPane.columnIndex="2" />
-                <Button fx:id="restore" mnemonicParsing="false" onAction="#onRestoreClick" prefHeight="31.0" prefWidth="256.0" text="Обновить" GridPane.columnIndex="3" />
+                <Button fx:id="save" mnemonicParsing="false" onAction="#onSaveClick" prefHeight="31.0" prefWidth="240.0" text="Сохранить" GridPane.columnIndex="4" />
+                <Button fx:id="add" mnemonicParsing="false" onAction="#onAddClick" prefHeight="31.0" prefWidth="240.0" text="Добавить" GridPane.columnIndex="1" />
+                <Button fx:id="delete" mnemonicParsing="false" onAction="#onDeleteClick" prefHeight="31.0" prefWidth="240.0" text="Удалить" GridPane.columnIndex="2" />
+                <Button fx:id="restore" mnemonicParsing="false" onAction="#onRestoreClick" prefHeight="31.0" prefWidth="240.0" text="Обновить" GridPane.columnIndex="3" />
                 <Label fx:id="msgLbl" prefHeight="21.0" prefWidth="99.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
             </children>
         </GridPane>
