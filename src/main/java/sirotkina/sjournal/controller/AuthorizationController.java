@@ -97,6 +97,8 @@ public class AuthorizationController {
                 usersDAO().save(users);
                 clearingFields();
                 registrationMsg.setText("Регистрация прошла успешно");
+            } else {
+                registrationMsg.setText("Пользователь уже существует");
             }
         } else {
             registrationMsg.setText(String.valueOf(messages));

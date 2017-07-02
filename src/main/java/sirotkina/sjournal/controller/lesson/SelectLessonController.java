@@ -1,4 +1,4 @@
-package sirotkina.sjournal.controller.journal;
+package sirotkina.sjournal.controller.lesson;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -83,6 +83,7 @@ public class SelectLessonController {
                                         CreateLessonController.getLessonController()
                                                 .setValuesForNewLesson(scheduleBean, lessonBeans.get(0));
                                         MainMenuController.getMenuController().onCreateLesson();
+                                        //lbl.setDisable(true);
                                     });
                                     setGraphic(lbl);
                                     setText(null);

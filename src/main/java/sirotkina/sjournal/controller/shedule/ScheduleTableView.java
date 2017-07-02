@@ -42,4 +42,9 @@ public class ScheduleTableView {
     public ObservableList<ScheduleBean> getTableElements() {
         return tableElements;
     }
+
+    public void onRestore(){
+        initialize();
+    }
+
 }

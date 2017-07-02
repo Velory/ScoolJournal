@@ -49,7 +49,7 @@ public class Marks extends Entity {
 
     @Override
     public String toString() {
-        return "Mark{" +
+        return "JournalBean{" +
                 "id=" + getId() +
                 "mark=" + mark +
                 ", comment='" + comment + '\'' +

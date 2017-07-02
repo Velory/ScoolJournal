@@ -43,28 +43,32 @@
                 </MenuButton>
                 <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" text="Уроки" textFill="WHITE" GridPane.rowIndex="2">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#onJournal" text="Новый урок" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSelectLesson" text="Новый урок" />
                     </items>
                <font>
                   <Font size="20.0" />
                </font>
                 </MenuButton>
-                <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" text="Домашнее задание" textFill="WHITE" GridPane.rowIndex="3">
+                <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" text="Журнал" textFill="WHITE" GridPane.rowIndex="3">
                <font>
                   <Font size="20.0" />
-               </font></MenuButton>
-                <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" text="Сайт" textFill="WHITE" GridPane.rowIndex="4">
-               <font>
-                  <Font size="20.0" />
-               </font></MenuButton>
-                <Button mnemonicParsing="false" onAction="#onPersonalProfile" prefHeight="80.0" prefWidth="260.0" text="Личный профиль" GridPane.rowIndex="6">
-               <font>
-                  <Font size="20.0" />
-               </font></Button>
-                <Button mnemonicParsing="false" onAction="#onEditSchoolData" prefHeight="80.0" prefWidth="260.0" text="Редактирование данных школы" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="5">
+               </font>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onJournal" text="Открыть журнал" />
+               </items></MenuButton>
+                <Button fx:id="personalProfileBtn" mnemonicParsing="false" onAction="#onPersonalProfile" prefHeight="80.0" prefWidth="260.0" text="Личный профиль" GridPane.rowIndex="6">
                <font>
                   <Font size="20.0" />
                </font></Button>
+                <Button fx:id="schoolDataBtn" mnemonicParsing="false" onAction="#onEditSchoolData" prefHeight="80.0" prefWidth="260.0" text="Редактирование данных школы" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="5">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="siteBtn" mnemonicParsing="false" onAction="#onSite" prefHeight="80.0" prefWidth="260.0" text="Сайт" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
             </children>
         </GridPane>
     </left>

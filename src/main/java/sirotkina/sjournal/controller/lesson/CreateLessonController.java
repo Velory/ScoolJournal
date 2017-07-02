@@ -1,4 +1,4 @@
-package sirotkina.sjournal.controller.journal;
+package sirotkina.sjournal.controller.lesson;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,7 +17,6 @@ import java.util.List;
 
 import static sirotkina.sjournal.utils.ConvertersUtils.*;
 import static sirotkina.sjournal.utils.DatabaseUtils.*;
-import static sirotkina.sjournal.utils.ControllersUtils.*;
 
 public class CreateLessonController {
 
@@ -84,7 +83,6 @@ public class CreateLessonController {
             saveMarks();
             msgLblLesson.setText("Ok!");
             msgLblLesson.setTextFill(Paint.valueOf("#4f9302"));
-
         } catch (Exception e){
             e.printStackTrace();
             msgLblLesson.setText("Ошибка!");

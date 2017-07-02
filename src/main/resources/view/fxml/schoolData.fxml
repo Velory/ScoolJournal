@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1220.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.SchoolDataController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1220.0" style="-fx-background-color: #ffffff;" stylesheets="@../css/theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.SchoolDataController">
     <left>
         <Pane prefHeight="755.0" prefWidth="10.0" BorderPane.alignment="CENTER" />
     </left>
@@ -35,8 +36,14 @@
             <RowConstraints maxHeight="950.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Label alignment="CENTER" prefHeight="21.0" prefWidth="501.0" text="Классы" GridPane.columnSpan="3" />
-                <Label alignment="CENTER" prefHeight="21.0" prefWidth="502.0" text="Предметы" GridPane.columnIndex="4" GridPane.columnSpan="3" />
+                <Label alignment="CENTER" prefHeight="21.0" prefWidth="501.0" text="Классы" textFill="#324597" GridPane.columnSpan="3">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
+                <Label alignment="CENTER" prefHeight="21.0" prefWidth="502.0" text="Предметы" textFill="#324597" GridPane.columnIndex="4" GridPane.columnSpan="3">
+               <font>
+                  <Font size="20.0" />
+               </font></Label>
                 <TableView fx:id="classTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="2">
                     <columns>
                         <TableColumn fx:id="idClass" prefWidth="73.0" text="id" />

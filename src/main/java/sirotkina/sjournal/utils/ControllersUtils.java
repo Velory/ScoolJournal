@@ -15,6 +15,7 @@ public class ControllersUtils {
     private static final ClassBean DEFAULTCLASSBEAN;
     private static final Class DEFAULTCLASS;
     private static final Kurs DEFAULTKURS;
+    private static Users CURRENT_USER;
 
     static {
         DEFAULTCLASSBEAN = new ClassBean(null, "0", "N/A");
@@ -65,5 +66,13 @@ public class ControllersUtils {
             selectionModel.clearSelection(selectedIndices[i]);
             tableView.getItems().remove(selectedIndices[i].intValue());
         }
+    }
+
+    public static Users getCurrentUser() {
+        return CURRENT_USER;
+    }
+
+    public static void setCurrentUser(Users currentUser) {
+        CURRENT_USER = currentUser;
     }
 }

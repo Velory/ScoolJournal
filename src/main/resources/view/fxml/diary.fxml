@@ -37,11 +37,11 @@
                         <Font size="25.0" />
                     </font>
                 </Label>
-                <Button fx:id="firstDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="230.0" text="Понедельник" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Button fx:id="secondDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="230.0" text="Вторник" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                <Button fx:id="thirdDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="230.0" text="Среда" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                <Button fx:id="fourthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="230.0" text="Четверг" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                <Button fx:id="fifthDay" mnemonicParsing="false" prefHeight="31.0" prefWidth="230.0" text="Пятница" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+                <Button fx:id="firstDay" mnemonicParsing="false" onAction="#onFirstDay" prefHeight="31.0" prefWidth="230.0" text="Понедельник" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <Button fx:id="secondDay" mnemonicParsing="false" onAction="#onSecondDay" prefHeight="31.0" prefWidth="230.0" text="Вторник" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <Button fx:id="thirdDay" mnemonicParsing="false" onAction="#onThirdDay" prefHeight="31.0" prefWidth="230.0" text="Среда" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                <Button fx:id="fourthDay" mnemonicParsing="false" onAction="#onFourthDay" prefHeight="31.0" prefWidth="230.0" text="Четверг" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                <Button fx:id="fifthDay" mnemonicParsing="false" onAction="#onFifthDay" prefHeight="31.0" prefWidth="230.0" text="Пятница" GridPane.columnIndex="5" GridPane.rowIndex="4" />
                 <ComboBox fx:id="selectStudentDiary" prefHeight="30.0" prefWidth="200.0" promptText="Выберите ученика" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <ComboBox fx:id="selectClassDiary" prefHeight="30.0" prefWidth="200.0" promptText="Выберите класс" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label fx:id="msgLabel" prefHeight="21.0" prefWidth="236.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="2">

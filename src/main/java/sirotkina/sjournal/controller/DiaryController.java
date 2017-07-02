@@ -49,11 +49,6 @@ public class DiaryController {
         selectClassDiary.getSelectionModel().selectedItemProperty().addListener(this::classChanged);
         period.setOnAction(event -> periodChanged(period.getValue()));
         tableInitialize(LocalDate.now());
-        firstDay.setOnKeyPressed(event -> tableInitialize(LocalDate.parse(firstDay.getText().substring(0, 10))));
-        secondDay.setOnKeyPressed(event -> tableInitialize(LocalDate.parse(secondDay.getText().substring(0, 10))));
-        thirdDay.setOnKeyPressed(event -> tableInitialize(LocalDate.parse(thirdDay.getText().substring(0, 10))));
-        fourthDay.setOnKeyPressed(event -> tableInitialize(LocalDate.parse(fourthDay.getText().substring(0, 10))));
-        fifthDay.setOnKeyPressed(event -> tableInitialize(LocalDate.parse(firstDay.getText().substring(0, 10))));
     }
 
     private ObservableList<Users> studentsOfClass(Class cl){
@@ -71,7 +66,7 @@ public class DiaryController {
         List<DiaryBean> diaryBeansList = new ArrayList<>();
         List<Lesson> lessons = lessonDAO().getAll();
         List<Marks> marks = marksDAO().getAll();
-        int i = 0;
+        int i = 1;
         for (Lesson l: lessons) {
             if (l.getDate().toLocalDate().equals(localDate) ){
                 List<Marks> filteredMarks = marks.stream().filter(marks1 -> marks1.getLessonFKId().equals(l))
@@ -125,10 +120,30 @@ public class DiaryController {
         diaryTableInitialize();
     }
 
+    public void onFirstDay(){
+        tableInitialize(LocalDate.parse(firstDay.getText().substring(0, 10)));
+    }
+
+    public void onSecondDay(){
+        tableInitialize(LocalDate.parse(secondDay.getText().substring(0, 10)));
+    }
+
+    public void onThirdDay(){
+        tableInitialize(LocalDate.parse(thirdDay.getText().substring(0, 10)));
+    }
+
+    public void onFourthDay(){
+        tableInitialize(LocalDate.parse(fourthDay.getText().substring(0, 10)));
+    }
+
+    public void onFifthDay(){
+        tableInitialize(LocalDate.parse(fifthDay.getText().substring(0, 10)));
+    }
+
     public void tableInitialize(LocalDate localDate){
         numDiary.setCellValueFactory(new PropertyValueFactory<>("numDiary"));
         kursDiary.setCellValueFactory(new PropertyValueFactory<>("kursDiary"));
-        homeTaskDiary.setCellValueFactory(new PropertyValueFactory<>("homeTask"));
+        homeTaskDiary.setCellValueFactory(new PropertyValueFactory<>("homeTaskDiary"));
         markDiary.setCellValueFactory(new PropertyValueFactory<>("markDiary"));
         commentDiary.setCellValueFactory(new PropertyValueFactory<>("commentDiary"));
         diaryTable.setItems(diaryBeanList(localDate));
