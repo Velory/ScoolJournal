@@ -180,10 +180,8 @@ public class JournalBean {
     }
 
     public class Builder {
-
-        private Builder() {
-        }
-
+       /* private Builder() {
+        }*/
         public Builder setNumJournal(String numJournal) {
             JournalBean.this.numJournal = numJournal;
             return this;

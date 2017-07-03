@@ -91,7 +91,7 @@
          <children>
             <ImageView fitHeight="50.0" fitWidth="1149.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="2">
                <image>
-                  <Image url="@../img/kids%20party.png" />
+                  <Image url="@../img/kids_party.png" />
                </image>
             </ImageView>
          </children>

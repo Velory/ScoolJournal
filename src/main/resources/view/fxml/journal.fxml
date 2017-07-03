@@ -11,7 +11,7 @@
         <ScrollPane BorderPane.alignment="CENTER">
             <content>
 
-                <TableView prefHeight="701.0" stylesheets="@../css/journalTable.css" BorderPane.alignment="CENTER">
+                <TableView fx:id="tableJournal" prefHeight="701.0" stylesheets="@../css/journalTable.css" BorderPane.alignment="CENTER">
                     <columns>
                         <TableColumn fx:id="numJournal" prefWidth="40.0" text="№"/>
                         <TableColumn fx:id="fioJournal" maxWidth="200.0" prefWidth="200.0" text="Фамилия И. О."/>
@@ -83,7 +83,7 @@
                         <Insets/>
                     </GridPane.margin>
                 </ComboBox>
-                <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="170.0" text="Загрузить"
+                <Button mnemonicParsing="false" onAction="#onGoBtn" prefHeight="31.0" prefWidth="170.0" text="Загрузить"
                         GridPane.columnIndex="3" GridPane.rowIndex="1"/>
                 <ComboBox fx:id="kursJournal" prefWidth="170.0" promptText="Выберите предмет" GridPane.columnIndex="2"
                           GridPane.rowIndex="1"/>
