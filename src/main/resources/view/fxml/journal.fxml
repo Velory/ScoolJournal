@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <BorderPane prefHeight="805.0" prefWidth="1220.0" style="-fx-background-color: #ffffff;"
             xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="sirotkina.sjournal.controller.JournalController">
+            fx:controller="sirotkina.sjournal.controller.journal.JournalController">
     <center>
         <ScrollPane BorderPane.alignment="CENTER">
             <content>

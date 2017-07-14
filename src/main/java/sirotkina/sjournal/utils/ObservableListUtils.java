@@ -12,6 +12,7 @@ import sirotkina.sjournal.utils.enums.Month;
 import sirotkina.sjournal.utils.enums.TimeOfLessons;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class ObservableListUtils {
 
     private static ObservableList<String> timeOfLessonsList;
     private static ObservableList<String> daysList;
-    private static ObservableList<String> monthList;
+    private static ObservableList<Month> monthList;
 
     static {
         timeOfLessonsList = FXCollections.observableArrayList();
@@ -94,10 +95,8 @@ public class ObservableListUtils {
         return daysList;
     }
 
-    public static ObservableList<String> getMonthList(){
-        for (Month month: Month.values()){
-            monthList.add(month.getValue());
-        }
+    public static ObservableList<Month> getMonthList(){
+        monthList.addAll(Arrays.asList(Month.values()));
         return monthList;
     }
 }

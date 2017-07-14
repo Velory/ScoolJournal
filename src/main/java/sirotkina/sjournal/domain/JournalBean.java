@@ -1,9 +1,13 @@
 package sirotkina.sjournal.domain;
 
+import sirotkina.sjournal.entity.Marks;
+
 public class JournalBean {
+    private Integer id;
     private String numJournal;
     private String fioJournal;
-    private String day_1;
+    private String [] days = new String[31];
+    /*private String day_1;
     private String day_2;
     private String day_3;
     private String day_4;
@@ -33,10 +37,13 @@ public class JournalBean {
     private String day_28;
     private String day_29;
     private String day_30;
-    private String day_31;
+    private String day_31;*/
     private String summary;
 
-    private JournalBean() {
+    public JournalBean(Integer id, String numJournal, String fioJournal) {
+        this.id = id;
+        this.numJournal = numJournal;
+        this.fioJournal = fioJournal;
     }
 
     public String getNumJournal() {
@@ -47,8 +54,24 @@ public class JournalBean {
         return fioJournal;
     }
 
-    public String getDay_1() {
-        return day_1;
+    public void setMark(int day, int mark){
+        days[day - 1] = String.valueOf(mark);
+    }
+
+    public void setMark(int day, String mark){
+        days[day - 1] = mark;
+    }
+
+    public String[] getDays() {
+        return days;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    /* public String getDay_1() {
+        return days[1];
     }
 
     public String getDay_2() {
@@ -169,19 +192,21 @@ public class JournalBean {
 
     public String getDay_31() {
         return day_31;
-    }
+    }*/
 
     public String getSummary() {
         return summary;
     }
 
-    public static Builder newBuilder(){
+
+
+    /*public static Builder newBuilder(){
         return new JournalBean().new Builder();
     }
 
     public class Builder {
-       /* private Builder() {
-        }*/
+       *//* private Builder() {
+        }*//*
         public Builder setNumJournal(String numJournal) {
             JournalBean.this.numJournal = numJournal;
             return this;
@@ -355,5 +380,5 @@ public class JournalBean {
         public JournalBean build(){
             return JournalBean.this;
         }
-    }
+    }*/
 }
