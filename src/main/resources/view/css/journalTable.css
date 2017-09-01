@@ -1,0 +1,31 @@
+.table-view {
+    -fx-base: #ffffff;
+    -fx-control-inner-background: #ffffff;
+    -fx-background-color: #ffffff;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 11;
+    -fx-border-color:
+            transparent
+            transparent
+            derive(-fx-base, 30%)
+            transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 11pt;
+    -fx-text-fill: black;
+    -fx-alignment: center-left;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}

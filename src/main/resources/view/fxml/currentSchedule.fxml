@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1220.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.shedule.ScheduleTableView">
+    <children>
+        <TableView fx:id="curentSchedule" layoutX="12.0" layoutY="57.0" prefHeight="729.0" prefWidth="997.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" AnchorPane.topAnchor="57.0">
+            <columns>
+                <TableColumn fx:id="day" editable="false" prefWidth="72.0" text="День" />
+                <TableColumn fx:id="scoolClass" editable="false" prefWidth="66.0" text="Класс" />
+                <TableColumn fx:id="id" editable="false" prefWidth="38.0" text="№" />
+                <TableColumn fx:id="lessonTime" editable="false" prefWidth="185.0" text="Время" />
+                <TableColumn fx:id="nameOfKurs" editable="false" prefWidth="420.0" text="Предмет" />
+                <TableColumn fx:id="teacherOfLesson" editable="false" prefWidth="214.0" text="Преподаватель" />
+            </columns>
+        </TableView>
+        <Label alignment="CENTER" layoutX="39.0" layoutY="4.0" prefHeight="36.0" prefWidth="1165.0" text="Расписание уроков" textFill="#324597">
+            <font>
+                <Font size="25.0" />
+            </font>
+        </Label>
+      <Button layoutX="1008.0" layoutY="25.0" mnemonicParsing="false" onAction="#onRestore" prefHeight="31.0" prefWidth="198.0" text="Обновить" />
+    </children>
+</AnchorPane>

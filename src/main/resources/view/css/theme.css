@@ -1,0 +1,77 @@
+.background {
+    -fx-background-color: #ffffff;
+}
+
+.button {
+    -fx-background-color: #6f849c;
+    -fx-text-fill: white;
+}
+
+.button:default {
+    -fx-background-color: #6f849c;
+}
+
+.button:cancel {
+    -fx-background-color: #e35760;
+}
+
+.label {
+}
+
+.titled-pane > .title > {
+        -fx-background-color: #f4f5f8;
+}
+
+.menu-button {
+    -fx-background-color: #6f849c;
+}
+
+.border-pane {
+    -fx-background-color: #ffffff;
+}
+
+.grid-pane {
+    -fx-background-color: #ffffff;
+}
+
+.table-view {
+    -fx-base: #ffffff;
+    -fx-control-inner-background: #ffffff;
+    -fx-background-color: #ffffff;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 14;
+    -fx-border-color:
+            transparent
+            transparent
+            derive(-fx-base, 30%)
+            transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 12pt;
+    -fx-text-fill: black;
+    -fx-alignment: center-left;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+.pane {
+    -fx-background-color: #ffffff;
+}
+
+.combo-box-base {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, white;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+}

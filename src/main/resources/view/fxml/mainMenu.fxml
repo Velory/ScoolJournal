@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainMenuContainer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1480.0" stylesheets="@../css/theme.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sirotkina.sjournal.controller.MainMenuController">
+    <left>
+        <GridPane prefHeight="805.0" prefWidth="260.0" styleClass="border-pane" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="260.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" text="Расписание" textFill="WHITE">
+                    <items>
+                        <MenuItem fx:id="newSchedule" mnemonicParsing="false" onAction="#onNewSchedule" text="Создать новое расписание" />
+                        <MenuItem fx:id="openSchedule" mnemonicParsing="false" onAction="#onOpenSchedule" text="Открыть расписание" />
+                    </items>
+               <font>
+                  <Font size="20.0" />
+               </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" text="Дневник" textFill="WHITE" GridPane.rowIndex="1">
+                    <items>
+                        <MenuItem fx:id="scoolDiary" mnemonicParsing="false" onAction="#onDiary" text="Открыть дневник" />
+                    </items>
+               <font>
+                  <Font size="20.0" />
+               </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" text="Уроки" textFill="WHITE" GridPane.rowIndex="2">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#onSelectLesson" text="Новый урок" />
+                    </items>
+               <font>
+                  <Font size="20.0" />
+               </font>
+                </MenuButton>
+                <MenuButton mnemonicParsing="false" popupSide="RIGHT" prefHeight="80.0" prefWidth="260.0" text="Журнал" textFill="WHITE" GridPane.rowIndex="3">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onJournal" text="Открыть журнал" />
+               </items></MenuButton>
+                <Button fx:id="personalProfileBtn" mnemonicParsing="false" onAction="#onPersonalProfile" prefHeight="80.0" prefWidth="260.0" text="Личный профиль" GridPane.rowIndex="6">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+                <Button fx:id="schoolDataBtn" mnemonicParsing="false" onAction="#onEditSchoolData" prefHeight="80.0" prefWidth="260.0" text="Редактирование данных школы" textAlignment="CENTER" wrapText="true" GridPane.rowIndex="5">
+               <font>
+                  <Font size="20.0" />
+               </font></Button>
+            <Button fx:id="siteBtn" mnemonicParsing="false" onAction="#onSite" prefHeight="80.0" prefWidth="260.0" text="Сайт" GridPane.rowIndex="4">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            </children>
+        </GridPane>
+    </left>
+    <top>
+        <GridPane prefHeight="65.0" prefWidth="1480.0" styleClass="border-pane" BorderPane.alignment="CENTER">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="0.0" prefWidth="267.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="640.0" minWidth="0.0" prefWidth="246.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="765.0" minWidth="10.0" prefWidth="336.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="549.0" minWidth="10.0" prefWidth="243.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="476.0" minWidth="10.0" prefWidth="223.0" />
+            </columnConstraints>
+            <rowConstraints>
+            <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+         <children>
+            <ImageView fitHeight="50.0" fitWidth="1149.0" pickOnBounds="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="2">
+               <image>
+                  <Image url="@../img/kids_party.png" />
+               </image>
+            </ImageView>
+         </children>
+        </GridPane>
+    </top>
+   <bottom>
+      <Pane maxHeight="30.0" prefHeight="30.0" prefWidth="1480.0" styleClass="border-pane" BorderPane.alignment="CENTER" />
+   </bottom>
+   <center>
+      <Pane prefHeight="200.0" prefWidth="200.0" styleClass="border-pane" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
